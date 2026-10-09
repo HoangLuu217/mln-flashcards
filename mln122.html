@@ -686,7 +686,6 @@
       gap: 0.75rem;
     }
 
-    /* Score summary card */
     .score-box {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15));
       border: 1px solid var(--accent);
@@ -701,6 +700,21 @@
       font-weight: 800;
       color: var(--accent);
       margin-bottom: 0.25rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
 
     @media (max-width: 640px) {
@@ -817,7 +831,7 @@
         <div class="card-face card-front">
           <div class="card-header">
             <div class="card-tag-group">
-              <span class="card-tag" id="card-tag-main">Câu #<span id="card-id-front">1</span></span>
+              <span class="card-tag" id="card-tag-main">Câu #1</span>
               <span class="card-tag card-tag-wrong" id="card-tag-wrong">❌ Đã trả lời sai</span>
             </div>
             <div class="card-tip">
@@ -836,7 +850,7 @@
             <div class="card-tip">
               <span>Bấm để lật lại câu hỏi</span>
             </div>
-            <span class="card-tag" style="background:none; color:var(--text-muted);">#<span id="card-id-back">1</span></span>
+            <span class="card-tag" id="card-id-back" style="background:none; color:var(--text-muted);">#1</span>
           </div>
           <div>
             <div class="answer-badge" id="card-answer-letter">A</div>
@@ -924,14 +938,12 @@
     let currentIndex = 0;
     let isExamMode = false;
     let examCards = [];
-    let examAnswers = {}; // cardId -> { chosen: 'A', isCorrect: true }
+    let examAnswers = {};
 
-    // Load persistent state from localStorage
     let starredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || '[]'));
-    let wrongDict = JSON.parse(localStorage.getItem(STORAGE_KEY_WRONG) || '{}'); // { cardId: chosenLetter }
-    let userAnswers = JSON.parse(localStorage.getItem(STORAGE_KEY_ANSWERS) || '{}'); // { cardId: chosenLetter }
+    let wrongDict = JSON.parse(localStorage.getItem(STORAGE_KEY_WRONG) || '{}');
+    let userAnswers = JSON.parse(localStorage.getItem(STORAGE_KEY_ANSWERS) || '{}');
 
-    // Initialize Theme
     function initTheme() {
       const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
@@ -953,19 +965,16 @@
       updateThemeIcon(next);
     }
 
-    // Save current study progress (only in regular mode)
     function saveCurrentProgress() {
       if (!isExamMode && activeCards.length > 0 && activeCards[currentIndex]) {
         localStorage.setItem(STORAGE_KEY_CURRENT_CARD, activeCards[currentIndex].id);
       }
     }
 
-    // --- 🎯 60-Question Random Exam Mode ---
     function startQuiz60() {
       isExamMode = true;
       examAnswers = {};
 
-      // Pick 60 random unique questions
       const shuffled = [...ALL_CARDS];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -975,7 +984,6 @@
       activeCards = [...examCards];
       currentIndex = 0;
 
-      // Update UI elements
       document.getElementById('filter-select').value = 'exam60';
       document.getElementById('search-input').value = '';
       document.getElementById('exam-banner').classList.add('show');
@@ -1008,14 +1016,13 @@
         else wrong++;
       });
 
-      const score = ((correct / examCards.length) * 10).toFixed(1);
+      const score = examCards.length > 0 ? ((correct / examCards.length) * 10).toFixed(1) : "0.0";
 
       document.getElementById('exam-answered-count').innerText = totalAnswered;
       document.getElementById('exam-correct-count').innerText = correct;
       document.getElementById('exam-wrong-count').innerText = wrong;
       document.getElementById('exam-score-display').innerText = score;
 
-      // Check if finished 60 questions
       if (totalAnswered === examCards.length && totalAnswered > 0) {
         showExamResultModal(correct, score);
       }
@@ -1029,7 +1036,8 @@
     }
 
     function closeExamModal() {
-      document.getElementById('exam-complete-modal').classList.remove('open');
+      const m = document.getElementById('exam-complete-modal');
+      if (m) m.classList.remove('open');
     }
 
     function updateCounts() {
@@ -1069,11 +1077,47 @@
       }
     }
 
+    function resetToAllQuestions() {
+      document.getElementById('filter-select').value = 'all';
+      document.getElementById('search-input').value = '';
+      isExamMode = false;
+      document.getElementById('exam-banner').classList.remove('show');
+      document.getElementById('wrong-banner').classList.remove('show');
+      document.getElementById('progress-bar').classList.remove('exam-mode');
+      document.getElementById('save-indicator').style.display = 'inline-flex';
+      activeCards = [...ALL_CARDS];
+      currentIndex = 0;
+      updateCounts();
+      renderCurrentCard();
+    }
+
     function renderCurrentCard() {
+      const cardQuestion = document.getElementById('card-question');
+      const optContainer = document.getElementById('card-options');
+      const wrongTag = document.getElementById('card-tag-wrong');
+      const tagMain = document.getElementById('card-tag-main');
+      const idBack = document.getElementById('card-id-back');
+
       if (activeCards.length === 0) {
-        document.getElementById('card-question').innerText = "Không có câu hỏi nào trong mục này.";
-        document.getElementById('card-options').innerHTML = "";
-        document.getElementById('card-tag-wrong').classList.remove('show');
+        const filterType = document.getElementById('filter-select').value;
+        let emptyMsg = "Không tìm thấy câu hỏi phù hợp.";
+        if (filterType === 'wrong') {
+          emptyMsg = "🎉 Tuyệt vời! Bạn chưa có câu trả lời sai nào.";
+        } else if (filterType === 'starred') {
+          emptyMsg = "⭐ Bạn chưa gắn sao câu hỏi nào. Bấm ⭐ trên thẻ để lưu lại các câu cần chú ý.";
+        }
+
+        cardQuestion.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">${filterType === 'wrong' ? '🎉' : '🔍'}</div>
+            <div style="font-size:1.15rem; font-weight:700; margin-bottom:0.5rem;">${emptyMsg}</div>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem;">Bấm nút bên dưới để quay lại ôn tập toàn bộ câu hỏi.</p>
+            <button class="btn btn-primary" onclick="resetToAllQuestions()">👉 Xem tất cả ${ALL_CARDS.length} câu hỏi</button>
+          </div>
+        `;
+        optContainer.innerHTML = "";
+        wrongTag.classList.remove('show');
+        tagMain.innerText = "Trống";
         document.getElementById('progress-bar').style.width = '0%';
         document.getElementById('current-idx-display').innerText = '0';
         document.getElementById('total-idx-display').innerText = '0';
@@ -1093,18 +1137,15 @@
         document.getElementById('card').classList.remove('is-flipped');
       }
 
-      // Display question number tag
       if (isExamMode) {
-        document.getElementById('card-tag-main').innerText = `Đề thi: Câu ${currentIndex + 1} / ${activeCards.length} (#${card.id})`;
+        tagMain.innerText = `Đề thi: Câu ${currentIndex + 1} / ${activeCards.length} (#${card.id})`;
       } else {
-        document.getElementById('card-tag-main').innerText = `Câu #${card.id}`;
+        tagMain.innerText = `Câu #${card.id}`;
       }
-      document.getElementById('card-id-front').innerText = card.id;
-      document.getElementById('card-id-back').innerText = card.id;
-      document.getElementById('card-question').innerText = card.question;
+      if (idBack) idBack.innerText = '#' + card.id;
+      cardQuestion.innerText = card.question;
 
       // Wrong tag
-      const wrongTag = document.getElementById('card-tag-wrong');
       if (wrongDict[card.id]) {
         wrongTag.classList.add('show');
         wrongTag.innerText = `❌ Đã làm sai (chọn: ${wrongDict[card.id]})`;
@@ -1121,7 +1162,6 @@
       }
 
       // Render options
-      const optContainer = document.getElementById('card-options');
       optContainer.innerHTML = '';
       card.options.forEach(opt => {
         const btn = document.createElement('div');
@@ -1131,7 +1171,6 @@
         const letterMatch = opt.match(/^([A-E])\s*[\.\:\)]/);
         const letter = letterMatch ? letterMatch[1].toUpperCase() : '';
 
-        // Check if user already answered this card
         const currentAnswer = isExamMode ? (examAnswers[card.id] ? examAnswers[card.id].chosen : null) : userAnswers[card.id];
         if (currentAnswer) {
           if (card.answerLetter.includes(letter)) {
@@ -1182,18 +1221,15 @@
       }
 
       if (isCorrect) {
-        // If correct, remove from wrong list if it was there
         if (wrongDict[card.id]) {
           delete wrongDict[card.id];
         }
       } else {
-        // If wrong, add to wrong list!
         wrongDict[card.id] = letter;
       }
 
       saveState();
 
-      // Update UI classes for options
       const optItems = document.querySelectorAll('.option-item');
       optItems.forEach(item => {
         const m = item.innerText.match(/^([A-E])\s*[\.\:\)]/);
@@ -1205,7 +1241,6 @@
         }
       });
 
-      // Update wrong tag on card front
       const wrongTag = document.getElementById('card-tag-wrong');
       if (wrongDict[card.id]) {
         wrongTag.classList.add('show');
@@ -1216,7 +1251,7 @@
     }
 
     function handleCardClick(e) {
-      if (e.target.closest('.option-item') || e.target.closest('.btn-star')) {
+      if (e.target.closest('.option-item') || e.target.closest('.btn-star') || e.target.closest('button')) {
         return;
       }
       flipCard();
@@ -1354,14 +1389,22 @@
         const idx = parseInt(e.key) - 1;
         const currentCard = activeCards[currentIndex];
         if (currentCard && currentCard.options[idx]) {
-          const optItems = document.querySelectorAll('.option-item');
-          if (optItems[idx]) optItems[idx].click();
+          const m = currentCard.options[idx].match(/^([A-E])/);
+          if (m) {
+            const optItems = document.querySelectorAll('.option-item');
+            if (optItems[idx]) optItems[idx].click();
+          }
         }
       }
     });
 
     // Init Theme & Progress
     initTheme();
+    
+    // Ensure dropdown is reset to 'all' on fresh load
+    document.getElementById('filter-select').value = 'all';
+    document.getElementById('search-input').value = '';
+
     updateCounts();
 
     // Restore last studied card position
