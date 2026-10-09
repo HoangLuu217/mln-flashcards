@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Ôn Tập Triết Học & MLN - FPT University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('app_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-card: #1e293b;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --success: #059669;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-icon {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .logo-title h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-title p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .btn {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .hero-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background-color: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #f8fafc 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #0f172a 40%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 3rem;
+    }
+
+    .subject-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      text-align: left;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .subject-card:hover::before {
+      opacity: 1;
+    }
+
+    .subject-card.mln122::before {
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .subject-code {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      background-color: rgba(59, 130, 246, 0.15);
+      color: var(--accent);
+    }
+
+    .mln122 .subject-code {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+    }
+
+    .card-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .subject-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .subject-summary {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      transition: gap 0.2s ease;
+    }
+
+    .mln122 .card-cta {
+      color: var(--success);
+    }
+
+    .subject-card:hover .card-cta {
+      gap: 0.75rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-group">
+      <div class="badge-icon">F</div>
+      <div class="logo-title">
+        <h1>FPT Study Hub</h1>
+        <p>Hệ Thống Flashcard & Luyện Trắc Nghiệm</p>
+      </div>
+    </div>
+    <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌙</button>
+  </header>
+
+  <main class="hero-container">
+    <div class="hero-badge">⚡ Học Tốc Độ Cao • Ghi Nhớ Sâu</div>
+    <h2 class="hero-title">Ngân Hàng Ôn Thi Trắc Nghiệm</h2>
+    <p class="hero-desc">
+      Học dạng flashcard 3D, làm trắc nghiệm trực tiếp, tự động lưu câu làm sai và đồng bộ tiến trình học trên mọi thiết bị.
+    </p>
+
+    <div class="cards-grid">
+      <!-- MLN111 -->
+      <a href="mln111.html" class="subject-card mln111">
+        <div class="card-top">
+          <span class="subject-code">MLN111</span>
+          <span class="card-count">571 Câu hỏi</span>
+        </div>
+        <h3 class="subject-name">Triết Học Mác - Lênin</h3>
+        <p class="subject-summary">
+          Chủ nghĩa duy vật, phép biện chứng, lượng chất, mâu thuẫn, phủ định, nhận thức luận và duy vật lịch sử.
+        </p>
+        <span class="card-cta">Bắt đầu học ngay &rarr;</span>
+      </a>
+
+      <!-- MLN122 -->
+      <a href="mln122.html" class="subject-card mln122">
+        <div class="card-top">
+          <span class="subject-code">MLN122</span>
+          <span class="card-count">526 Câu hỏi</span>
+        </div>
+        <h3 class="subject-name">Kinh Tế Chính Trị MLN</h3>
+        <p class="subject-summary">
+          Ngân hàng câu hỏi ôn tập Final: Hàng hóa, giá trị thặng dư, độc quyền, kinh tế thị trường định hướng XHCN, CMCN.
+        </p>
+        <span class="card-cta">Bắt đầu học ngay &rarr;</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    FPT University &bull; Tối ưu hóa cho học tập trên cả Điện Thoại & Máy Tính
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('app_theme', next);
+      updateThemeIcon(next);
+    }
+
+    function updateThemeIcon(theme) {
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.innerText = theme === 'light' ? '☀️' : '🌙';
+      }
+    }
+
+    // Init
+    const savedTheme = localStorage.getItem('app_theme') || 'dark';
+    updateThemeIcon(savedTheme);
+  </script>
+</body>
+</html>
