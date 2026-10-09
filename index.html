@@ -268,22 +268,63 @@
       flex: 1;
     }
 
-    .card-cta {
+    .card-actions-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-      font-weight: 700;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .action-flashcard {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .action-flashcard:hover {
+      border-color: var(--accent);
       color: var(--accent);
-      transition: gap 0.2s ease;
+      transform: translateY(-2px);
     }
 
-    .mln122 .card-cta {
-      color: var(--success);
+    .action-exam {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
     }
 
-    .subject-card:hover .card-cta {
-      gap: 0.75rem;
+    .action-exam:hover {
+      background: linear-gradient(135deg, #4338ca, #6d28d9);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.45);
+    }
+
+    .mln122 .action-exam {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+
+    .mln122 .action-exam:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
     }
 
     footer {
@@ -324,35 +365,41 @@
     <div class="hero-badge">⚡ Học Tốc Độ Cao • Ghi Nhớ Sâu</div>
     <h2 class="hero-title">Ngân Hàng Ôn Thi Trắc Nghiệm</h2>
     <p class="hero-desc">
-      Học dạng flashcard 3D, làm trắc nghiệm trực tiếp, tự động lưu câu làm sai và đồng bộ tiến trình học trên mọi thiết bị.
+      Học dạng flashcard 3D, làm trắc nghiệm trực tiếp, tự động lưu câu làm sai hoặc vào phòng <b>Thi Thử FE</b> với thời gian thực và giao diện chuẩn phòng thi!
     </p>
 
     <div class="cards-grid">
       <!-- MLN111 -->
-      <a href="mln111.html" class="subject-card mln111">
+      <div class="subject-card mln111">
         <div class="card-top">
           <span class="subject-code">MLN111</span>
-          <span class="card-count">571 Câu hỏi • 🎯 Thi thử 60 câu</span>
+          <span class="card-count">571 Câu hỏi</span>
         </div>
         <h3 class="subject-name">Triết Học Mác - Lênin</h3>
         <p class="subject-summary">
           Chủ nghĩa duy vật, phép biện chứng, lượng chất, mâu thuẫn, phủ định, nhận thức luận và duy vật lịch sử.
         </p>
-        <span class="card-cta">Bắt đầu học ngay &rarr;</span>
-      </a>
+        <div class="card-actions-row">
+          <a href="mln111.html" class="action-btn action-flashcard">🃏 Ôn Flashcard</a>
+          <a href="exam_mln111.html" class="action-btn action-exam">📝 Thi Thử FE (50p)</a>
+        </div>
+      </div>
 
       <!-- MLN122 -->
-      <a href="mln122.html" class="subject-card mln122">
+      <div class="subject-card mln122">
         <div class="card-top">
           <span class="subject-code">MLN122</span>
-          <span class="card-count">526 Câu hỏi • 🎯 Thi thử 60 câu</span>
+          <span class="card-count">526 Câu hỏi</span>
         </div>
         <h3 class="subject-name">Kinh Tế Chính Trị MLN</h3>
         <p class="subject-summary">
           Ngân hàng câu hỏi ôn tập Final: Hàng hóa, giá trị thặng dư, độc quyền, kinh tế thị trường định hướng XHCN, CMCN.
         </p>
-        <span class="card-cta">Bắt đầu học ngay &rarr;</span>
-      </a>
+        <div class="card-actions-row">
+          <a href="mln122.html" class="action-btn action-flashcard">🃏 Ôn Flashcard</a>
+          <a href="exam_mln122.html" class="action-btn action-exam">📝 Thi Thử FE (50p)</a>
+        </div>
+      </div>
     </div>
   </main>
 
