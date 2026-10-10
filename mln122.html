@@ -1183,7 +1183,200 @@
       overflow-wrap: break-word !important;
     }
 
-  </style>
+  
+    /* ==========================================
+       CARD TIP STYLING & MODAL
+       ========================================== */
+    .btn-card-tip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      border: 1.5px solid #f59e0b;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(217, 119, 6, 0.12));
+      color: #fbbf24;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+    }
+    .btn-card-tip:hover {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    }
+    [data-theme="light"] .btn-card-tip {
+      background: rgba(245, 158, 11, 0.12);
+      color: #b45309;
+      border-color: #f59e0b;
+    }
+    [data-theme="light"] .btn-card-tip:hover {
+      background: #f59e0b;
+      color: #ffffff;
+    }
+
+    .card-tip-back-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-main);
+    }
+    .tip-back-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .tip-back-title {
+      font-weight: 700;
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .btn-mini-tip-detail {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .btn-mini-tip-detail:hover {
+      background: #f59e0b;
+      color: white;
+    }
+    [data-theme="light"] .btn-mini-tip-detail {
+      color: #b45309;
+    }
+    [data-theme="light"] .btn-mini-tip-detail:hover {
+      color: white;
+    }
+    .tip-back-rule {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+    .tip-back-advice {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* Modal Tip Elements */
+    .tip-item-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .tip-item-card:last-child {
+      margin-bottom: 0;
+    }
+    .tip-badge-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    [data-theme="light"] .tip-badge-category {
+      color: #b45309;
+    }
+    .tip-rule-box {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid #f59e0b;
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 0.75rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .tip-rule-title {
+      font-weight: 700;
+      color: #f59e0b;
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tip-advice-box {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .tip-related-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .tip-related-chip {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tip-related-chip:hover {
+      border-color: var(--accent);
+      background: rgba(249, 115, 22, 0.15);
+    }
+    .tip-related-chip.current {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+    .btn-open-tips-handbook {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-open-tips-handbook:hover {
+      background: #f59e0b;
+      color: white;
+      transform: translateY(-1px);
+    }
+</style>
 </head>
 <body>
 
@@ -1302,7 +1495,10 @@
               <span>Bấm thẻ hoặc</span> <span class="kbd">Space</span> <span>để lật</span>
             </div>
             <div style="display: flex; gap: 0.4rem; align-items: center;">
-              <button class="btn-learned-toggle" id="learned-btn" onclick="toggleLearned(event)" title="Đánh dấu đã học / chưa học (Phím L)">
+                            <button class="btn-card-tip" id="card-tip-btn" onclick="openCardTipModal(event)" style="display: none;" title="Xem mẹo ghi nhớ cho câu này (Phím M)">
+                <i class="bi bi-lightbulb-fill"></i> <span>Xem Mẹo</span>
+              </button>
+<button class="btn-learned-toggle" id="learned-btn" onclick="toggleLearned(event)" title="Đánh dấu đã học / chưa học (Phím L)">
                 <i class="bi bi-circle"></i> <span>Chưa học</span>
               </button>
               <button class="btn btn-star" id="star-btn" onclick="toggleStar(event)" title="Gắn sao (Phím S)"><i class="bi bi-star"></i></button>
@@ -1329,6 +1525,13 @@
           <div class="notes-box" id="card-notes-box" style="display: none;">
             <div class="notes-title"><i class="bi bi-lightbulb-fill"></i> Ghi chú & Kiểu hỏi khác:</div>
             <div id="card-notes-text"></div>
+          </div>
+          <div class="card-tip-back-box" id="card-tip-back-box" style="display: none;">
+            <div class="tip-back-header">
+              <div class="tip-back-title"><i class="bi bi-lightbulb-fill"></i> Mẹo ghi nhớ áp dụng:</div>
+              <button class="btn-mini-tip-detail" onclick="openCardTipModal(event)"><i class="bi bi-box-arrow-up-right"></i> Xem chi tiết mẹo</button>
+            </div>
+            <div class="tip-back-content" id="card-tip-back-content"></div>
           </div>
         </div>
       </div>
@@ -1396,7 +1599,30 @@
     </div>
   </div>
 
+  
+  <!-- Card Tip Modal -->
+  <div class="modal-overlay" id="card-tip-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 id="card-tip-modal-title"><i class="bi bi-lightbulb-fill" style="color:#f59e0b;"></i> Mẹo Ghi Nhớ Câu Này</h3>
+        <button class="modal-close" onclick="closeCardTipModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="card-tip-modal-body">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <a id="card-tip-handbook-link" href="tips.html" target="_blank" class="btn btn-open-tips-handbook">
+          <i class="bi bi-book-half"></i> Mở trong Sổ Tay Bí Kíp
+        </a>
+        <button class="btn" onclick="closeCardTipModal()">Đóng (ESC)</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="tips_data.js"></script>
+
   <script>
+    const CURRENT_SUBJECT = 'mln122';
     const STORAGE_KEY_STARRED = 'mln122_starred';
     const STORAGE_KEY_WRONG = 'mln122_wrong';
     const STORAGE_KEY_ANSWERS = 'mln122_answers';
@@ -1996,6 +2222,35 @@
         notesBox.style.display = 'none';
       }
 
+      // Render tip button & back box
+      const tipsForCard = (window.TIPS_DATABASE && window.TIPS_DATABASE[CURRENT_SUBJECT]) ? window.TIPS_DATABASE[CURRENT_SUBJECT][card.id] : null;
+      const tipBtn = document.getElementById('card-tip-btn');
+      if (tipBtn) {
+        if (tipsForCard && tipsForCard.length > 0) {
+          tipBtn.style.display = 'inline-flex';
+          tipBtn.innerHTML = `<i class="bi bi-lightbulb-fill"></i> <span>Xem Mẹo${tipsForCard.length > 1 ? ' (' + tipsForCard.length + ')' : ''}</span>`;
+        } else {
+          tipBtn.style.display = 'none';
+        }
+      }
+
+      const tipBackBox = document.getElementById('card-tip-back-box');
+      const tipBackContent = document.getElementById('card-tip-back-content');
+      if (tipBackBox && tipBackContent) {
+        if (tipsForCard && tipsForCard.length > 0) {
+          tipBackBox.style.display = 'block';
+          tipBackContent.innerHTML = tipsForCard.map(tip => `
+            <div style="margin-bottom: ${tipsForCard.length > 1 ? '0.75rem' : '0'};">
+              <div class="tip-back-rule"><strong>${tip.keySign || 'Quy tắc'}:</strong> ${tip.rule || ''}</div>
+              ${tip.detail ? `<div class="tip-back-advice">${tip.detail}</div>` : ''}
+            </div>
+          `).join('');
+        } else {
+          tipBackBox.style.display = 'none';
+          tipBackContent.innerHTML = '';
+        }
+      }
+
       // Progress
       document.getElementById('current-idx-display').innerText = currentIndex + 1;
       document.getElementById('total-idx-display').innerText = activeCards.length;
@@ -2147,9 +2402,94 @@
       document.getElementById('quizlet-modal').classList.remove('open');
     }
 
-    function closeModalOnBackdrop(e) {
+        function openCardTipModal(e) {
+      if (e) e.stopPropagation();
+      const currentCard = activeCards[currentIndex];
+      if (!currentCard) return;
+
+      const tipsForCard = (window.TIPS_DATABASE && window.TIPS_DATABASE[CURRENT_SUBJECT]) ? window.TIPS_DATABASE[CURRENT_SUBJECT][currentCard.id] : null;
+      if (!tipsForCard || tipsForCard.length === 0) {
+        alert('Câu hỏi này chưa có mẹo ghi nhớ riêng.');
+        return;
+      }
+
+      const modalTitle = document.getElementById('card-tip-modal-title');
+      if (modalTitle) {
+        modalTitle.innerHTML = `<i class="bi bi-lightbulb-fill" style="color:#f59e0b;"></i> Mẹo Ghi Nhớ Cho Câu #${currentCard.id}`;
+      }
+
+      const modalBody = document.getElementById('card-tip-modal-body');
+      modalBody.innerHTML = tipsForCard.map(tip => {
+        const relatedIds = (tip.allRelatedIds || []).filter(id => id !== currentCard.id);
+        const relatedChips = relatedIds.length > 0 ? `
+          <div class="tip-related-links">
+            <span>Các câu cùng quy tắc trong đề:</span>
+            ${relatedIds.map(id => `
+              <button type="button" class="tip-related-chip" onclick="goToCardById(${id}, event)" title="Chuyển đến câu #${id}">#${id}</button>
+            `).join('')}
+          </div>
+        ` : '';
+
+        return `
+          <div class="tip-item-card">
+            <div>
+              <span class="tip-badge-category"><i class="bi bi-bookmark-check-fill"></i> ${tip.category}</span>
+            </div>
+            <div class="tip-rule-box">
+              <div class="tip-rule-title">📌 Dấu hiệu & Quy tắc chọn:</div>
+              <div><strong>${tip.keySign || 'Dấu hiệu'}:</strong> ${tip.rule || ''}</div>
+            </div>
+            ${tip.detail ? `
+              <div class="tip-advice-box">
+                <div style="font-weight:700; color:var(--text-muted); font-size:0.8rem; margin-bottom:0.2rem;">💡 Giải thích / Lưu ý:</div>
+                <div>${tip.detail}</div>
+              </div>
+            ` : ''}
+            ${relatedChips}
+            <div style="margin-top: 0.75rem;">
+              <a href="tips.html#${tip.sectionId}" target="_blank" class="btn-open-tips-handbook">
+                <i class="bi bi-box-arrow-up-right"></i> Xem mục "${tip.sectionTitle}" trong Sổ Tay Mẹo &rarr;
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const firstTip = tipsForCard[0];
+      const handbookLink = document.getElementById('card-tip-handbook-link');
+      if (handbookLink && firstTip) {
+        handbookLink.href = `tips.html#${firstTip.sectionId}`;
+        handbookLink.innerHTML = `<i class="bi bi-book-half"></i> Sổ Tay: ${firstTip.sectionTitle}`;
+      }
+
+      document.getElementById('card-tip-modal').classList.add('open');
+    }
+
+    function closeCardTipModal() {
+      const modal = document.getElementById('card-tip-modal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function goToCardById(targetId, e) {
+      if (e) e.stopPropagation();
+      let targetIdx = activeCards.findIndex(c => c.id === targetId);
+      if (targetIdx === -1) {
+        document.getElementById('filter-select').value = 'all';
+        document.getElementById('search-input').value = '';
+        activeCards = [...ALL_CARDS];
+        targetIdx = activeCards.findIndex(c => c.id === targetId);
+      }
+      if (targetIdx !== -1) {
+        currentIndex = targetIdx;
+        renderCurrentCard();
+        openCardTipModal();
+      }
+    }
+
+function closeModalOnBackdrop(e) {
       if (e.target.id === 'quizlet-modal') closeQuizletModal();
       if (e.target.id === 'exam-complete-modal') closeExamModal();
+      if (e.target.id === 'card-tip-modal') closeCardTipModal();
     }
 
     async function copyQuizletData(type) {
@@ -2192,6 +2532,18 @@
         toggleStar(e);
       } else if (e.key.toLowerCase() === 'l') {
         toggleLearned(e);
+      } else if (e.key.toLowerCase() === 'm') {
+        const cur = activeCards[currentIndex];
+        if (cur && window.TIPS_DATABASE && window.TIPS_DATABASE[CURRENT_SUBJECT] && window.TIPS_DATABASE[CURRENT_SUBJECT][cur.id]) {
+          const modal = document.getElementById('card-tip-modal');
+          if (modal && modal.classList.contains('open')) {
+            closeCardTipModal();
+          } else {
+            openCardTipModal(e);
+          }
+        }
+      } else if (e.key === 'Escape') {
+        closeCardTipModal();
       } else if (['1', '2', '3', '4'].includes(e.key)) {
         const idx = parseInt(e.key) - 1;
         const currentCard = activeCards[currentIndex];
@@ -2214,12 +2566,24 @@
 
     updateCounts();
 
-    // Restore last studied card position
-    const savedCardId = parseInt(localStorage.getItem(STORAGE_KEY_CURRENT_CARD));
-    if (savedCardId) {
-      const foundIdx = activeCards.findIndex(c => c.id === savedCardId);
+    // Restore card from URL param or last studied position
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetUrlId = parseInt(urlParams.get('id'));
+    if (targetUrlId) {
+      const foundIdx = activeCards.findIndex(c => c.id === targetUrlId);
       if (foundIdx !== -1) {
         currentIndex = foundIdx;
+      }
+      if (urlParams.get('openTip') === '1') {
+        setTimeout(() => openCardTipModal(), 300);
+      }
+    } else {
+      const savedCardId = parseInt(localStorage.getItem(STORAGE_KEY_CURRENT_CARD));
+      if (savedCardId) {
+        const foundIdx = activeCards.findIndex(c => c.id === savedCardId);
+        if (foundIdx !== -1) {
+          currentIndex = foundIdx;
+        }
       }
     }
 

@@ -807,6 +807,296 @@
       color: var(--accent);
     }
 
+    /* CLICKABLE SRC QUESTION BUTTONS */
+    .src-id {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+      vertical-align: middle;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    .src-q-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.45);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      line-height: 1.25;
+      margin: 0.05rem 0.1rem;
+    }
+
+    .src-q-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(249, 115, 22, 0.35);
+    }
+
+    .src-q-btn i {
+      font-size: 0.7rem;
+    }
+
+    .src-sub-label {
+      font-size: 0.7rem;
+      opacity: 0.85;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-left: 0.15rem;
+    }
+
+    /* QUESTION PREVIEW MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .question-modal-dialog {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px) scale(0.97); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .qmodal-question-box {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: var(--text-main);
+      padding: 1.1rem 1.25rem;
+      background: rgba(249, 115, 22, 0.05);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: 14px;
+    }
+
+    .qmodal-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .qmodal-opt-item {
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      transition: all 0.2s ease;
+    }
+
+    .qmodal-opt-item.correct {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .qmodal-opt-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: auto;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--success);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      white-space: nowrap;
+    }
+
+    .qmodal-answer-box {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+    }
+
+    .qmodal-answer-title {
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .qmodal-answer-text {
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+
+    .qmodal-notes-box {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed rgba(16, 185, 129, 0.3);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .qmodal-tip-box {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.05));
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+    }
+
+    .qmodal-tip-header {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    .qmodal-tip-content {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .qmodal-related-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .qmodal-related-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .qmodal-related-pills {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .qmodal-rel-btn {
+      padding: 0.25rem 0.65rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .qmodal-rel-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .qmodal-rel-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
   </style>
 </head>
 <body>
@@ -2529,6 +2819,59 @@
     FPT University &bull; Hệ Thống Ôn Thi & Flashcard Trực Tuyến &bull; Phân tích toàn diện dựa trên 1.750 câu hỏi SRC MLN111, MLN122 & HCM202
   </footer>
 
+  <!-- Question Preview Modal -->
+  <div class="modal-overlay" id="question-modal" onclick="closeQuestionModalOnBackdrop(event)">
+    <div class="modal question-modal-dialog">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+          <span class="subject-pill" id="qmodal-subject-pill">MLN122</span>
+          <h3 id="qmodal-title" style="margin: 0; font-size: 1.15rem; font-weight: 700;">Câu hỏi #103</h3>
+        </div>
+        <button class="modal-close" onclick="closeQuestionModal()" title="Đóng modal">&times;</button>
+      </div>
+      <div class="modal-body" id="qmodal-body">
+        <!-- Question text -->
+        <div class="qmodal-question-box" id="qmodal-question"></div>
+
+        <!-- Options container -->
+        <div class="qmodal-options-list" id="qmodal-options"></div>
+
+        <!-- Answer badge & notes -->
+        <div class="qmodal-answer-box" id="qmodal-answer-box">
+          <div class="qmodal-answer-title"><i class="bi bi-check-circle-fill"></i> Đáp án chính xác: <b id="qmodal-answer-letter">A</b></div>
+          <div class="qmodal-answer-text" id="qmodal-answer-text"></div>
+          <div class="qmodal-notes-box" id="qmodal-notes-box" style="display:none;">
+            <div style="font-weight:700; color:var(--text-main); margin-bottom:0.25rem;"><i class="bi bi-info-circle-fill"></i> Ghi chú & Kiểu hỏi khác:</div>
+            <div id="qmodal-notes-text"></div>
+          </div>
+        </div>
+
+        <!-- Associated Tip Box -->
+        <div class="qmodal-tip-box" id="qmodal-tip-box" style="display:none;">
+          <div class="qmodal-tip-header">
+            <i class="bi bi-lightbulb-fill"></i> <span id="qmodal-tip-title">Mẹo làm bài cho câu này</span>
+          </div>
+          <div class="qmodal-tip-content" id="qmodal-tip-content"></div>
+        </div>
+
+        <!-- Related questions pills bar (if tip has multiple questions) -->
+        <div class="qmodal-related-bar" id="qmodal-related-bar" style="display:none;">
+          <span class="qmodal-related-label"><i class="bi bi-link-45deg"></i> Các câu hỏi cùng mẹo:</span>
+          <div class="qmodal-related-pills" id="qmodal-related-pills"></div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+        <a href="#" id="qmodal-flashcard-link" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+          <i class="bi bi-collection-play-fill"></i> Ôn Trong Flashcard
+        </a>
+        <button class="btn" onclick="closeQuestionModal()">Đóng (ESC)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOAD CARDS AND TIPS DATA -->
+  <script src="cards_db.js"></script>
+  <script src="tips_data.js"></script>
   <script>
     // Remove Vietnamese accents / diacritics for ultra-flexible search
     function removeVietnameseTones(str) {
@@ -2887,7 +3230,208 @@
     const savedTheme = localStorage.getItem('app_theme') || 'dark';
     updateThemeIcon(savedTheme);
 
+    // ==========================================
+    // QUESTION PREVIEW MODAL & SRC-ID ENHANCEMENT
+    // ==========================================
+    let currentModalSubject = 'mln122';
+    let currentModalQId = null;
+    let currentModalRelatedIds = [];
+
+    function enhanceTipSrcIds() {
+      const srcSpans = document.querySelectorAll('.src-id');
+      srcSpans.forEach(span => {
+        if (span.getAttribute('data-enhanced') === 'true') return;
+        span.setAttribute('data-enhanced', 'true');
+
+        const raw = span.innerText.trim();
+        const isInTr = !!span.closest('tr');
+        
+        let sub = 'mln122';
+        if (isInTr) {
+          const tr = span.closest('tr');
+          sub = tr.getAttribute('data-subject') || 'mln122';
+        } else {
+          const parentItem = span.closest('[data-subject]');
+          if (parentItem) {
+            sub = parentItem.getAttribute('data-subject') || 'mln122';
+          }
+        }
+
+        const cleaned = raw.replace(/^\[|\]$/g, '').trim();
+        if (!/\d/.test(cleaned)) {
+          // No numbers (e.g. [SRC HCM])
+          return;
+        }
+
+        const parts = cleaned.split('|');
+        const renderedParts = parts.map(part => {
+          let partSub = sub;
+          if (/mln111/i.test(part)) partSub = 'mln111';
+          else if (/mln122/i.test(part)) partSub = 'mln122';
+          else if (/hcm/i.test(part)) partSub = 'hcm202';
+
+          const numPart = part.replace(/MLN\s*111|MLN\s*122|HCM\s*202|SRC|ID/gi, '');
+          const nums = (numPart.match(/\d+/g) || []).map(Number);
+          if (nums.length === 0) return part.trim();
+
+          const prefix = /SRC/i.test(part) ? 'SRC ID' : 'ID';
+          const subLabel = (/mln111/i.test(part) ? 'MLN111' : (/mln122/i.test(part) ? 'MLN122' : (/hcm/i.test(part) ? 'HCM202' : '')));
+
+          const numBtns = nums.map(num => {
+            return `<button type="button" class="src-q-btn" onclick="openQuestionModal('${partSub}', ${num}, [${nums.join(',')}], event)" title="Nhấn để xem câu hỏi #${num} (${partSub.toUpperCase()})"><i class="bi bi-eye-fill"></i> #${num}</button>`;
+          }).join(', ');
+
+          return `${prefix} ${numBtns}${subLabel ? ' <span class="src-sub-label">' + subLabel + '</span>' : ''}`;
+        });
+
+        span.innerHTML = `[${renderedParts.join(' | ')}]`;
+      });
+    }
+
+    function openQuestionModal(subject, qId, relatedIds, e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      currentModalSubject = subject;
+      currentModalQId = qId;
+      currentModalRelatedIds = Array.isArray(relatedIds) ? relatedIds : [qId];
+
+      if (!window.CARDS_DB || !window.CARDS_DB[subject]) {
+        alert('Dữ liệu câu hỏi đang được tải, vui lòng thử lại sau giây lát!');
+        return;
+      }
+
+      const card = window.CARDS_DB[subject].find(c => c.id === qId);
+      if (!card) {
+        alert(`Không tìm thấy câu hỏi #${qId} trong môn ${subject.toUpperCase()}!`);
+        return;
+      }
+
+      // Subject pill
+      const subPill = document.getElementById('qmodal-subject-pill');
+      if (subPill) {
+        subPill.className = `subject-pill pill-${subject === 'hcm202' ? 'hcm' : (subject === 'mln111' ? '111' : '122')}`;
+        const subName = subject === 'mln111' ? 'MLN111 (Triết học)' : (subject === 'mln122' ? 'MLN122 (KTCT)' : 'HCM202 (Tư tưởng HCM)');
+        subPill.innerText = subName;
+      }
+
+      // Title
+      document.getElementById('qmodal-title').innerText = `Câu hỏi #${qId}`;
+
+      // Question
+      document.getElementById('qmodal-question').innerText = card.question;
+
+      // Options
+      const optContainer = document.getElementById('qmodal-options');
+      optContainer.innerHTML = '';
+      const correctRaw = (card.answerLetter || card.answer || '').toUpperCase().replace(/[^A-E]/g, '');
+      const correctArr = correctRaw.split('');
+
+      card.options.forEach(opt => {
+        const item = document.createElement('div');
+        item.className = 'qmodal-opt-item';
+
+        const letterMatch = opt.match(/^([A-E])\s*[\.\:\)]/);
+        const letter = letterMatch ? letterMatch[1].toUpperCase() : '';
+
+        const isCorrect = letter && correctArr.includes(letter);
+        if (isCorrect) {
+          item.classList.add('correct');
+        }
+
+        const textSpan = document.createElement('span');
+        textSpan.style.flex = '1';
+        textSpan.innerText = opt;
+        item.appendChild(textSpan);
+
+        if (isCorrect) {
+          const badge = document.createElement('span');
+          badge.className = 'qmodal-opt-check';
+          badge.innerHTML = '<i class="bi bi-check-circle-fill"></i> Đáp án đúng';
+          item.appendChild(badge);
+        }
+
+        optContainer.appendChild(item);
+      });
+
+      // Answer Box
+      document.getElementById('qmodal-answer-letter').innerText = card.answerLetter || 'N/A';
+      document.getElementById('qmodal-answer-text').innerText = card.answerText || '';
+
+      const notesBox = document.getElementById('qmodal-notes-box');
+      if (card.notes && card.notes.trim()) {
+        notesBox.style.display = 'block';
+        document.getElementById('qmodal-notes-text').innerText = card.notes;
+      } else {
+        notesBox.style.display = 'none';
+      }
+
+      // Tip connection
+      const tipBox = document.getElementById('qmodal-tip-box');
+      const tipsForCard = (window.TIPS_DATABASE && window.TIPS_DATABASE[subject]) ? window.TIPS_DATABASE[subject][qId] : null;
+
+      if (tipsForCard && tipsForCard.length > 0) {
+        tipBox.style.display = 'block';
+        const tip = tipsForCard[0];
+        document.getElementById('qmodal-tip-title').innerText = `${tip.category} - ${tip.keySign || tip.rule || 'Mẹo thi'}`;
+        document.getElementById('qmodal-tip-content').innerHTML = `
+          <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.25rem;">📌 Quy tắc / Mẹo chọn nhanh:</div>
+          <div>${(tip.advice || tip.detail || tip.rule || '').replace(/\n/g, '<br>')}</div>
+        `;
+      } else {
+        tipBox.style.display = 'none';
+      }
+
+      // Related questions toggle bar
+      const relBar = document.getElementById('qmodal-related-bar');
+      const relPills = document.getElementById('qmodal-related-pills');
+      if (currentModalRelatedIds.length > 1) {
+        relBar.style.display = 'flex';
+        relPills.innerHTML = currentModalRelatedIds.map(id => `
+          <button type="button" class="qmodal-rel-btn ${id === qId ? 'active' : ''}" onclick="openQuestionModal('${subject}', ${id}, [${currentModalRelatedIds.join(',')}], event)">
+            #${id}
+          </button>
+        `).join('');
+      } else {
+        relBar.style.display = 'none';
+      }
+
+      // Flashcard link
+      const fcLink = document.getElementById('qmodal-flashcard-link');
+      if (fcLink) {
+        fcLink.href = `${subject}.html?id=${qId}`;
+        fcLink.innerHTML = `<i class="bi bi-collection-play-fill"></i> Mở #${qId} Trong Flashcard`;
+      }
+
+      // Open modal
+      const modal = document.getElementById('question-modal');
+      modal.classList.add('open');
+    }
+
+    function closeQuestionModal() {
+      const modal = document.getElementById('question-modal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function closeQuestionModalOnBackdrop(e) {
+      if (e.target.id === 'question-modal') {
+        closeQuestionModal();
+      }
+    }
+
+    // Keyboard ESC listener
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeQuestionModal();
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
+      // Enhance all src-id spans into clickable chips
+      enhanceTipSrcIds();
+
       const urlParams = new URLSearchParams(window.location.search);
       const subParam = urlParams.get('subject');
       if (subParam && ['mln111', 'mln122', 'hcm202'].includes(subParam)) {
