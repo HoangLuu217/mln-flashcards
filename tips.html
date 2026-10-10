@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bí Kíp & Mẹo Chọn Trắc Nghiệm MLN111 & MLN122 - FPT Study Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('app_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-card: #1e293b;
+      --bg-card-hover: #24344d;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(59, 130, 246, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.12);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.12);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.12);
+      --purple: #8b5cf6;
+      --purple-bg: rgba(139, 92, 246, 0.12);
+      --code-bg: #0f172a;
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --border-highlight: rgba(37, 99, 235, 0.3);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --success: #059669;
+      --success-bg: rgba(5, 150, 105, 0.1);
+      --warning: #d97706;
+      --warning-bg: rgba(217, 119, 6, 0.1);
+      --danger: #dc2626;
+      --danger-bg: rgba(220, 38, 38, 0.1);
+      --purple: #7c3aed;
+      --purple-bg: rgba(124, 58, 237, 0.1);
+      --code-bg: #e2e8f0;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .badge-icon {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+
+    .logo-title h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-title p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background-color: var(--bg-card);
+      border-color: var(--border-color);
+    }
+
+    .btn-theme {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-theme:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      width: 100%;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(59, 130, 246, 0.15));
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px;
+      padding: 2.25rem 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #f8fafc 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #0f172a 40%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 820px;
+      line-height: 1.6;
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-pill b {
+      color: var(--warning);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* TOOLBAR & SEARCH */
+    .sticky-toolbar {
+      position: sticky;
+      top: 72px;
+      z-index: 40;
+      background-color: var(--bg-primary);
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar-inner {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.75rem 1rem 0.75rem 2.6rem;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background-color: var(--bg-card);
+      padding: 0.3rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    /* SECTIONS */
+    .tip-section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 140px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-number {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: var(--purple-bg);
+      color: var(--purple);
+    }
+
+    /* GRID & CARDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .tip-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+      position: relative;
+    }
+
+    .tip-card:hover {
+      border-color: var(--border-highlight);
+      background-color: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .key-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-gold {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .badge-blue {
+      background: rgba(59, 130, 246, 0.18);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.18);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .subject-pill {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill-111 {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent);
+    }
+
+    .pill-122 {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+    }
+
+    .card-rule {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .card-explain {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .card-examples {
+      background-color: var(--code-bg);
+      border-radius: 10px;
+      padding: 0.85rem;
+      border-left: 3px solid var(--accent);
+      font-size: 0.84rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .example-item {
+      color: var(--text-muted);
+    }
+
+    .example-q {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .example-a {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .src-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    /* TABLE CHEAT SHEET */
+    .table-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--bg-card-hover);
+    }
+
+    .td-highlight {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .td-target {
+      color: var(--success);
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+
+    .callout-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .callout-warning {
+      background-color: var(--warning-bg);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text-main);
+    }
+
+    .callout-success {
+      background-color: var(--success-bg);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--text-main);
+    }
+
+    .callout-danger {
+      background-color: var(--danger-bg);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--text-main);
+    }
+
+    .callout-title {
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      font-size: 0.98rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.85rem 1rem;
+      }
+      .container {
+        padding: 1.25rem 0.75rem 3rem;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .sticky-toolbar {
+        top: 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo-group">
+      <div class="badge-icon">⚡</div>
+      <div class="logo-title">
+        <h1>FPT Study Hub</h1>
+        <p>Bí Kíp Trắc Nghiệm Toàn Diện</p>
+      </div>
+    </a>
+    <div class="header-nav">
+      <a href="index.html" class="nav-link">🏠 Trang Chủ</a>
+      <a href="exam_mln111.html" class="nav-link">📝 Thi MLN111</a>
+      <a href="exam_mln122.html" class="nav-link">📝 Thi MLN122</a>
+      <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <span class="hero-tag">🎯 Đúc Kết Từ Toàn Bộ 1.097 Câu Hỏi Trong SRC</span>
+      <h2 class="hero-title">Bí Kíp & Mẹo Vàng Chọn Trắc Nghiệm MLN111 & MLN122</h2>
+      <p class="hero-desc">
+        Hệ thống mẹo được phân tích khoa học dựa trên 100% dữ liệu thực tế từ <b>571 câu MLN111</b> và <b>526 câu MLN122</b>. 
+        Tổng hợp tất cả mốc năm duy nhất thấy là chọn, các con số vàng, tên tác giả bất biến, bẫy phủ định và tỉ lệ lụi đáp án tối ưu.
+      </p>
+      <div class="stats-pills">
+        <div class="stat-pill">📚 Tổng câu phân tích: <b>1.097 Câu</b></div>
+        <div class="stat-pill">✨ Mẹo mốc Năm & Thế kỷ: <b>100% Trúng</b></div>
+        <div class="stat-pill">🎯 Tỷ lệ lụi A trong MLN122: <b>47.1%</b></div>
+        <div class="stat-pill">⚠️ Bẫy "Tất cả phương án": <b>Xem ngay</b></div>
+      </div>
+    </section>
+
+    <!-- SEARCH & FILTER TOOLBAR -->
+    <div class="sticky-toolbar">
+      <div class="toolbar-inner">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Tìm mẹo theo từ khóa, năm (1615, 1848, 1986), tác giả (Lênin, Ăngghen), công thức..." oninput="handleSearch()">
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-btn active" onclick="filterSubject('all', this)">Tất Cả</button>
+          <button class="filter-btn" onclick="filterSubject('mln111', this)">MLN111 (Triết)</button>
+          <button class="filter-btn" onclick="filterSubject('mln122', this)">MLN122 (KTCT)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN 1: BẢNG NĂM DUY NHẤT TRONG SRC (THẤY LÀ CHỌN) -->
+    <section class="tip-section" id="sec-years">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">1</div>
+          <h3 class="section-title">Các Mốc Năm & Thời Gian "Vàng" (Thấy Trong Đề Là Chọn)</h3>
+        </div>
+        <span class="section-badge">Chuẩn Tuyệt Đối 100%</span>
+      </div>
+
+      <div class="callout callout-warning">
+        <div class="callout-icon">💡</div>
+        <div>
+          <div class="callout-title">Quy Luật Bất Biến Về Năm Trong Toàn Bộ Mã Nguồn:</div>
+          <div>Trong cả 2 ngân hàng đề MLN111 và MLN122, các mốc năm không bao giờ bị hỏi lẫn lộn. Mỗi sự kiện gắn liền với <b>duy nhất 1 năm</b>, hễ xuất hiện trong đáp án là đáp án chính xác!</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Mốc Năm / Thời Gian</th>
+              <th>Môn</th>
+              <th>Dấu Hiệu Câu Hỏi & Bản Chất Sự Kiện</th>
+              <th>Minh Chứng Trong SRC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1615</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Thuật ngữ "Kinh tế - chính trị" ra đời lần đầu tiên</span> (Antoine de Montchrestien, tác phẩm "Chuyên luận về KTCT")</td>
+              <td><span class="src-id">[SRC ID 103, 265]</span>: Lặp lại 2 câu trong đề, đáp án luôn là <b>A. 1615</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1704 - 1779</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">John Kay phát minh ra con thoi</span> (cải tiến khung dệt - mở đầu CMCN lần 1)</td>
+              <td><span class="src-id">[SRC ID 105]</span>: Đáp án <b>A. John Kay (1704 - 1779)</b>.</td>
+            </tr>
+            <tr data-subject="mln111" class="search-item">
+              <td><span class="key-badge badge-gold">1848</span></td>
+              <td><span class="subject-pill pill-111">MLN111</span></td>
+              <td><span class="td-highlight">Tuyên ngôn của Đảng cộng sản</span> (Đánh dấu sự chín muồi về tư tưởng XHCN của C.Mác & Ph.Ăngghen)</td>
+              <td><span class="src-id">[SRC ID 266]</span>: Đáp án <b>C. Tuyên ngôn của Đảng cộng sản (1848)</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1873</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Khủng hoảng kinh tế làm phá sản DN vừa và nhỏ</span>, hình thành các tổ chức độc quyền đầu tiên</td>
+              <td><span class="src-id">[SRC ID 342]</span>: Đáp án <b>A. Khủng hoảng kinh tế năm 1873</b>.</td>
+            </tr>
+            <tr data-subject="mln111" class="search-item">
+              <td><span class="key-badge badge-gold">1895</span></td>
+              <td><span class="subject-pill pill-111">MLN111</span></td>
+              <td><span class="td-highlight">Phát hiện ra tia Rơnghen (Röntgen)</span> (cuộc khủng hoảng vật lý cuối TK XIX)</td>
+              <td><span class="src-id">[SRC ID 368]</span>: Đáp án <b>A. Năm 1895</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Đầu những năm 1930</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Mô hình công nghiệp hóa kiểu Liên Xô bắt đầu</span></td>
+              <td><span class="src-id">[SRC ID 150]</span>: Đáp án <b>B. Từ đầu những năm 1930</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1986 (Đại hội VI)</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Đổi mới: Quyết định xây dựng nền KTTT định hướng XHCN</span> / Đổi mới cơ chế quản lý kinh tế</td>
+              <td><span class="src-id">[SRC ID 99, 136]</span>: Thấy Đổi mới / bắt đầu KTTT -> chọn <b>Đại hội VI (1986)</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1995</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Việt Nam gia nhập tổ chức ASEAN</span></td>
+              <td><span class="src-id">[SRC ID 19]</span>: Đáp án <b>A. 1995</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">1996</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Việt Nam tham gia sáng lập Diễn đàn Á - Âu (ASEM)</span></td>
+              <td><span class="src-id">[SRC ID 489]</span>: Đáp án <b>A. 1996</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">2001 (Đại hội IX)</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Lần đầu tiên Đảng chính thức đưa ra mô hình KTTT định hướng XHCN</span> / Kinh tế tri thức có vai trò nổi bật</td>
+              <td><span class="src-id">[SRC ID 114, 390]</span>: "Lần đầu tiên đưa ra mô hình" -> chọn <b>Đại hội IX (2001)</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">2007</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Việt Nam gia nhập Tổ chức Thương mại Thế giới (WTO)</span></td>
+              <td><span class="src-id">[SRC ID 91]</span>: Đáp án <b>A. 2007</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">2011 (Đại hội XI)</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Khẳng định: KTTT định hướng XHCN là nền kinh tế nhiều thành phần, vận hành theo cơ chế thị trường...</span></td>
+              <td><span class="src-id">[SRC ID 119]</span>: Đáp án <b>D. Đại hội XI (2011)</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">2011 (Tại Đức)</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Cách mạng công nghiệp 4.0 được đề cập lần đầu tiên</span></td>
+              <td><span class="src-id">[SRC ID 143]</span>: Đáp án <b>A. Tại Đức năm 2011</b> (Hội chợ Hannover).</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">2021 - 2030</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Chiến lược phát triển KT-XH "xây dựng nền kinh tế tự chủ trên cơ sở làm chủ công nghệ"</span></td>
+              <td><span class="src-id">[SRC ID 391]</span>: Đáp án <b>C. Chiến lược 2021 - 2030</b>.</td>
+            </tr>
+            <tr data-subject="mln111" class="search-item">
+              <td><span class="key-badge badge-gold">TK VIII - VI TCN</span></td>
+              <td><span class="subject-pill pill-111">MLN111</span></td>
+              <td><span class="td-highlight">Triết học ra đời vào thời gian nào?</span> (Cổ đại Hy Lạp, Ấn Độ, Trung Hoa)</td>
+              <td><span class="src-id">[SRC ID 495]</span>: Đáp án <b>B. Thế kỷ VIII - VI TCN</b>.</td>
+            </tr>
+            <tr data-subject="mln111" class="search-item">
+              <td><span class="key-badge badge-gold">2500 năm</span></td>
+              <td><span class="subject-pill pill-111">MLN111</span></td>
+              <td><span class="td-highlight">Vật chất với tư cách là phạm trù triết học đã có lịch sử phát triển khoảng:</span></td>
+              <td><span class="src-id">[SRC ID 213]</span>: Đáp án <b>A. 2500 năm</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Giữa TK XVIII - giữa TK XIX</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Cách mạng công nghiệp lần thứ 1</span> (Anh, máy hơi nước)</td>
+              <td><span class="src-id">[SRC ID 44]</span>: Đáp án <b>C. Giữa TK XVIII đến giữa TK XIX</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Cuối TK XVIII - đầu TK XIX</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">KTCT cổ điển Anh hình thành và phát triển</span></td>
+              <td><span class="src-id">[SRC ID 76]</span>: Đáp án <b>C. Từ cuối TK XVIII đến nửa đầu TK XIX</b>.</td>
+            </tr>
+            <tr data-subject="mln111" class="search-item">
+              <td><span class="key-badge badge-gold">Giữa TK XIX (những năm 40)</span></td>
+              <td><span class="subject-pill pill-111">MLN111</span></td>
+              <td><span class="td-highlight">Chủ nghĩa Mác - Lênin ra đời</span></td>
+              <td><span class="src-id">[SRC ID 284]</span>: Đáp án <b>A. Giữa thế kỷ XIX</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Cuối thế kỷ XIX</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Hình thức độc quyền Cartel phổ biến ở Châu Âu</span></td>
+              <td><span class="src-id">[SRC ID 110]</span>: Đáp án <b>C. Cuối thế kỷ XIX</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Đầu thập niên 60 TK XX - cuối TK XX</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Cách mạng công nghiệp lần thứ ba diễn ra</span> (bán dẫn, máy tính cá nhân, internet)</td>
+              <td><span class="src-id">[SRC ID 175]</span>: Đáp án <b>B. Đầu thập niên 60 đến cuối TK XX</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">Giữa thế kỷ XX</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">CNTB độc quyền nhà nước hình thành rõ nét</span></td>
+              <td><span class="src-id">[SRC ID 240]</span>: Đáp án <b>C. Giữa thế kỷ XX</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">60 - 80 năm</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Thời gian CNH của các nước tư bản cổ điển</span></td>
+              <td><span class="src-id">[SRC ID 21]</span>: Đáp án <b>A. Từ 60 - 80 năm</b>.</td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="key-badge badge-gold">20 - 30 năm</span></td>
+              <td><span class="subject-pill pill-122">MLN122</span></td>
+              <td><span class="td-highlight">Thời gian CNH của Nhật Bản và các nước NICs (Đông Á)</span></td>
+              <td><span class="src-id">[SRC ID 98]</span>: Đáp án <b>C. Từ 20 - 30 năm</b>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: QUY LUẬT CON SỐ VÀNG -->
+    <section class="tip-section" id="sec-numbers">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">2</div>
+          <h3 class="section-title">Quy Luật Các "Con Số Vàng" (Hỏi Số Lượng Là Chọn Ngay)</h3>
+        </div>
+        <span class="section-badge">Bộ Nhớ Tốc Độ</span>
+      </div>
+
+      <div class="grid-3">
+        <!-- Số 1 & 2 -->
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-blue">Số 1 & Số 2</span>
+            <span class="subject-pill pill-111">MLN111</span>
+          </div>
+          <div class="card-rule">Vấn Đề Triết Học & Thuộc Tính</div>
+          <div class="card-explain">
+            • Triết học có mấy vấn đề? Trong vấn đề có mấy mặt? -> <b>1 vấn đề, 2 mặt</b> (Bản thể luận & Nhận thức luận).<br>
+            • Triết học duy tâm chia làm mấy trường phái? -> <b>2</b> (Duy tâm chủ quan & Duy tâm khách quan).<br>
+            • Vật chất có mấy hình thức tồn tại? -> <b>2</b> (Không gian & Thời gian).<br>
+            • Nhà nước có mấy chức năng? -> <b>2</b> (Chính trị & Xã hội hoặc Đối nội & Đối ngoại).<br>
+            • Chủ nghĩa cộng sản chia làm mấy giai đoạn? -> <b>2</b> (CNXH và CSCN).
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 20]</span> Q: Triết học có mấy vấn đề? -> <span class="example-a">C. 1 vấn đề, 2 mặt</span></div>
+            <div class="example-item"><span class="src-id">[ID 361, 542, 544]</span> -> Đều chọn <span class="example-a">2</span></div>
+          </div>
+        </div>
+
+        <!-- Số 3 -->
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-green">Số 3 Huyền Thoại</span>
+            <span class="subject-pill pill-111">Cả 2 Môn</span>
+          </div>
+          <div class="card-rule">Bộ Ba Cốt Lõi Của Chủ Nghĩa Mác</div>
+          <div class="card-explain">
+            • Chủ nghĩa Mác ra đời dựa trên bao nhiêu tiền đề? -> <b>Ba tiền đề</b> (Kinh tế - XH, Khoa học tự nhiên, Lý luận).<br>
+            • Chủ nghĩa duy vật có mấy hình thức cơ bản? -> <b>3</b> (Chất phác, Siêu hình, Biện chứng).<br>
+            • Định nghĩa vật chất Lênin có mấy nội dung? -> <b>3 nội dung</b>.<br>
+            • Thực tiễn có mấy hình thức cơ bản? -> <b>3</b> (SX vật chất, Chính trị - XH, Thực nghiệm KH).<br>
+            • Phép biện chứng có <b>3 quy luật cơ bản</b>.<br>
+            • Có bao nhiêu mô hình CNH tiêu biểu thế giới? -> <b>3 mô hình</b> (Anh, Liên Xô, NICs).
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 52]</span> CN Mác ra đời trên mấy tiền đề? -> <span class="example-a">A. Ba tiền đề</span></div>
+            <div class="example-item"><span class="src-id">[ID 430, 392, 510]</span> -> Đều chọn <span class="example-a">3</span></div>
+          </div>
+        </div>
+
+        <!-- Số 4 & 5 -->
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-gold">Số 4 & Số 5</span>
+            <span class="subject-pill pill-122">Cả 2 Môn</span>
+          </div>
+          <div class="card-rule">Cách Mạng, Chức Năng & Hình Thái</div>
+          <div class="card-explain">
+            • Thế giới trải qua bao nhiêu cuộc cách mạng công nghiệp? -> <b>Bốn cuộc CMCN</b>.<br>
+            • Xã hội loài người trải qua bao nhiêu hình thái KTXH? -> <b>Năm hình thái KTXH</b>.<br>
+            • Ph.Ăngghen chia vận động thành: -> <b>Năm hình thức vận động cơ bản</b> (Cơ - Lý - Hóa - Sinh - Xã hội).<br>
+            • Nhà nước có mấy đặc trưng? -> <b>Năm đặc trưng</b>.<br>
+            • Tiền tệ có mấy chức năng? -> <b>Năm chức năng</b>.<br>
+            • V.I.Lênin khái quát độc quyền TBCN thành: -> <b>Năm đặc điểm</b>.
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 121 MLN122]</span> Trải qua mấy cuộc CMCN? -> <span class="example-a">B. Bốn</span></div>
+            <div class="example-item"><span class="src-id">[ID 144, 186 MLN111 | 169, 399 MLN122]</span> -> Đều chọn <span class="example-a">Năm</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: TÁC GIẢ & DANH NHÂN -->
+    <section class="tip-section" id="sec-authors">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">3</div>
+          <h3 class="section-title">Mẹo Tác Giả & Tác Phẩm (Thấy Dấu Hiệu Là Chọn Ai?)</h3>
+        </div>
+        <span class="section-badge">Ghi Nhớ Siêu Tốc</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- Ph. Ăngghen -->
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-blue">Ph. Ăngghen</span>
+            <span class="subject-pill pill-111">MLN111</span>
+          </div>
+          <div class="card-rule">Gắn Liền Với "Lao Động", "Ăn Uống Mặc", "Vận Động"</div>
+          <div class="card-explain">
+            • Câu: <i>"lao động đã sáng tạo ra bản thân con người"</i> -> <b>Ph.Ăngghen</b>.<br>
+            • Câu: <i>"cái sự hiển nhiên là trước hết con người cần phải ăn, uống, ở và mặc..."</i> -> <b>Ph.Ăngghen</b>.<br>
+            • Câu: <i>"Cần phải có sự phân biệt rõ ràng giữa vật chất với tính cách là một phạm trù của triết học"</i> -> <b>Ph.Ăngghen</b>.<br>
+            • Chia vận động thành 5 hình thức cơ bản -> <b>Ph.Ăngghen</b>.<br>
+            • Tác phẩm: <b>"Biện chứng của tự nhiên"</b>.
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 24, 186, 398, 425, 507 MLN111]</span> -> 100% Chọn <span class="example-a">Ph.Ăngghen</span></div>
+          </div>
+        </div>
+
+        <!-- C. Mác -->
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-red">C. Mác</span>
+            <span class="subject-pill pill-111">Cả 2 Môn</span>
+          </div>
+          <div class="card-rule">Gắn Liền Với Tính Hai Mặt Của Lao Động & Bộ "Tư Bản"</div>
+          <div class="card-explain">
+            • Người đầu tiên phát minh ra tính hai mặt của lao động sản xuất hàng hóa (cụ thể & trừu tượng) -> <b>C. Mác</b>.<br>
+            • Câu: <i>"Phương pháp biện chứng của tôi không những khác phương pháp của Hêghen mà còn đối lập hẳn..."</i> -> <b>C. Mác</b>.<br>
+            • Câu: <i>"Những thời đại kinh tế khác nhau không phải ở chỗ chúng sản xuất ra cái gì, mà là sản xuất bằng cách nào..."</i> -> <b>C. Mác</b>.<br>
+            • Lý luận kinh tế chính trị được trình bày nhiều nhất, cô đọng nhất ở đâu? -> <b>Bộ "Tư Bản" (Das Kapital)</b>.
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 158, 471 MLN111 | 36, 88, 307 MLN122]</span> -> 100% Chọn <span class="example-a">C. Mác / Bộ Tư Bản</span></div>
+          </div>
+        </div>
+
+        <!-- V.I. Lênin -->
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-gold">V.I. Lênin</span>
+            <span class="subject-pill pill-122">Cả 2 Môn</span>
+          </div>
+          <div class="card-rule">Trùm Cuối: Độc Quyền, Tư Bản Tài Chính & Định Nghĩa Vật Chất</div>
+          <div class="card-explain">
+            • Bất kỳ câu nào hỏi về <b>Độc quyền, Tư bản tài chính, Xuất khẩu tư bản, 5 đặc điểm CNTB độc quyền</b> là của ai -> <b>100% Chọn V.I. Lênin</b>!<br>
+            • Câu: <i>"tự do cạnh tranh đẻ ra tập trung sản xuất... dẫn tới độc quyền"</i> -> <b>V.I. Lênin</b>.<br>
+            • Câu: <i>"Tư bản tài chính là kết quả của sự hợp nhất giữa TB ngân hàng với TB công nghiệp..."</i> -> <b>V.I. Lênin</b>.<br>
+            • Tác phẩm triết học kinh điển (nơi viết định nghĩa vật chất) -> <b>"Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán" (1909)</b>.
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 184, 277, 329 MLN111 | 51, 222, 399 MLN122]</span> -> 100% Chọn <span class="example-a">V.I. Lênin</span></div>
+          </div>
+        </div>
+
+        <!-- Các Nhà Kinh Tế Cổ Điển -->
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-green">Các Nhà Kinh Tế Học</span>
+            <span class="subject-pill pill-122">MLN122</span>
+          </div>
+          <div class="card-rule">Petty (Mở Đầu) -> Smith (Hệ Thống) -> Ricardo (Đỉnh Cao)</div>
+          <div class="card-explain">
+            • KTCT tư sản cổ điển Anh bắt đầu từ... kết thúc ở... -> <b>William Petty... David Ricardo</b>.<br>
+            • Ai được Mác coi là người sáng lập ra KTCT tư sản cổ điển? -> <b>William Petty</b>.<br>
+            • Ai đưa KTCT trở thành môn khoa học có tính hệ thống? -> <b>Adam Smith</b>.<br>
+            • Câu: <i>"Tiền tệ là bánh xe vĩ đại của lưu thông"</i> -> <b>Adam Smith (và là câu nói đúng)</b>.<br>
+            • Thuật ngữ "Kinh tế - chính trị" đầu tiên năm 1615 -> <b>Antoine de Montchrestien</b>.<br>
+            • Nhà triết học thiên tài TK XVIII - XIX (MLN111) -> <b>Immanuel Kant</b>.<br>
+            • Cơ sở tri thức thời Phục hưng -> <b>Copernicus (Cô-péc-ních)</b>.
+          </div>
+          <div class="card-examples">
+            <div class="example-item"><span class="src-id">[ID 57, 101, 129, 339 MLN122 | 429, 432 MLN111]</span> -> Phân biệt rành mạch!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 4: PHÂN PHỐI ĐÁP ÁN & BẪY "TẤT CẢ PHƯƠNG ÁN" -->
+    <section class="tip-section" id="sec-distribution">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">4</div>
+          <h3 class="section-title">Chiến Thuật Phân Phối Đáp Án & Bẫy "Tất Cả Phương Án Trên"</h3>
+        </div>
+        <span class="section-badge">Xác Suất Học</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-green">MLN122: Ưu Tiên Tuyệt Đối Lụi "A"</span>
+            <span class="subject-pill pill-122">MLN122</span>
+          </div>
+          <div class="card-rule">Đáp án A chiếm tới 47.1% (gần 1 nửa ngân hàng câu hỏi!)</div>
+          <div class="card-explain">
+            Trong 526 câu MLN122:<br>
+            • <b>Đáp án A: 248 câu (47.1%)</b> 🔥<br>
+            • Đáp án B: 103 câu (19.6%)<br>
+            • Đáp án C: 90 câu (17.1%)<br>
+            • Đáp án D: 57 câu (10.8%)<br>
+            👉 <b>MẸO LỤI MLN122:</b> Nếu vào phòng thi gặp câu hoàn toàn không biết đáp án, <b>hãy lụi đáp án A</b>. Xác suất đúng xấp xỉ 50%!
+          </div>
+        </div>
+
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-blue">MLN111: Đáp Án A Vẫn Dẫn Đầu</span>
+            <span class="subject-pill pill-111">MLN111</span>
+          </div>
+          <div class="card-rule">Đáp án A chiếm 33.6% trong 571 câu Triết Học</div>
+          <div class="card-explain">
+            Trong 571 câu MLN111:<br>
+            • <b>Đáp án A: 192 câu (33.6%)</b><br>
+            • Đáp án B: 132 câu (23.1%)<br>
+            • Đáp án C: 132 câu (23.1%)<br>
+            • Đáp án D: 104 câu (18.2%)<br>
+            👉 Đáp án A có tỉ lệ cao gấp rưỡi so với D. Khi phân vân giữa 2 phương án có chứa A, ưu tiên nghiêng về A.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bẫy Tất cả phương án -->
+      <div style="margin-top: 1.5rem;">
+        <div class="callout callout-danger">
+          <div class="callout-icon">🚨</div>
+          <div>
+            <div class="callout-title">CẢNH BÁO: Khác Biệt Một Trời Một Vực Giữa MLN111 Và MLN122 Đối Với "Tất Cả Phương Án Trên"!</div>
+            <div style="margin-top: 0.4rem;">
+              • <b>Trong MLN122 (KTCT):</b> Dạng <i>"Tất cả các phương án trên / Cả 3 phương án"</i> <b>ĐÚNG TỚI 70.3% (26/37 câu)</b>. Thấy "Tất cả phương án" trong MLN122 -> Khả năng cực cao là ĐÚNG, chọn ngay! (Kể cả câu có 5 lựa chọn A, B, C, D, E chọn E "Tất cả phương án trên" ở ID 366).<br><br>
+              • <b>Trong MLN111 (Triết):</b> Dạng <i>"Tất cả các đáp án đều đúng / đều sai"</i> <b>CHỈ ĐÚNG CÓ 17.2% (5/29 câu)</b>! Đây là <b>BẪY NHIỄU LỚN NHẤT</b> của môn Triết. Hầu hết đáp án đúng là một khái niệm học thuyết cụ thể (Ví dụ: "Quần chúng nhân dân", "Con người với kỹ năng tích lũy", "Độ", v.v.), TUYỆT ĐỐI không ham chọn "Tất cả đều đúng" ở MLN111!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 5: BỘ CẶP TỪ KHÓA BẤT BIẾN (HỎI ĐÂU TRÚNG ĐÓ) -->
+    <section class="tip-section" id="sec-keywords">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">5</div>
+          <h3 class="section-title">Bộ Cặp Từ Khóa Bất Biến (Hỏi Đâu Trúng Đó - Match 100%)</h3>
+        </div>
+        <span class="section-badge">Mẹo Phản Xạ</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- MLN111 BẤT BIẾN -->
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-blue">Từ Khóa Triết Học MLN111</span>
+            <span class="subject-pill pill-111">MLN111</span>
+          </div>
+          <div class="card-rule">Cặp Đối Ứng Thần Tốc</div>
+          <div class="card-explain">
+            • Hỏi về <b>"Vận động"</b> -> Chọn: <i>Phương thức tồn tại của vật chất / Tự thân vận động</i>.<br>
+            • Hỏi về <b>"Đứng im"</b> -> Chọn: <i>Tương đối, tạm thời</i>. (Vận động là tuyệt đối).<br>
+            • Hỏi về <b>"Bản chất ý thức"</b> -> Chọn: <i>Hình ảnh chủ quan của thế giới khách quan / Phản ánh tích cực, sáng tạo</i>.<br>
+            • Hỏi về <b>"Nguồn gốc ý thức"</b> -> Chọn: <i>Tự nhiên và Xã hội</i> (Lao động & Ngôn ngữ quyết định).<br>
+            • Hỏi về <b>"Thực tiễn"</b> -> Chọn: <i>Hoạt động vật chất mang tính lịch sử - xã hội</i> (Sản xuất vật chất là cơ bản nhất).<br>
+            • Hỏi về <b>"Tiêu chuẩn của chân lý"</b> -> Chọn: <i>Thực tiễn</i>.<br>
+            • Hỏi về <b>"Cách thức phát triển"</b> -> Chọn: <i>Quy luật lượng - chất</i>.<br>
+            • Hỏi về <b>"Nguồn gốc, động lực phát triển"</b> -> Chọn: <i>Quy luật mâu thuẫn (thống nhất & đấu tranh giữa các mặt đối lập)</i>.<br>
+            • Hỏi về <b>"Khuynh hướng phát triển"</b> -> Chọn: <i>Quy luật phủ định của phủ định (đường xoáy ốc)</i>.<br>
+            • <b>MẸO CASE STUDY SINH VIÊN:</b> Mọi câu hỏi kể câu chuyện sinh viên làm bài tập seminar, sinh viên học kém cải thiện dần, gia đình kinh doanh từ xưởng nhỏ thành xưởng lớn, tục ngữ "Góp gió thành bão", khắc phục sự bảo thủ trì trệ hoặc nôn nóng -> <b>100% CHỌN QUY LUẬT LƯỢNG - CHẤT!</b> (ID 9, 116, 171, 346, 373, 514, 520).<br>
+            • Hỏi về "Cây sầu riêng quang hợp và hô hấp" -> Chọn: <i>Quy luật mâu thuẫn</i> (ID 347).<br>
+            • Hỏi yếu tố quyết định trong LLSX -> Chọn: <i>Người lao động</i> (công cụ lao động là động nhất, cách mạng nhất).<br>
+            • Hỏi yếu tố quyết định trong QHSX -> Chọn: <i>Quan hệ sở hữu tư liệu sản xuất</i>.<br>
+            • CSHT là gì? -> <i>Toàn bộ quan hệ sản xuất (kinh tế)</i>. KTTT là gì? -> <i>Chính trị, pháp luật, nhà nước</i>.<br>
+            • Bản chất nhà nước -> <i>Công cụ chuyên chính của giai cấp thống trị</i>.<br>
+            • Bản chất con người -> <i>Tổng hòa các quan hệ xã hội</i>.
+          </div>
+        </div>
+
+        <!-- MLN122 BẤT BIẾN -->
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-green">Từ Khóa Kinh Tế Chính Trị MLN122</span>
+            <span class="subject-pill pill-122">MLN122</span>
+          </div>
+          <div class="card-rule">Cặp Đối Ứng Hàng Hóa & Tư Bản</div>
+          <div class="card-explain">
+            • <b>Lao động cụ thể</b> -> Tạo ra <i>Giá trị sử dụng</i> (phạm trù vĩnh viễn).<br>
+            • <b>Lao động trừu tượng</b> -> Tạo ra <i>Giá trị của hàng hóa</i> (phạm trù lịch sử).<br>
+            • <b>Tăng NSLĐ</b> -> <i>Giá trị 1 SP giảm, tổng giá trị không đổi</i> (tỉ lệ nghịch).<br>
+            • <b>Tăng Cường độ LĐ</b> -> <i>Giá trị 1 SP không đổi, tổng giá trị tăng</i>.<br>
+            • <b>Tư bản bất biến (c)</b> -> Mua TLSX, <i>không thay đổi về lượng, chuyển nguyên vẹn</i>.<br>
+            • <b>Tư bản khả biến (v)</b> -> Mua sức LĐ, <i>biến đổi tăng lên, nguồn gốc duy nhất sinh ra m</i>.<br>
+            • <b>Tư bản cố định</b> -> <i>Chuyển dần từng phần</i> (máy móc, nhà xưởng).<br>
+            • <b>Tư bản lưu động</b> -> <i>Chuyển hết 1 lần</i> (nguyên nhiên vật liệu VÀ sức lao động v).<br>
+            • <b>GTTD tuyệt đối</b> -> <i>Kéo dài ngày làm việc / tăng cường độ LĐ</i> (thời gian tất yếu không đổi).<br>
+            • <b>GTTD tương đối</b> -> <i>Tăng NSLĐ xã hội, rút ngắn thời gian tất yếu</i> (ngày làm việc không đổi).<br>
+            • <b>GTTD siêu ngạch</b> -> <i>Tăng NSLĐ cá biệt</i> (động lực mạnh nhất của nhà tư bản).<br>
+            • <b>Địa tô chênh lệch I</b> -> <i>Độ màu mỡ tự nhiên, vị trí đất thuận lợi</i>.<br>
+            • <b>Địa tô chênh lệch II</b> -> <i>Ruộng đất đã thâm canh, đầu tư thêm tư bản</i>.<br>
+            • <b>Địa tô tuyệt đối</b> -> <i>Tất cả ruộng đất đều phải nộp, do độc quyền tư hữu ruộng đất</i>.<br>
+            • Thứ tự độc quyền lịch sử -> <b>Cartel - Syndicate - Trust - Consortium</b>.<br>
+            • Độc quyền mới -> <b>Concern & Conglomerate</b>; công ty xuyên quốc gia (TNCs); toàn cầu hóa.<br>
+            • Thành phần kinh tế ở VN: <i>Kinh tế nhà nước giữ vai trò chủ đạo, kinh tế tư nhân là động lực quan trọng, kinh tế có vốn đầu tư nước ngoài là thành phần mới</i>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 6: BÀI TẬP TÍNH TOÁN & CÔNG THỨC TRONG SRC -->
+    <section class="tip-section" id="sec-math">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">6</div>
+          <h3 class="section-title">Nhớ Đáp Án Các Câu Bài Tập & Công Thức MLN122</h3>
+        </div>
+        <span class="section-badge">Ăn Điểm Tuyệt Đối</span>
+      </div>
+
+      <div class="callout callout-success">
+        <div class="callout-icon">🎯</div>
+        <div>
+          <div class="callout-title">Trong toàn bộ ngân hàng thi MLN122 chỉ có đúng 7 bài toán và công thức tính. Nhớ sẵn đáp án:</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Dấu Hiệu Đề Bài</th>
+              <th>Đáp Án Chuẩn Xác Cần Chọn</th>
+              <th>Công Thức / Bản Chất Lý Giải</th>
+              <th>ID Câu Trong SRC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Tăng NSLĐ và Cường độ LĐ lên 2 lần</span></td>
+              <td><span class="td-target">Giá trị 1 hàng hoá giảm 2 lần, tổng số giá trị hàng hoá tăng 2 lần</span></td>
+              <td>NSLĐ làm giá trị 1 SP giảm 2 lần. CĐLĐ làm tổng giá trị tăng 2 lần.</td>
+              <td><span class="src-id">[SRC ID 53]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">100 công nhân tạo ra giá trị mới 500.000 USD...</span></td>
+              <td><span class="td-target">Số công nhân là 200 người</span></td>
+              <td>Bài toán tính quy mô lao động để đạt khối lượng GTTD yêu cầu.</td>
+              <td><span class="src-id">[SRC ID 80]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Sản xuất 1000 đôi dép, đầu tư 100.000 USD...</span></td>
+              <td><span class="td-target">W = 120.000 USD</span></td>
+              <td>Giá trị hàng hóa W = c + v + m.</td>
+              <td><span class="src-id">[SRC ID 83]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Nhà tư bản đầu tư 50 USD mua nguyên liệu dệt vải, hao mòn 5 USD...</span></td>
+              <td><span class="td-target">Đầu tư thêm 50 USD cho nguyên liệu, 5 USD cho hao mòn máy móc và bắt công nhân làm thêm 4 giờ nữa...</span></td>
+              <td>Bản chất của sản xuất giá trị thặng dư (kéo dài thời gian lao động vượt quá thời gian tất yếu).</td>
+              <td><span class="src-id">[SRC ID 445]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Công thức tính T' trong công thức chung của tư bản</span></td>
+              <td><span class="td-target">T' = T + t (t > 0)</span></td>
+              <td>t chính là m (giá trị thặng dư phụ thêm).</td>
+              <td><span class="src-id">[SRC ID 467]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Công thức tính Tỷ suất lợi nhuận (p')</span></td>
+              <td><span class="td-target">p' = p / (c + v) * 100%</span> (hay m / (c + v) * 100%)</td>
+              <td>So sánh lợi nhuận với toàn bộ tư bản ứng trước (c + v).</td>
+              <td><span class="src-id">[SRC ID 360]</span></td>
+            </tr>
+            <tr data-subject="mln122" class="search-item">
+              <td><span class="td-highlight">Công thức tính Tỷ suất giá trị thặng dư (m')</span></td>
+              <td><span class="td-target">m' = giá trị thặng dư / tư bản khả biến * 100%</span> (m/v * 100%)</td>
+              <td>Phản ánh trình độ bóc lột của nhà tư bản đối với công nhân làm thuê.</td>
+              <td><span class="src-id">[SRC ID 409]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 7: BỘ NHẬN DIỆN CÂU HỎI PHỦ ĐỊNH (CHỌN CÂU SAI) -->
+    <section class="tip-section" id="sec-negative">
+      <div class="section-header">
+        <div class="section-title-group">
+          <div class="section-number">7</div>
+          <h3 class="section-title">Nhận Diện Câu Hỏi Phủ Định (Chọn Câu Sai / Không Phải)</h3>
+        </div>
+        <span class="section-badge">Phá Bẫy Đề Thi</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="tip-card search-item" data-subject="mln111">
+          <div class="card-top-row">
+            <span class="key-badge badge-red">Các Mệnh Đề SAI Thường Gặp Ở MLN111</span>
+            <span class="subject-pill pill-111">MLN111</span>
+          </div>
+          <div class="card-rule">Đề Hỏi "Nhận Định Nào Sai?" -> Tìm Ngay Các Câu Này:</div>
+          <div class="card-explain">
+            ❌ <b>"Triết học Mác cho rằng triết học là khoa học của mọi khoa học"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Triết học Mác đoạn tuyệt với quan điểm này của triết học cũ) <span class="src-id">[ID 142]</span>.<br><br>
+            ❌ <b>"Thế giới tinh thần và thế giới vật chất tồn tại độc lập nhau"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (CNDV khẳng định thế giới thống nhất ở tính vật chất) <span class="src-id">[ID 94]</span>.<br><br>
+            ❌ <b>"Các mâu thuẫn trong chính trị, tư tưởng quyết định mâu thuẫn trong lĩnh vực kinh tế"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Kinh tế/CSHT quyết định chính trị/KTTT, không bao giờ ngược lại) <span class="src-id">[ID 145]</span>.<br><br>
+            ❌ <b>"Chủ nghĩa Mác dựa vào Khả năng chứ không phải dựa vào Hiện thực"</b> -> <i>SAI</i> (Mác dựa vào Hiện thực chứ không phải Khả năng) <span class="src-id">[ID 194]</span>.
+          </div>
+        </div>
+
+        <div class="tip-card search-item" data-subject="mln122">
+          <div class="card-top-row">
+            <span class="key-badge badge-red">Các Mệnh Đề SAI Thường Gặp Ở MLN122</span>
+            <span class="subject-pill pill-122">MLN122</span>
+          </div>
+          <div class="card-rule">Đề Hỏi "Đâu KHÔNG Phải / Nhận Định Nào Sai?" -> Chọn:</div>
+          <div class="card-explain">
+            ❌ <b>"Quyền sở hữu tư liệu sản xuất thuộc về nhà nước"</b> -> <i>KHÔNG PHẢI đặc trưng của CNTB</i> (CNTB dựa trên sở hữu tư nhân) <span class="src-id">[ID 4]</span>.<br><br>
+            ❌ <b>"Bóc lột sản phẩm thặng dư chỉ có ở chủ nghĩa tư bản"</b> -> <i>ĐÂY LÀ LUẬN ĐIỂM SAI</i> (Chế độ nô lệ và phong kiến cũng bóc lột sản phẩm thặng dư) <span class="src-id">[ID 66]</span>.<br><br>
+            ❌ <b>"Công nghiệp hóa, hiện đại hóa gắn liền với phát triển công nghiệp nặng"</b> -> <i>KHÔNG PHẢI đặc trưng CNH ở VN hiện nay</i> (Ưu tiên CN nặng là mô hình cũ thời bao cấp) <span class="src-id">[ID 69, 210]</span>.<br><br>
+            ❌ <b>"Thời gian làm việc trong một ngày của công nhân được giữ nguyên"</b> -> <i>SAI đối với GTTD tuyệt đối</i> (Tuyệt đối là kéo dài ngày làm việc) <span class="src-id">[ID 84]</span>.<br><br>
+            ❌ <b>"Kinh tế thị trường chỉ có thể phát triển mạnh ở xã hội phong kiến"</b> -> <i>SAI</i> (Phong kiến là kinh tế tự nhiên, tự cung tự cấp) <span class="src-id">[ID 151]</span>.<br><br>
+            ❌ <b>"Chức năng giáo dục"</b> -> <i>KHÔNG PHẢI chức năng chính của KTCT Mác - Lênin</i> (KTCT chỉ có: Nhận thức, Thực tiễn, Tư tưởng, Phương pháp luận) <span class="src-id">[ID 126]</span>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    FPT University &bull; Hệ Thống Ôn Thi & Flashcard Trực Tuyến &bull; Phân tích dựa trên 1.097 câu hỏi SRC MLN111 & MLN122
+  </footer>
+
+  <script>
+    // Search functionality
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.search-item');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (!query || text.includes(query)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Filter by subject
+    function filterSubject(subject, btnEl) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (btnEl) {
+        btnEl.classList.add('active');
+      }
+
+      const items = document.querySelectorAll('.search-item');
+      items.forEach(item => {
+        const itemSubject = item.getAttribute('data-subject');
+        if (subject === 'all' || itemSubject === subject || !itemSubject) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Dark / Light Theme Toggle
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('app_theme', next);
+      updateThemeIcon(next);
+    }
+
+    function updateThemeIcon(theme) {
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.innerText = theme === 'light' ? '☀️' : '🌙';
+      }
+    }
+
+    // Init Theme
+    const savedTheme = localStorage.getItem('app_theme') || 'dark';
+    updateThemeIcon(savedTheme);
+  </script>
+</body>
+</html>
