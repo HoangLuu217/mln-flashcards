@@ -8,6 +8,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Exam History Modal -->
+  <div class="modal-overlay" id="history-modal">
+    <div class="modal history-modal-dialog">
+      <div class="history-modal-header">
+        <div class="history-modal-title">
+          <i class="bi bi-clock-history text-accent"></i>
+          <span>Lịch Sử Thi Thử - <span id="history-modal-subject">MLN111</span></span>
+        </div>
+        <button class="btn-close-modal" onclick="closeModal('history-modal')"><i class="bi bi-x-lg"></i></button>
+      </div>
+
+      <div class="history-stats-bar">
+        <div class="hist-stat-card">
+          <div class="hist-stat-val" id="hist-stat-total-exams">0</div>
+          <div class="hist-stat-label">Số bài đã thi</div>
+        </div>
+        <div class="hist-stat-card">
+          <div class="hist-stat-val text-success" id="hist-stat-best-score">--</div>
+          <div class="hist-stat-label">Điểm cao nhất</div>
+        </div>
+        <div class="hist-stat-card">
+          <div class="hist-stat-val text-accent" id="hist-stat-avg-score">--</div>
+          <div class="hist-stat-label">Điểm trung bình</div>
+        </div>
+      </div>
+
+      <div class="history-list-wrapper" id="history-list-wrapper">
+        <!-- Rendered history cards -->
+      </div>
+
+      <div class="history-modal-footer">
+        <button class="btn btn-sm btn-outline-danger" id="btn-clear-history" onclick="confirmClearHistory()"><i class="bi bi-trash3"></i> Xóa tất cả lịch sử</button>
+        <button class="btn btn-sm" onclick="closeModal('history-modal')">Đóng</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function() {
       const savedTheme = localStorage.getItem('app_theme');
@@ -870,6 +907,509 @@
       font-weight: 800;
     }
 
+  
+    /* --- EXAM SEARCH & FILTER STYLES --- */
+    .exam-search-box {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+
+    .search-input-wrap .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    #exam-search-input {
+      width: 100%;
+      padding: 0.55rem 2rem 0.55rem 2.1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    #exam-search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 0.6rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+
+    .clear-search-btn:hover {
+      color: var(--accent);
+    }
+
+    .filter-chips-row {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      background: var(--bg-body);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 0.22rem 0.6rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: all 0.2s ease;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter-chip.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: white !important;
+      box-shadow: 0 2px 6px var(--accent-light);
+    }
+
+    .filter-chip.active i {
+      color: white !important;
+    }
+
+    .search-results-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      z-index: 40;
+      margin-top: 0.35rem;
+      overflow: hidden;
+    }
+
+    .dropdown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      background-color: var(--bg-body);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .btn-close-sm {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .btn-close-sm:hover {
+      color: var(--text-main);
+    }
+
+    .dropdown-list {
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .dropdown-result-item {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.78rem;
+      transition: background 0.15s ease;
+    }
+
+    .dropdown-result-item:hover, .dropdown-result-item.active-item {
+      background-color: var(--accent-light);
+    }
+
+    .dropdown-result-item .q-badge {
+      background-color: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.1rem 0.4rem;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .dropdown-result-item .q-snippet {
+      color: var(--text-main);
+      line-height: 1.35;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .dropdown-empty {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .dropdown-more-hint {
+      padding: 0.4rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background-color: var(--bg-body);
+    }
+
+    /* Grid search highlights & dimmed */
+    .q-num-box.dimmed {
+      opacity: 0.22 !important;
+      pointer-events: none;
+      filter: grayscale(0.8);
+    }
+
+    .q-num-box.search-matched {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 2px var(--accent);
+      transform: scale(1.08);
+      z-index: 2;
+    }
+
+    /* Past Exam Review Banner */
+    .past-review-banner {
+      background: linear-gradient(90deg, rgba(249, 115, 22, 0.15), rgba(59, 130, 246, 0.15));
+      border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .banner-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .banner-icon {
+      font-size: 1.35rem;
+      color: var(--accent);
+    }
+
+    .banner-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .banner-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .banner-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* Header History Button */
+    .btn-history {
+      border-color: rgba(59, 130, 246, 0.3) !important;
+      background-color: rgba(59, 130, 246, 0.1) !important;
+      color: #3b82f6 !important;
+      font-weight: 700 !important;
+    }
+
+    [data-theme="dark"] .btn-history {
+      color: #60a5fa !important;
+    }
+
+    .btn-history:hover {
+      background-color: rgba(59, 130, 246, 0.2) !important;
+    }
+
+    /* Exam History Modal Dialog */
+    .history-modal-dialog {
+      max-width: 620px !important;
+      width: 95% !important;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem !important;
+      text-align: left !important;
+    }
+
+    .history-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .history-modal-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0.2rem;
+    }
+
+    .btn-close-modal:hover {
+      color: var(--text-main);
+    }
+
+    .history-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hist-stat-card {
+      background-color: var(--bg-body);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+
+    .hist-stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .hist-stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+
+    .history-list-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      max-height: 380px;
+      padding-right: 0.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .history-item-card {
+      background-color: var(--bg-body);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .history-item-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hist-card-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    .hist-score-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .hist-score-badge.score-high {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .hist-score-badge.score-med {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+
+    .hist-score-badge.score-low {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .hist-score-val {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .hist-score-max {
+      font-size: 0.65rem;
+      opacity: 0.85;
+    }
+
+    .hist-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .hist-time-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hist-duration {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .hist-counts {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      font-size: 0.74rem;
+    }
+
+    .badge-cnt {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .hist-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-icon-only {
+      padding: 0.4rem 0.55rem !important;
+    }
+
+    .btn-danger-soft {
+      background: none;
+      border: 1px solid rgba(239, 68, 68, 0.3) !important;
+      color: #ef4444 !important;
+    }
+
+    .btn-danger-soft:hover {
+      background: rgba(239, 68, 68, 0.15) !important;
+    }
+
+    .empty-history-state {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-history-state .empty-icon {
+      font-size: 2.8rem;
+      opacity: 0.4;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .empty-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .empty-sub {
+      font-size: 0.8rem;
+      line-height: 1.45;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .history-modal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.85rem;
+      margin-top: 0.85rem;
+    }
+
+    .history-saved-toast {
+      background: var(--success-light);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
   </style>
 </head>
 <body>
@@ -897,12 +1437,30 @@
       <a href="tips.html" target="_blank" class="btn" style="text-decoration: none; border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700;" title="Mở trang Bí kíp & Mẹo chọn trắc nghiệm">
         <span><i class="bi bi-lightbulb-fill"></i></span> <span class="btn-label">Mẹo Làm Bài</span>
       </a>
-      <button class="btn btn-submit" onclick="confirmSubmitExam()">
+            <button class="btn btn-history" id="btn-history" onclick="openHistoryModal()" title="Xem lịch sử các lần thi thử">
+        <span><i class="bi bi-clock-history"></i></span> <span class="btn-label">Lịch Sử</span> (<b id="history-badge-count">0</b>)
+      </button>
+<button class="btn btn-submit" onclick="confirmSubmitExam()">
         <span><i class="bi bi-send-check-fill"></i></span> <span class="btn-label">Nộp bài thi</span>
       </button>
       <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối"><i class="bi bi-moon-stars-fill"></i></button>
     </div>
   </header>
+
+  <!-- Past Exam Review Banner -->
+  <div id="past-review-banner" class="past-review-banner" style="display:none;">
+    <div class="banner-content">
+      <i class="bi bi-journal-bookmark-fill banner-icon"></i>
+      <div class="banner-text-box">
+        <div class="banner-title" id="past-review-title">Đang xem lại bài thi cũ</div>
+        <div class="banner-sub" id="past-review-sub">Điểm: 0/10</div>
+      </div>
+    </div>
+    <div class="banner-actions">
+      <button class="btn btn-sm" onclick="openHistoryModal()"><i class="bi bi-clock-history"></i> DS Lịch Sử</button>
+      <button class="btn btn-sm btn-primary" onclick="restartExam()"><i class="bi bi-arrow-clockwise"></i> Thi Đề Mới</button>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="exam-container">
@@ -949,6 +1507,33 @@
         <span class="sidebar-title">Bảng câu hỏi (<span id="sidebar-total-text">60</span>)</span>
       </div>
 
+      <!-- Search & Filters in Exam -->
+      <div class="exam-search-box">
+        <div class="search-input-wrap">
+          <i class="bi bi-search search-icon"></i>
+          <input type="text" id="exam-search-input" placeholder="Tìm câu hỏi, từ khóa, đáp án..." oninput="onExamSearchInput(this.value)" autocomplete="off">
+          <button class="clear-search-btn" id="clear-search-btn" onclick="clearExamSearch()" title="Xóa tìm kiếm" style="display:none;">
+            <i class="bi bi-x-circle-fill"></i>
+          </button>
+        </div>
+
+        <div class="filter-chips-row" id="filter-chips-row">
+          <button class="filter-chip active" data-filter="all" onclick="setExamFilter('all')">Tất cả (<span id="chip-cnt-all">60</span>)</button>
+          <button class="filter-chip" data-filter="flagged" onclick="setExamFilter('flagged')"><i class="bi bi-flag-fill" style="color:var(--warning)"></i> Cờ (<span id="chip-cnt-flagged">0</span>)</button>
+          <button class="filter-chip chip-exam-only" data-filter="unanswered" onclick="setExamFilter('unanswered')">Chưa làm (<span id="chip-cnt-unanswered">60</span>)</button>
+          <button class="filter-chip chip-review-only" data-filter="wrong" onclick="setExamFilter('wrong')" style="display:none;"><i class="bi bi-x-circle-fill" style="color:var(--danger)"></i> Sai (<span id="chip-cnt-wrong">0</span>)</button>
+          <button class="filter-chip chip-review-only" data-filter="correct" onclick="setExamFilter('correct')" style="display:none;"><i class="bi bi-check-circle-fill" style="color:var(--success)"></i> Đúng (<span id="chip-cnt-correct">0</span>)</button>
+        </div>
+
+        <div class="search-results-dropdown" id="search-results-dropdown" style="display:none;">
+          <div class="dropdown-header">
+            <span>Tìm thấy: <b id="search-match-count">0</b> câu</span>
+            <button class="btn-close-sm" onclick="clearExamSearch()"><i class="bi bi-x-lg"></i></button>
+          </div>
+          <div class="dropdown-list" id="dropdown-results-list"></div>
+        </div>
+      </div>
+
       <div class="legend-row">
         <div class="legend-item"><span class="dot done"></span> Đã làm</div>
         <div class="legend-item"><span class="dot empty"></span> Chưa làm</div>
@@ -991,6 +1576,10 @@
         <div class="sub">Thang điểm 10</div>
       </div>
 
+      <div class="history-saved-toast" id="history-saved-toast">
+        <i class="bi bi-check-circle-fill text-success"></i> Đã tự động lưu kết quả vào Lịch Sử Thi!
+      </div>
+
       <div class="stats-table">
         <div>Số câu đúng: <b id="stat-correct" style="color:var(--success)">0 / 60</b></div>
         <div>Tỷ lệ chính xác: <b id="stat-pct">0%</b></div>
@@ -1000,6 +1589,7 @@
 
       <div class="modal-actions" style="flex-wrap: wrap;">
         <button class="btn btn-primary" onclick="restartExam()"><i class="bi bi-dice-5-fill"></i> Thi Đề Khác</button>
+        <button class="btn" onclick="openHistoryModal()"><i class="bi bi-clock-history"></i> Lịch Sử Thi</button>
         <button class="btn" onclick="enterReviewMode()"><i class="bi bi-search"></i> Xem Lại Bài Thi</button>
         <a href="index.html" class="btn"><i class="bi bi-house-door-fill"></i> Về Trang Chủ</a>
       </div>
@@ -1008,6 +1598,10 @@
 
   <script>
     const STORAGE_KEY_WRONG = 'mln111_wrong';
+    const STORAGE_KEY_HISTORY = 'mln111_exam_history';
+    const CURRENT_SUBJECT = 'MLN111';
+    let activeFilter = 'all'; // 'all', 'flagged', 'unanswered', 'wrong', 'correct'
+    let currentSearchQuery = '';
     
     function isMultiChoiceCard(card) {
       if (!card) return false;
@@ -1052,6 +1646,16 @@
       timeLeftSeconds = EXAM_DURATION_MINUTES * 60;
       startTime = Date.now();
 
+      // Reset search, filters and review banner
+      activeFilter = 'all';
+      currentSearchQuery = '';
+      clearExamSearch();
+      const banner = document.getElementById('past-review-banner');
+      if (banner) banner.style.display = 'none';
+
+      document.querySelectorAll('.chip-review-only').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.chip-exam-only').forEach(el => el.style.display = 'inline-flex');
+
       document.getElementById('total-count-text').innerText = examCards.length;
       document.getElementById('total-q-num').innerText = examCards.length;
       document.getElementById('sidebar-total-text').innerText = examCards.length;
@@ -1059,6 +1663,7 @@
       buildGrid();
       renderQuestion();
       startTimer();
+      updateHistoryBadge();
     }
 
     // Timer logic
@@ -1112,6 +1717,12 @@
       });
 
       updateGridUI();
+      applySearchAndFilters();
+    }
+
+    function renderGrid() {
+      updateGridUI();
+      applySearchAndFilters();
     }
 
     function updateGridUI() {
@@ -1128,8 +1739,9 @@
 
         // Review mode
         if (isSubmitted) {
-          const chosen = userAnswers[card.id];
-          if (chosen && card.answerLetter.includes(chosen)) {
+          const chosen = (userAnswers[card.id] || '').split('').sort().join('');
+          const correctStr = getCorrectLetters(card).join('');
+          if (chosen === correctStr && chosen.length > 0) {
             box.classList.add('rev-correct');
           } else {
             box.classList.add('rev-wrong');
@@ -1138,7 +1750,9 @@
       });
 
       const answeredCount = Object.keys(userAnswers).length;
-      document.getElementById('answered-count-text').innerText = answeredCount;
+      const countEl = document.getElementById('answered-count-text');
+      if (countEl) countEl.innerText = answeredCount;
+      updateFilterChipCounts();
     }
 
     // Render current question
@@ -1260,6 +1874,7 @@
         flaggedCards.add(card.id);
       }
       renderQuestion();
+      applySearchAndFilters();
     }
 
     function nextQuestion() {
@@ -1356,6 +1971,34 @@
       document.getElementById('stat-wrong').innerText = wrong;
       document.getElementById('stat-empty').innerText = empty;
 
+      // Save to localStorage history (ultra-optimized: only save cardIds & answers)
+      const examRecord = {
+        id: 'exam_' + Date.now(),
+        timestamp: Date.now(),
+        dateFormatted: new Date().toLocaleString('vi-VN', {
+          hour: '2-digit', minute: '2-digit',
+          day: '2-digit', month: '2-digit', year: 'numeric'
+        }),
+        subject: CURRENT_SUBJECT,
+        score10: parseFloat(score10),
+        pct: pct,
+        correct: correct,
+        wrong: wrong,
+        empty: empty,
+        total: examCards.length,
+        timeSpentSeconds: secondsSpent,
+        timeSpentText: `${minutesSpent} phút`,
+        cardIds: examCards.map(c => c.id),
+        userAnswers: Object.assign({}, userAnswers),
+        flaggedIds: Array.from(flaggedCards)
+      };
+      saveExamHistory(examRecord);
+
+      // Switch review chips
+      document.querySelectorAll('.chip-review-only').forEach(el => el.style.display = 'inline-flex');
+      document.querySelectorAll('.chip-exam-only').forEach(el => el.style.display = 'none');
+      updateFilterChipCounts();
+
       document.getElementById('result-modal').classList.add('open');
       renderQuestion();
     }
@@ -1363,12 +2006,355 @@
     function enterReviewMode() {
       closeModal('result-modal');
       currentIndex = 0;
+      document.querySelectorAll('.chip-review-only').forEach(el => el.style.display = 'inline-flex');
+      document.querySelectorAll('.chip-exam-only').forEach(el => el.style.display = 'none');
+      updateFilterChipCounts();
       renderQuestion();
     }
 
     function restartExam() {
       closeModal('result-modal');
       initExam();
+    }
+
+    /* --- EXAM HISTORY MANAGEMENT (OPTIMIZED FOR LOCALSTORAGE) --- */
+    function getExamHistory() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
+      } catch (e) {
+        console.error("Lỗi đọc lịch sử thi:", e);
+        return [];
+      }
+    }
+
+    function saveExamHistory(record) {
+      try {
+        let history = getExamHistory();
+        history.unshift(record);
+        // Lưu tối đa 50 bài thi gần nhất để luôn đảm bảo dung lượng < 40KB
+        if (history.length > 50) {
+          history = history.slice(0, 50);
+        }
+        localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+        updateHistoryBadge();
+      } catch (e) {
+        console.error("Lỗi lưu lịch sử thi:", e);
+      }
+    }
+
+    function updateHistoryBadge() {
+      const history = getExamHistory();
+      const badge = document.getElementById('history-badge-count');
+      if (badge) badge.innerText = history.length;
+    }
+
+    function openHistoryModal() {
+      const history = getExamHistory();
+      const modalSubject = document.getElementById('history-modal-subject');
+      if (modalSubject) modalSubject.innerText = CURRENT_SUBJECT;
+
+      const totalExams = history.length;
+      let bestScore = totalExams > 0 ? Math.max(...history.map(h => h.score10)) : '--';
+      let avgScore = totalExams > 0 ? (history.reduce((acc, h) => acc + h.score10, 0) / totalExams).toFixed(1) : '--';
+
+      document.getElementById('hist-stat-total-exams').innerText = totalExams;
+      document.getElementById('hist-stat-best-score').innerText = totalExams > 0 ? `${bestScore}/10` : '--';
+      document.getElementById('hist-stat-avg-score').innerText = totalExams > 0 ? `${avgScore}/10` : '--';
+
+      const listWrapper = document.getElementById('history-list-wrapper');
+      if (totalExams === 0) {
+        listWrapper.innerHTML = `
+          <div class="empty-history-state">
+            <i class="bi bi-clock-history empty-icon"></i>
+            <div class="empty-title">Chưa có lịch sử làm bài</div>
+            <div class="empty-sub">Hãy hoàn thành và nộp bài thi để lưu lại điểm số và xem lại chi tiết 60 câu hỏi tại đây!</div>
+          </div>
+        `;
+      } else {
+        listWrapper.innerHTML = history.map(item => {
+          const scoreClass = item.score10 >= 8.0 ? 'score-high' : (item.score10 >= 5.0 ? 'score-med' : 'score-low');
+          return `
+            <div class="history-item-card">
+              <div class="hist-card-left">
+                <div class="hist-score-badge ${scoreClass}">
+                  <span class="hist-score-val">${item.score10}</span>
+                  <span class="hist-score-max">/10</span>
+                </div>
+                <div class="hist-details">
+                  <div class="hist-time-title">
+                    <i class="bi bi-calendar3"></i> ${item.dateFormatted}
+                    <span class="hist-duration"><i class="bi bi-stopwatch"></i> ${item.timeSpentText}</span>
+                  </div>
+                  <div class="hist-counts">
+                    <span class="badge-cnt text-success"><i class="bi bi-check-circle-fill"></i> Đúng: <b>${item.correct}/${item.total}</b> (${item.pct}%)</span>
+                    <span class="badge-cnt text-danger"><i class="bi bi-x-circle-fill"></i> Sai: <b>${item.wrong}</b></span>
+                    <span class="badge-cnt text-muted"><i class="bi bi-dash-circle"></i> Trống: <b>${item.empty}</b></span>
+                  </div>
+                </div>
+              </div>
+              <div class="hist-card-actions">
+                <button class="btn btn-sm btn-primary" onclick="loadPastExamFromHistory('${item.id}')" title="Xem lại toàn bộ câu hỏi và đáp án bài thi này">
+                  <i class="bi bi-eye"></i> Xem lại
+                </button>
+                <button class="btn btn-sm btn-icon-only btn-danger-soft" onclick="deleteHistoryItem('${item.id}', event)" title="Xóa bài thi này">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('history-modal').classList.add('open');
+    }
+
+    function loadPastExamFromHistory(examId) {
+      const history = getExamHistory();
+      const item = history.find(h => h.id === examId);
+      if (!item) {
+        alert('Không tìm thấy bài thi này trong lịch sử!');
+        return;
+      }
+
+      closeModal('history-modal');
+      closeModal('result-modal');
+
+      // Tái tạo lại 60 câu hỏi từ ALL_CARDS dựa trên danh sách ID (siêu nhẹ & chuẩn xác)
+      const cardMap = new Map(ALL_CARDS.map(c => [c.id, c]));
+      const rehydrated = (item.cardIds || []).map(id => cardMap.get(id)).filter(Boolean);
+
+      if (rehydrated.length === 0) {
+        alert('Không thể tải các câu hỏi từ đề thi này!');
+        return;
+      }
+
+      examCards = rehydrated;
+      userAnswers = Object.assign({}, item.userAnswers || {});
+      flaggedCards = new Set(item.flaggedIds || []);
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+
+      // Hiển thị thanh thông báo xem lại bài thi cũ
+      const banner = document.getElementById('past-review-banner');
+      if (banner) {
+        banner.style.display = 'flex';
+        document.getElementById('past-review-title').innerText = `Đang xem lại bài thi ngày ${item.dateFormatted}`;
+        document.getElementById('past-review-sub').innerHTML = `Điểm: <b style="color:var(--accent); font-size:1.05rem;">${item.score10}/10</b> &bull; Đúng: <b class="text-success">${item.correct}/${item.total} (${item.pct}%)</b> &bull; Sai: <b class="text-danger">${item.wrong}</b> &bull; Bỏ trống: <b>${item.empty}</b> &bull; Thời gian: <b>${item.timeSpentText}</b>`;
+      }
+
+      // Kích hoạt các bộ lọc xem lại
+      document.querySelectorAll('.chip-review-only').forEach(el => el.style.display = 'inline-flex');
+      document.querySelectorAll('.chip-exam-only').forEach(el => el.style.display = 'none');
+
+      currentIndex = 0;
+      activeFilter = 'all';
+      currentSearchQuery = '';
+      const searchInput = document.getElementById('exam-search-input');
+      if (searchInput) searchInput.value = '';
+
+      buildGrid();
+      renderQuestion();
+      updateFilterChipCounts();
+    }
+
+    function deleteHistoryItem(examId, event) {
+      if (event) event.stopPropagation();
+      if (!confirm('Bạn có chắc chắn muốn xóa bài thi này khỏi lịch sử không?')) return;
+      let history = getExamHistory();
+      history = history.filter(h => h.id !== examId);
+      localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+      updateHistoryBadge();
+      openHistoryModal();
+    }
+
+    function confirmClearHistory() {
+      const history = getExamHistory();
+      if (history.length === 0) return;
+      if (!confirm(`Bạn có chắc chắn muốn xóa toàn bộ ${history.length} bài thi trong lịch sử môn ${CURRENT_SUBJECT}?`)) return;
+      localStorage.removeItem(STORAGE_KEY_HISTORY);
+      updateHistoryBadge();
+      openHistoryModal();
+    }
+
+    /* --- SEARCH & QUICK FILTERS LOGIC --- */
+    function onExamSearchInput(query) {
+      currentSearchQuery = (query || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (clearBtn) clearBtn.style.display = currentSearchQuery ? 'flex' : 'none';
+
+      applySearchAndFilters();
+    }
+
+    function clearExamSearch() {
+      currentSearchQuery = '';
+      const input = document.getElementById('exam-search-input');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (clearBtn) clearBtn.style.display = 'none';
+      const dropdown = document.getElementById('search-results-dropdown');
+      if (dropdown) dropdown.style.display = 'none';
+
+      applySearchAndFilters();
+    }
+
+    function setExamFilter(filterName) {
+      activeFilter = filterName;
+      document.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === filterName);
+      });
+
+      applySearchAndFilters();
+
+      // Nếu câu hiện tại không khớp filter, tự động nhảy tới câu đầu tiên khớp filter
+      const currentCard = examCards[currentIndex];
+      if (currentCard && !cardMatchesFilter(currentCard, currentIndex, filterName)) {
+        const firstMatchIdx = examCards.findIndex((c, idx) => cardMatchesFilter(c, idx, filterName));
+        if (firstMatchIdx !== -1) {
+          jumpToQuestion(firstMatchIdx);
+        }
+      }
+    }
+
+    function cardMatchesFilter(card, idx, filter) {
+      if (filter === 'all') return true;
+      if (filter === 'flagged') return flaggedCards.has(card.id);
+      if (filter === 'unanswered') return !userAnswers[card.id];
+      if (filter === 'wrong') {
+        if (!isSubmitted) return false;
+        const chosen = (userAnswers[card.id] || '').split('').sort().join('');
+        const correctStr = getCorrectLetters(card).join('');
+        return chosen !== correctStr;
+      }
+      if (filter === 'correct') {
+        if (!isSubmitted) return false;
+        const chosen = (userAnswers[card.id] || '').split('').sort().join('');
+        const correctStr = getCorrectLetters(card).join('');
+        return chosen === correctStr && chosen.length > 0;
+      }
+      return true;
+    }
+
+    function cardMatchesSearch(card, idx, query) {
+      if (!query) return true;
+      const tokens = query.split(/\s+/).filter(Boolean);
+      const haystack = [
+        `câu ${idx + 1}`,
+        `${idx + 1}`,
+        `#${card.id}`,
+        card.question || '',
+        (card.options || []).join(' '),
+        card.notes || '',
+        card.answerLetter || ''
+      ].join(' ').toLowerCase();
+
+      return tokens.every(token => haystack.includes(token));
+    }
+
+    function applySearchAndFilters() {
+      let matchingIndices = [];
+
+      examCards.forEach((card, idx) => {
+        const box = document.getElementById(`grid-box-${idx}`);
+        const matchesF = cardMatchesFilter(card, idx, activeFilter);
+        const matchesS = cardMatchesSearch(card, idx, currentSearchQuery);
+        const isMatch = matchesF && matchesS;
+
+        if (box) {
+          if (isMatch) {
+            box.classList.remove('dimmed');
+            if (currentSearchQuery) {
+              box.classList.add('search-matched');
+            } else {
+              box.classList.remove('search-matched');
+            }
+          } else {
+            box.classList.add('dimmed');
+            box.classList.remove('search-matched');
+          }
+        }
+
+        if (isMatch) {
+          matchingIndices.push(idx);
+        }
+      });
+
+      // Hiển thị dropdown preview nếu đang gõ tìm kiếm
+      const dropdown = document.getElementById('search-results-dropdown');
+      const list = document.getElementById('dropdown-results-list');
+      const matchCountEl = document.getElementById('search-match-count');
+
+      if (currentSearchQuery) {
+        if (dropdown) dropdown.style.display = 'block';
+        if (matchCountEl) matchCountEl.innerText = matchingIndices.length;
+
+        if (matchingIndices.length === 0) {
+          list.innerHTML = `<div class="dropdown-empty">Không tìm thấy câu hỏi phù hợp với "${escapeHtml(currentSearchQuery)}"</div>`;
+        } else {
+          list.innerHTML = matchingIndices.slice(0, 8).map(idx => {
+            const card = examCards[idx];
+            const snippet = escapeHtml((card.question || '').slice(0, 90)) + '...';
+            const activeClass = idx === currentIndex ? 'active-item' : '';
+            return `
+              <div class="dropdown-result-item ${activeClass}" onclick="jumpToAndFocusQuestion(${idx})">
+                <span class="q-badge">Câu ${idx + 1}</span>
+                <span class="q-snippet">${snippet}</span>
+              </div>
+            `;
+          }).join('');
+          if (matchingIndices.length > 8) {
+            list.innerHTML += `<div class="dropdown-more-hint">và còn ${matchingIndices.length - 8} câu khác (xem trên bảng ô số)...</div>`;
+          }
+        }
+      } else {
+        if (dropdown) dropdown.style.display = 'none';
+      }
+
+      updateFilterChipCounts();
+    }
+
+    function jumpToAndFocusQuestion(idx) {
+      jumpToQuestion(idx);
+      const dropdown = document.getElementById('search-results-dropdown');
+      if (dropdown) dropdown.style.display = 'none';
+    }
+
+    function updateFilterChipCounts() {
+      let cntAll = examCards.length;
+      let cntFlagged = 0;
+      let cntUnanswered = 0;
+      let cntWrong = 0;
+      let cntCorrect = 0;
+
+      examCards.forEach(card => {
+        if (flaggedCards.has(card.id)) cntFlagged++;
+        const chosen = (userAnswers[card.id] || '').split('').sort().join('');
+        const correctStr = getCorrectLetters(card).join('');
+        if (!chosen) {
+          cntUnanswered++;
+          cntWrong++;
+        } else if (chosen === correctStr) {
+          cntCorrect++;
+        } else {
+          cntWrong++;
+        }
+      });
+
+      const elAll = document.getElementById('chip-cnt-all');
+      if (elAll) elAll.innerText = cntAll;
+      const elFlag = document.getElementById('chip-cnt-flagged');
+      if (elFlag) elFlag.innerText = cntFlagged;
+      const elUn = document.getElementById('chip-cnt-unanswered');
+      if (elUn) elUn.innerText = cntUnanswered;
+      const elWr = document.getElementById('chip-cnt-wrong');
+      if (elWr) elWr.innerText = cntWrong;
+      const elCor = document.getElementById('chip-cnt-correct');
+      if (elCor) elCor.innerText = cntCorrect;
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
     }
 
     // Theme toggling
