@@ -278,8 +278,8 @@
     /* Exam 60 banner */
     .exam-banner {
       display: none;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-      border: 1px solid rgba(139, 92, 246, 0.4);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1));
+      border: 1px solid rgba(249, 115, 22, 0.35);
       color: var(--text-main);
       padding: 0.75rem 1.1rem;
       border-radius: 12px;
@@ -458,7 +458,7 @@
       letter-spacing: 0.05em;
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
-      background-color: rgba(59, 130, 246, 0.15);
+      background-color: rgba(249, 115, 22, 0.15);
       color: var(--accent);
     }
 
@@ -518,7 +518,7 @@
 
     .option-item:hover {
       border-color: var(--accent);
-      background-color: rgba(59, 130, 246, 0.08);
+      background-color: rgba(249, 115, 22, 0.08);
       transform: translateX(4px);
     }
 
@@ -708,7 +708,7 @@
     }
 
     .score-box {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15));
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1));
       border: 1px solid var(--accent);
       border-radius: 12px;
       padding: 1.5rem;
@@ -783,8 +783,7 @@
     </a>
     <div class="header-actions">
       <a href="tips.html" target="_blank" class="btn" style="border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700; text-decoration: none;" title="Bí kíp & Mẹo chọn trắc nghiệm">💡 Mẹo Thi</a>
-      <a href="exam_mln122.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 50 câu / 50 phút">📝 Thi Thử FE (50 câu)</a>
-      <button class="btn btn-exam" onclick="startQuiz60()" title="Tạo đề thi thử 60 câu ngẫu nhiên">🎯 Thi 60 câu</button>
+      <a href="exam_mln122.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 60 câu / 60 phút">📝 Thi Thử FE (60 câu)</a>
       <button class="btn btn-primary" onclick="openQuizletModal()">📋 Quizlet</button>
       <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌙</button>
     </div>
@@ -799,7 +798,6 @@
       <div class="filter-group">
         <select class="filter-select" id="filter-select" onchange="filterCards()">
           <option value="all">Tất cả câu hỏi (526)</option>
-          <option value="exam60">🎯 Đề thi 60 câu ngẫu nhiên</option>
           <option value="wrong">Câu trả lời sai ❌ (<span id="wrong-count-text">0</span>)</option>
           <option value="starred">Đã gắn sao ⭐ (<span id="starred-count-text">0</span>)</option>
         </select>
