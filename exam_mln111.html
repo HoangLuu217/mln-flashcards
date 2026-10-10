@@ -1410,6 +1410,60 @@
       gap: 0.35rem;
     }
 
+  
+    /* --- STAR BUTTON & INDICATOR IN EXAM --- */
+    .btn-star-exam {
+      background-color: transparent;
+      border: 1.5px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-star-exam:hover {
+      border-color: #f59e0b;
+      color: #f59e0b;
+      background-color: rgba(245, 158, 11, 0.1);
+    }
+
+    .btn-star-exam.active {
+      background-color: rgba(245, 158, 11, 0.15) !important;
+      border-color: #f59e0b !important;
+      color: #f59e0b !important;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-star-exam.active i {
+      color: #f59e0b !important;
+    }
+
+    .dot.star-dot {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      line-height: 1;
+      width: auto;
+      height: auto;
+    }
+
+    .q-num-box.starred::before {
+      content: "\f586";
+      font-family: "bootstrap-icons" !important;
+      position: absolute;
+      bottom: -1px;
+      left: 2px;
+      font-size: 0.65rem;
+      color: #f59e0b;
+      line-height: 1;
+      z-index: 1;
+    }
+
   </style>
 </head>
 <body>
@@ -1473,9 +1527,14 @@
           </div>
           <span id="question-type-badge"></span>
         </div>
-        <button class="btn-flag" id="flag-btn" onclick="toggleFlag()">
-          <span><i class="bi bi-flag-fill"></i></span> Cắm cờ xem lại
-        </button>
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn-star-exam" id="star-btn" onclick="toggleExamStar()" title="Gắn sao câu hỏi này để lưu vào kho ôn tập sau này (Phím S)">
+            <i class="bi bi-star"></i> <span class="btn-label">Gắn sao</span>
+          </button>
+          <button class="btn-flag" id="flag-btn" onclick="toggleFlag()" title="Cắm cờ câu này để xem lại trong bài thi (Phím F)">
+            <span><i class="bi bi-flag-fill"></i></span> <span class="btn-label">Cắm cờ</span>
+          </button>
+        </div>
       </div>
 
       <div class="question-content" id="question-text">
@@ -1497,7 +1556,8 @@
         <span><i class="bi bi-keyboard"></i> Phím tắt:</span>
         <span class="kbd">A</span> <span class="kbd">B</span> <span class="kbd">C</span> <span class="kbd">D</span> <span>chọn đáp án</span> &bull;
         <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> <span>chuyển câu</span> &bull;
-        <span class="kbd">F</span> <span>cắm cờ</span>
+        <span class="kbd">F</span> <span>cắm cờ</span> &bull;
+        <span class="kbd">S</span> <span>gắn sao</span>
       </div>
     </div>
 
@@ -1519,6 +1579,7 @@
 
         <div class="filter-chips-row" id="filter-chips-row">
           <button class="filter-chip active" data-filter="all" onclick="setExamFilter('all')">Tất cả (<span id="chip-cnt-all">60</span>)</button>
+          <button class="filter-chip" data-filter="starred" onclick="setExamFilter('starred')" title="Lọc các câu đã gắn sao"><i class="bi bi-star-fill" style="color:var(--gold,#f59e0b)"></i> Sao (<span id="chip-cnt-starred">0</span>)</button>
           <button class="filter-chip" data-filter="flagged" onclick="setExamFilter('flagged')"><i class="bi bi-flag-fill" style="color:var(--warning)"></i> Cờ (<span id="chip-cnt-flagged">0</span>)</button>
           <button class="filter-chip chip-exam-only" data-filter="unanswered" onclick="setExamFilter('unanswered')">Chưa làm (<span id="chip-cnt-unanswered">60</span>)</button>
           <button class="filter-chip chip-review-only" data-filter="wrong" onclick="setExamFilter('wrong')" style="display:none;"><i class="bi bi-x-circle-fill" style="color:var(--danger)"></i> Sai (<span id="chip-cnt-wrong">0</span>)</button>
@@ -1538,6 +1599,7 @@
         <div class="legend-item"><span class="dot done"></span> Đã làm</div>
         <div class="legend-item"><span class="dot empty"></span> Chưa làm</div>
         <div class="legend-item"><span class="dot flag"></span> Cắm cờ</div>
+        <div class="legend-item"><span class="dot star-dot">★</span> Gắn sao</div>
       </div>
 
       <div class="grid-questions" id="grid-container"></div>
@@ -1590,6 +1652,7 @@
       <div class="modal-actions" style="flex-wrap: wrap;">
         <button class="btn btn-primary" onclick="restartExam()"><i class="bi bi-dice-5-fill"></i> Thi Đề Khác</button>
         <button class="btn" onclick="openHistoryModal()"><i class="bi bi-clock-history"></i> Lịch Sử Thi</button>
+        <a href="mln111.html?filter=starred" target="_blank" class="btn" style="color:#f59e0b; border-color:rgba(245,158,11,0.35); background-color:rgba(245,158,11,0.08);" title="Mở danh sách các câu đã gắn sao để ôn tập thẻ flashcard"><i class="bi bi-star-fill"></i> Ôn Câu Gắn Sao (MLN111)</a>
         <button class="btn" onclick="enterReviewMode()"><i class="bi bi-search"></i> Xem Lại Bài Thi</button>
         <a href="index.html" class="btn"><i class="bi bi-house-door-fill"></i> Về Trang Chủ</a>
       </div>
@@ -1599,6 +1662,8 @@
   <script>
     const STORAGE_KEY_WRONG = 'mln111_wrong';
     const STORAGE_KEY_HISTORY = 'mln111_exam_history';
+    const STORAGE_KEY_STARRED = 'mln111_starred';
+    let starredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || '[]'));
     const CURRENT_SUBJECT = 'MLN111';
     let activeFilter = 'all'; // 'all', 'flagged', 'unanswered', 'wrong', 'correct'
     let currentSearchQuery = '';
@@ -1736,6 +1801,7 @@
         if (idx === currentIndex) box.classList.add('active');
         if (userAnswers[card.id]) box.classList.add('answered');
         if (flaggedCards.has(card.id)) box.classList.add('flagged');
+        if (starredSet.has(card.id)) box.classList.add('starred');
 
         // Review mode
         if (isSubmitted) {
@@ -1778,10 +1844,24 @@
 
       // Flag button
       const flagBtn = document.getElementById('flag-btn');
-      if (flaggedCards.has(card.id)) {
-        flagBtn.classList.add('flagged');
-      } else {
-        flagBtn.classList.remove('flagged');
+      if (flagBtn) {
+        if (flaggedCards.has(card.id)) {
+          flagBtn.classList.add('flagged');
+        } else {
+          flagBtn.classList.remove('flagged');
+        }
+      }
+
+      // Star button (lưu vào kho câu hỏi ôn tập)
+      const starBtn = document.getElementById('star-btn');
+      if (starBtn) {
+        if (starredSet.has(card.id)) {
+          starBtn.classList.add('active');
+          starBtn.innerHTML = '<i class="bi bi-star-fill"></i> <span class="btn-label">Đã gắn sao</span>';
+        } else {
+          starBtn.classList.remove('active');
+          starBtn.innerHTML = '<i class="bi bi-star"></i> <span class="btn-label">Gắn sao</span>';
+        }
       }
 
       // Prev/Next buttons
@@ -1862,6 +1942,19 @@
       } else {
         userAnswers[cardId] = letter;
       }
+      renderQuestion();
+      renderGrid();
+    }
+
+        function toggleExamStar() {
+      const card = examCards[currentIndex];
+      if (!card) return;
+      if (starredSet.has(card.id)) {
+        starredSet.delete(card.id);
+      } else {
+        starredSet.add(card.id);
+      }
+      localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify([...starredSet]));
       renderQuestion();
       renderGrid();
     }
@@ -2217,6 +2310,7 @@
 
     function cardMatchesFilter(card, idx, filter) {
       if (filter === 'all') return true;
+      if (filter === 'starred') return starredSet.has(card.id);
       if (filter === 'flagged') return flaggedCards.has(card.id);
       if (filter === 'unanswered') return !userAnswers[card.id];
       if (filter === 'wrong') {
@@ -2320,12 +2414,14 @@
 
     function updateFilterChipCounts() {
       let cntAll = examCards.length;
+      let cntStarred = 0;
       let cntFlagged = 0;
       let cntUnanswered = 0;
       let cntWrong = 0;
       let cntCorrect = 0;
 
       examCards.forEach(card => {
+        if (starredSet.has(card.id)) cntStarred++;
         if (flaggedCards.has(card.id)) cntFlagged++;
         const chosen = (userAnswers[card.id] || '').split('').sort().join('');
         const correctStr = getCorrectLetters(card).join('');
@@ -2341,6 +2437,8 @@
 
       const elAll = document.getElementById('chip-cnt-all');
       if (elAll) elAll.innerText = cntAll;
+      const elStar = document.getElementById('chip-cnt-starred');
+      if (elStar) elStar.innerText = cntStarred;
       const elFlag = document.getElementById('chip-cnt-flagged');
       if (elFlag) elFlag.innerText = cntFlagged;
       const elUn = document.getElementById('chip-cnt-unanswered');
@@ -2392,6 +2490,8 @@
         prevQuestion();
       } else if (key === 'F') {
         toggleFlag();
+      } else if (key === 'S') {
+        toggleExamStar();
       }
     });
 
