@@ -23,15 +23,15 @@
       --border-color: #e2e8f0;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --accent: #10b981;
-      --accent-light: rgba(16, 185, 129, 0.12);
-      --accent-hover: #059669;
+      --accent: #f97316;
+      --accent-light: rgba(249, 115, 22, 0.12);
+      --accent-hover: #ea580c;
       --success: #10b981;
       --success-light: rgba(16, 185, 129, 0.15);
       --danger: #ef4444;
       --danger-light: rgba(239, 68, 68, 0.12);
-      --warning: #f59e0b;
-      --warning-light: rgba(245, 158, 11, 0.15);
+      --warning: #f97316;
+      --warning-light: rgba(249, 115, 22, 0.15);
       --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
       --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
       --timer-bg: #090e1a;
@@ -45,15 +45,15 @@
       --border-color: rgba(255, 255, 255, 0.08);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #10b981;
-      --accent-light: rgba(16, 185, 129, 0.18);
-      --accent-hover: #059669;
+      --accent: #f97316;
+      --accent-light: rgba(249, 115, 22, 0.18);
+      --accent-hover: #ea580c;
       --success: #10b981;
       --success-light: rgba(16, 185, 129, 0.18);
       --danger: #ef4444;
       --danger-light: rgba(239, 68, 68, 0.18);
-      --warning: #f59e0b;
-      --warning-light: rgba(245, 158, 11, 0.18);
+      --warning: #f97316;
+      --warning-light: rgba(249, 115, 22, 0.18);
       --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
       --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
       --timer-bg: #030712;
@@ -79,7 +79,7 @@
     /* Header */
     header {
       background-color: var(--bg-header);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 2px solid rgba(249, 115, 22, 0.3);
       padding: 0.85rem 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -96,8 +96,25 @@
       gap: 1rem;
     }
 
+    .fpt-logo-box {
+      background: #ffffff;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .fpt-logo-box img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
     .badge-fe {
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
       font-size: 0.75rem;
       font-weight: 800;
@@ -105,7 +122,7 @@
       border-radius: 999px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
     }
 
     .subject-title {
@@ -170,23 +187,23 @@
       align-items: center;
       gap: 0.45rem;
       transition: all 0.2s ease;
-      border: 1.5px solid rgba(16, 185, 129, 0.4);
-      background-color: rgba(16, 185, 129, 0.08);
-      color: #059669;
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      background-color: rgba(249, 115, 22, 0.08);
+      color: #f97316;
     }
 
     [data-theme="dark"] .btn {
-      background-color: rgba(16, 185, 129, 0.12);
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #34d399;
+      background-color: rgba(249, 115, 22, 0.12);
+      border-color: rgba(249, 115, 22, 0.4);
+      color: #f97316;
     }
 
     .btn:hover {
-      background-color: #10b981;
+      background-color: #f97316;
       color: white;
-      border-color: #10b981;
+      border-color: #ea580c;
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
     }
 
     .btn:disabled {
@@ -197,29 +214,29 @@
     }
 
     .btn-submit {
-      background: linear-gradient(135deg, #10b981, #059669) !important;
+      background: linear-gradient(135deg, #f97316, #ea580c) !important;
       color: white !important;
       border: none !important;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
     }
 
     .btn-submit:hover {
-      background: linear-gradient(135deg, #059669, #047857) !important;
+      background: linear-gradient(135deg, #ea580c, #c2410c) !important;
       color: white !important;
-      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.45);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #10b981, #059669) !important;
+      background: linear-gradient(135deg, #f97316, #ea580c) !important;
       color: white !important;
       border: none !important;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #059669, #047857) !important;
+      background: linear-gradient(135deg, #ea580c, #c2410c) !important;
       color: white !important;
-      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.45);
     }
 
     /* Main Layout */
@@ -264,9 +281,9 @@
     }
 
     .btn-flag {
-      background-color: rgba(16, 185, 129, 0.08);
-      border: 1.5px solid rgba(16, 185, 129, 0.4);
-      color: #059669;
+      background-color: rgba(249, 115, 22, 0.08);
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      color: #f97316;
       padding: 0.45rem 0.95rem;
       border-radius: 9px;
       font-size: 0.85rem;
@@ -279,24 +296,24 @@
     }
 
     [data-theme="dark"] .btn-flag {
-      background-color: rgba(16, 185, 129, 0.12);
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #34d399;
+      background-color: rgba(249, 115, 22, 0.12);
+      border-color: rgba(249, 115, 22, 0.4);
+      color: #f97316;
     }
 
     .btn-flag:hover {
-      background-color: #10b981;
+      background-color: #f97316;
       color: white;
-      border-color: #10b981;
+      border-color: #ea580c;
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
     }
 
     .btn-flag.flagged {
-      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+      background: linear-gradient(135deg, #f97316, #ea580c) !important;
       border-color: transparent !important;
       color: white !important;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
     }
 
     .question-content {
@@ -616,14 +633,14 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
       margin: 1.25rem auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
     }
 
     .score-circle .val {
@@ -679,6 +696,11 @@
   <!-- Top Header -->
   <header>
     <div class="header-left">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+        <div class="fpt-logo-box">
+          <img src="fpt_university_logo.svg" alt="Đại học FPT">
+        </div>
+      </a>
       <span class="badge-fe">Thi Thử FE</span>
       <span class="subject-title">MLN111</span>
       <span class="divider">|</span>
@@ -691,7 +713,7 @@
     </div>
 
     <div class="header-right">
-      <a href="tips.html" target="_blank" class="btn" style="text-decoration: none; border-color: rgba(245, 158, 11, 0.4); background-color: rgba(245, 158, 11, 0.12); color: #f59e0b; font-weight: 700;" title="Mở trang Bí kíp & Mẹo chọn trắc nghiệm">
+      <a href="tips.html" target="_blank" class="btn" style="text-decoration: none; border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700;" title="Mở trang Bí kíp & Mẹo chọn trắc nghiệm">
         <span>💡</span> Mẹo Làm Bài
       </a>
       <button class="btn btn-submit" onclick="confirmSubmitExam()">

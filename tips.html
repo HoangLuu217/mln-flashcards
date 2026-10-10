@@ -22,20 +22,20 @@
       --bg-card: #1e293b;
       --bg-card-hover: #24344d;
       --border-color: rgba(255, 255, 255, 0.08);
-      --border-highlight: rgba(59, 130, 246, 0.4);
+      --border-highlight: rgba(249, 115, 22, 0.4);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
-      --accent: #3b82f6;
-      --accent-hover: #2563eb;
+      --accent: #f97316;
+      --accent-hover: #ea580c;
       --success: #10b981;
       --success-bg: rgba(16, 185, 129, 0.12);
-      --warning: #f59e0b;
-      --warning-bg: rgba(245, 158, 11, 0.12);
+      --warning: #f97316;
+      --warning-bg: rgba(249, 115, 22, 0.12);
       --danger: #ef4444;
       --danger-bg: rgba(239, 68, 68, 0.12);
-      --purple: #8b5cf6;
-      --purple-bg: rgba(139, 92, 246, 0.12);
+      --purple: #f97316;
+      --purple-bg: rgba(249, 115, 22, 0.12);
       --code-bg: #0f172a;
       --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
     }
@@ -46,20 +46,20 @@
       --bg-card: #ffffff;
       --bg-card-hover: #f1f5f9;
       --border-color: rgba(0, 0, 0, 0.08);
-      --border-highlight: rgba(37, 99, 235, 0.3);
+      --border-highlight: rgba(249, 115, 22, 0.3);
       --text-main: #0f172a;
       --text-muted: #475569;
       --text-dim: #94a3b8;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
+      --accent: #f97316;
+      --accent-hover: #ea580c;
       --success: #059669;
       --success-bg: rgba(5, 150, 105, 0.1);
-      --warning: #d97706;
-      --warning-bg: rgba(217, 119, 6, 0.1);
+      --warning: #ea580c;
+      --warning-bg: rgba(249, 115, 22, 0.1);
       --danger: #dc2626;
       --danger-bg: rgba(220, 38, 38, 0.1);
-      --purple: #7c3aed;
-      --purple-bg: rgba(124, 58, 237, 0.1);
+      --purple: #f97316;
+      --purple-bg: rgba(249, 115, 22, 0.1);
       --code-bg: #e2e8f0;
       --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
     }
@@ -84,7 +84,7 @@
     /* HEADER */
     header {
       background-color: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 2px solid rgba(249, 115, 22, 0.3);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -98,23 +98,26 @@
     .logo-group {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
       text-decoration: none;
       color: inherit;
     }
 
-    .badge-icon {
-      background: linear-gradient(135deg, #f59e0b, #ef4444);
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+    .fpt-logo-box {
+      background: #ffffff;
+      padding: 5px 10px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      color: white;
-      font-size: 1.3rem;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .fpt-logo-box img {
+      height: 34px;
+      width: auto;
+      display: block;
     }
 
     .logo-title h1 {
@@ -138,7 +141,7 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 0.45rem 0.85rem;
       border-radius: 8px;
       border: 1px solid transparent;
@@ -146,25 +149,28 @@
     }
 
     .nav-link:hover {
-      color: var(--text-main);
-      background-color: var(--bg-card);
-      border-color: var(--border-color);
+      color: #f97316;
+      background-color: rgba(249, 115, 22, 0.1);
+      border-color: rgba(249, 115, 22, 0.3);
     }
 
     .btn-theme {
       background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      color: #f97316;
       padding: 0.5rem 0.85rem;
       border-radius: 8px;
       font-size: 0.9rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .btn-theme:hover {
-      background-color: var(--accent);
+      background-color: #f97316;
       color: white;
+      border-color: #ea580c;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
     }
 
     /* CONTAINER */
@@ -177,8 +183,8 @@
 
     /* HERO BANNER */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(59, 130, 246, 0.15));
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1));
+      border: 1px solid rgba(249, 115, 22, 0.35);
       border-radius: 20px;
       padding: 2.25rem 2rem;
       margin-bottom: 2.5rem;
@@ -286,7 +292,7 @@
 
     .search-input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
     }
 
     .search-icon {
@@ -320,8 +326,9 @@
     }
 
     .filter-btn.active {
-      background-color: var(--accent);
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
     }
 
     /* SECTIONS */
@@ -638,9 +645,11 @@
   <!-- HEADER -->
   <header>
     <a href="index.html" class="logo-group">
-      <div class="badge-icon">⚡</div>
+      <div class="fpt-logo-box">
+        <img src="fpt_university_logo.svg" alt="Đại học FPT">
+      </div>
       <div class="logo-title">
-        <h1>FPT Study Hub</h1>
+        <h1>Đại Học FPT</h1>
         <p>Bí Kíp Trắc Nghiệm Toàn Diện</p>
       </div>
     </a>

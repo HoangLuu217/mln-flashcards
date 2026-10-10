@@ -23,22 +23,22 @@
       --border-color: rgba(255, 255, 255, 0.08);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #3b82f6;
-      --accent-hover: #2563eb;
-      --success: #10b981;
+      --accent: #f97316;
+      --accent-hover: #ea580c;
+      --success: #f97316;
       --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
     }
 
     [data-theme="light"] {
-      --bg-primary: #f1f5f9;
+      --bg-primary: #f8fafc;
       --bg-secondary: #ffffff;
       --bg-card: #ffffff;
       --border-color: rgba(0, 0, 0, 0.08);
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --success: #059669;
+      --accent: #f97316;
+      --accent-hover: #ea580c;
+      --success: #f97316;
       --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
     }
 
@@ -60,8 +60,8 @@
 
     header {
       background-color: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1.25rem 2rem;
+      border-bottom: 2px solid rgba(249, 115, 22, 0.3);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -74,42 +74,48 @@
     .logo-group {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
     }
 
-    .badge-icon {
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    .fpt-logo-box {
+      background: #ffffff;
+      padding: 5px 10px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      color: white;
-      font-size: 1.3rem;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .fpt-logo-box img {
+      height: 34px;
+      width: auto;
+      display: block;
     }
 
     .logo-title h1 {
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.02em;
+      color: var(--text-main);
     }
 
     .logo-title p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
     .btn {
       background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      color: #f97316;
       padding: 0.55rem 0.95rem;
       border-radius: 8px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -118,10 +124,11 @@
     }
 
     .btn:hover {
-      background-color: var(--accent);
+      background-color: #f97316;
       color: white;
-      border-color: var(--accent);
+      border-color: #ea580c;
       transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
     }
 
     .hero-container {
@@ -142,11 +149,11 @@
       gap: 0.5rem;
       padding: 0.4rem 0.9rem;
       border-radius: 999px;
-      background-color: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: var(--accent);
+      background-color: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      color: #f97316;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 1.25rem;
     }
 
@@ -156,7 +163,7 @@
       letter-spacing: -0.03em;
       line-height: 1.2;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #f8fafc 40%, #94a3b8 100%);
+      background: linear-gradient(135deg, #f8fafc 40%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -207,22 +214,18 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      background: linear-gradient(90deg, #f97316, #ea580c);
       opacity: 0;
       transition: opacity 0.25s ease;
     }
 
     .subject-card:hover {
       transform: translateY(-5px);
-      border-color: var(--accent);
+      border-color: #f97316;
     }
 
     .subject-card:hover::before {
       opacity: 1;
-    }
-
-    .subject-card.mln122::before {
-      background: linear-gradient(90deg, #10b981, #06b6d4);
     }
 
     .card-top {
@@ -238,13 +241,9 @@
       letter-spacing: 0.05em;
       padding: 0.3rem 0.7rem;
       border-radius: 6px;
-      background-color: rgba(59, 130, 246, 0.15);
-      color: var(--accent);
-    }
-
-    .mln122 .subject-code {
-      background-color: rgba(16, 185, 129, 0.15);
-      color: var(--success);
+      background-color: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.3);
     }
 
     .card-count {
@@ -292,39 +291,31 @@
     }
 
     .action-flashcard {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
+      background-color: rgba(249, 115, 22, 0.08);
+      color: #f97316;
+      border: 1.5px solid rgba(249, 115, 22, 0.35);
     }
 
     .action-flashcard:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background-color: #f97316;
+      color: white;
+      border-color: #ea580c;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
     }
 
     .action-exam {
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
       border: 1px solid transparent;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
     }
 
     .action-exam:hover {
-      background: linear-gradient(135deg, #059669, #047857);
+      background: linear-gradient(135deg, #ea580c, #c2410c);
       color: white;
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
-    }
-
-    .mln122 .action-exam {
-      background: linear-gradient(135deg, #10b981, #059669);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-    }
-
-    .mln122 .action-exam:hover {
-      background: linear-gradient(135deg, #059669, #047857);
-      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.45);
     }
 
     footer {
@@ -343,7 +334,7 @@
         grid-template-columns: 1fr;
       }
       header {
-        padding: 1rem;
+        padding: 0.85rem 1rem;
       }
     }
   </style>
@@ -351,15 +342,17 @@
 <body>
 
   <header>
-    <div class="logo-group">
-      <div class="badge-icon">F</div>
+    <a href="index.html" class="logo-group">
+      <div class="fpt-logo-box">
+        <img src="fpt_university_logo.svg" alt="Đại học FPT">
+      </div>
       <div class="logo-title">
-        <h1>FPT Study Hub</h1>
+        <h1>Đại Học FPT</h1>
         <p>Hệ Thống Flashcard & Luyện Trắc Nghiệm</p>
       </div>
-    </div>
+    </a>
     <div style="display: flex; align-items: center; gap: 0.6rem;">
-      <a href="tips.html" class="btn" style="text-decoration: none; border-color: rgba(245, 158, 11, 0.4); background-color: rgba(245, 158, 11, 0.12); color: #f59e0b; font-weight: 700;">💡 Bí Kíp Mẹo FE</a>
+      <a href="tips.html" class="btn" style="text-decoration: none; border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700;">💡 Bí Kíp Mẹo FE</a>
       <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌙</button>
     </div>
   </header>
@@ -405,17 +398,17 @@
       </div>
 
       <!-- BÍ KÍP MẸO THI FE -->
-      <div class="subject-card tips-card" style="grid-column: 1 / -1; border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(59, 130, 246, 0.08));">
+      <div class="subject-card tips-card" style="grid-column: 1 / -1; border-color: rgba(249, 115, 22, 0.4); background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(234, 88, 12, 0.04));">
         <div class="card-top">
-          <span class="subject-code" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; font-weight: 800;">🔥 BÍ KÍP PHÒNG THI</span>
-          <span class="card-count" style="color: #f59e0b; font-weight: 700;">1.097 Câu Đúc Kết 100% SRC</span>
+          <span class="subject-code" style="background-color: rgba(249, 115, 22, 0.2); color: #f97316; font-weight: 800;">🔥 BÍ KÍP PHÒNG THI</span>
+          <span class="card-count" style="color: #f97316; font-weight: 700;">1.097 Câu Đúc Kết 100% SRC</span>
         </div>
         <h3 class="subject-name">Trang Mẹo Chọn Trắc Nghiệm Chuẩn Xác Nhất</h3>
         <p class="subject-summary">
           Tổng hợp tất cả mốc năm duy nhất thấy là chọn (1615, 1848, 1895, 1986, 2007, 2011...), quy luật con số vàng (1, 2, 3, 4, 5), nhận diện tác giả bất biến, giải bài tập tính toán và mẹo lụi đáp án tối ưu xác suất cao nhất.
         </p>
         <div class="card-actions-row">
-          <a href="tips.html" class="action-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4); font-size: 0.95rem;">⚡ Mở Trang Bí Kíp & Mẹo Làm Bài</a>
+          <a href="tips.html" class="action-btn action-exam" style="font-size: 0.95rem;">⚡ Mở Trang Bí Kíp & Mẹo Làm Bài</a>
         </div>
       </div>
     </div>
