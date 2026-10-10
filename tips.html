@@ -710,6 +710,57 @@
         font-size: 0.88rem;
       }
     }
+  
+    /* HCM202 SPECIALIZED STYLING */
+    .hcm-nav-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(249, 115, 22, 0.12);
+      color: #ea580c;
+      text-decoration: none;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+    .hcm-nav-pill:hover {
+      background: rgba(249, 115, 22, 0.25);
+      border-color: #f97316;
+      transform: translateY(-1px);
+    }
+    .subject-block {
+      transition: opacity 0.2s ease-in-out;
+    }
+    .filter-btn[data-subject="hcm202"].active {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: white;
+    }
+    .filter-btn[data-subject="mln111"].active {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: white;
+    }
+    .filter-btn[data-subject="mln122"].active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+    }
+    .badge-multi-choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
   </style>
 </head>
 <body>
@@ -760,15 +811,33 @@
           <input type="text" id="searchInput" class="search-input" placeholder="Tìm mẹo theo từ khóa, năm (1615, 1848, 1986), tác giả (Lênin, Ăngghen), công thức..." oninput="handleSearch()">
         </div>
         <div class="filter-tabs">
-          <button class="filter-btn active" onclick="filterSubject('all', this)">Tất Cả</button>
-          <button class="filter-btn" onclick="filterSubject('mln111', this)">MLN111 (Triết)</button>
-          <button class="filter-btn" onclick="filterSubject('mln122', this)">MLN122 (KTCT)</button>
-          <button class="filter-btn" onclick="filterSubject('hcm202', this)">HCM202 (Tư Tưởng HCM)</button>
+          <button class="filter-btn active" data-subject="all" onclick="filterSubject('all', this)">Tất Cả</button>
+          <button class="filter-btn" data-subject="mln111" onclick="filterSubject('mln111', this)">MLN111 (Triết)</button>
+          <button class="filter-btn" data-subject="mln122" onclick="filterSubject('mln122', this)">MLN122 (KTCT)</button>
+          <button class="filter-btn" data-subject="hcm202" onclick="filterSubject('hcm202', this)">HCM202 (Tư Tưởng HCM)</button>
         </div>
       </div>
     </div>
 
-    <!-- PHẦN 1: BẢNG NĂM DUY NHẤT TRONG SRC (THẤY LÀ CHỌN) -->
+    <!-- ========================================== -->
+    <!-- KHỐI TRIẾT HỌC & KINH TẾ CHÍNH TRỊ (MLN111 / MLN122) -->
+    <!-- ========================================== -->
+    <div class="subject-block" id="block-mln" data-subject="mln">
+      <div class="subject-block-banner" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(16, 185, 129, 0.08)); border: 2px solid rgba(99, 102, 241, 0.25); border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="subject-code" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; font-weight: 800; padding: 0.35rem 0.8rem; border-radius: 8px; font-size: 0.85rem;"><i class="bi bi-journal-code"></i> MLN111 & MLN122</span>
+            <h2 style="font-size: 1.6rem; font-weight: 800; margin: 0.5rem 0 0.25rem; color: var(--text-main);">Bí Kíp Triết Học Mác - Lênin & Kinh Tế Chính Trị</h2>
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.92rem;">Đúc kết từ <b>571 câu MLN111</b> và <b>526 câu MLN122</b>: Bảng năm bất biến, con số vàng, công thức tính toán và chiến thuật lụi.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="exam_mln111.html" class="filter-btn" style="text-decoration: none; background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.4);"><i class="bi bi-pencil-square"></i> Thi MLN111</a>
+            <a href="exam_mln122.html" class="filter-btn" style="text-decoration: none; background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);"><i class="bi bi-pencil-square"></i> Thi MLN122</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHẦN 1: BẢNG NĂM DUY NHẤT TRONG SRC (THẤY LÀ CHỌN) -->
     <section class="tip-section" id="sec-years">
       <div class="section-header">
         <div class="section-title-group">
@@ -781,8 +850,8 @@
       <div class="callout callout-warning">
         <div class="callout-icon"><i class="bi bi-lightbulb-fill"></i></div>
         <div>
-          <div class="callout-title">Quy Luật Bất Biến Về Năm Trong Toàn Bộ Mã Nguồn:</div>
-          <div>Trong cả 2 ngân hàng đề MLN111 và MLN122, các mốc năm không bao giờ bị hỏi lẫn lộn. Mỗi sự kiện gắn liền với <b>duy nhất 1 năm</b>, hễ xuất hiện trong đáp án là đáp án chính xác!</div>
+          <div class="callout-title">Quy Luật Bất Biến Về Năm Trong Toàn Bộ 3 Môn (MLN111, MLN122 & HCM202):</div>
+          <div>Trong cả 3 ngân hàng đề <b>MLN111</b>, <b>MLN122</b> và <b>HCM202</b>, các mốc năm lịch sử không bao giờ bị hỏi lẫn lộn hay đánh đố sai số. Mỗi sự kiện lịch sử gắn liền với <b>duy nhất 1 mốc năm vàng</b>, hễ xuất hiện trong phương án là đáp án chính xác 100%! Tra cứu bảng dưới đây để ghi nhớ nhanh nhất:</div>
         </div>
       </div>
 
@@ -942,78 +1011,126 @@
               <td><span class="src-id">[SRC ID 98]</span>: Đáp án <b>C. Từ 20 - 30 năm</b>.</td>
             </tr>
 
-            <!-- HCM202 MỐC NĂM VÀNG -->
+                        <!-- HCM202: CÁC MỐC NĂM VÀNG (CHUẨN 100% THẤY LÀ CHỌN) -->
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1858</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Thực dân Pháp nổ súng xâm lược Việt Nam tại Đà Nẵng</span></td>
-              <td><span class="src-id">[SRC ID 651]</span>: Đáp án <b>A. 1858</b>.</td>
+              <td><span class="td-highlight">Thực dân Pháp nổ súng xâm lược Việt Nam tại bán đảo Sơn Trà (Đà Nẵng)</span></td>
+              <td><span class="src-id">[SRC ID 651]</span>: Đáp án <b>A. 1858</b>. Mở đầu thời kỳ Pháp thuộc.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1890</span></td>
+              <td><span class="key-badge badge-gold">1890 (19/5)</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Năm sinh Chủ tịch Hồ Chí Minh (19/5/1890)</span> tại làng Sen, Nam Đàn, Nghệ An</td>
-              <td><span class="src-id">[SRC HCM]</span>: Mốc khởi đầu thời kỳ thời niên thiếu của Người.</td>
+              <td><span class="td-highlight">Năm sinh Chủ tịch Hồ Chí Minh (19/5/1890)</span> tại làng Sen (Kim Liên), Nam Đàn, Nghệ An</td>
+              <td><span class="src-id">[SRC HCM]</span>: Mốc khởi đầu thời kỳ hình thành tư tưởng yêu nước (1890 - 1911).</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1911</span></td>
+              <td><span class="key-badge badge-gold">1911 (5/6)</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Nguyễn Tất Thành ra đi tìm đường cứu nước (5/6/1911)</span> từ Bến Nhà Rồng</td>
-              <td><span class="src-id">[SRC ID 625]</span>: Tàu Đô đốc Latouche-Tréville, lấy tên Văn Ba.</td>
+              <td><span class="td-highlight">Nguyễn Tất Thành rời bến cảng Nhà Rồng</span> ra đi tìm đường cứu nước trên tàu Amiral Latouche-Tréville (lấy tên Văn Ba)</td>
+              <td><span class="src-id">[SRC ID 625]</span>: Đáp án <b>1911 (hoặc 5/6/1911)</b>.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1920</span></td>
+              <td><span class="key-badge badge-gold">1912 - 1913</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Đọc Sơ thảo Luận cương Lênin (7/1920) & Gia nhập Quốc tế III, sáng lập Đảng CS Pháp (12/1920 tại Đại hội Tua)</span></td>
-              <td><span class="src-id">[SRC ID 509, 584]</span>: Bước ngoặt quyết định từ <b>chủ nghĩa yêu nước đến chủ nghĩa cộng sản</b>.</td>
+              <td><span class="td-highlight">Thời gian Nguyễn Tất Thành sống và hoạt động tại Mỹ</span> (New York và Boston, tìm hiểu Tuyên ngôn Độc lập Mỹ 1776)</td>
+              <td><span class="src-id">[SRC HCM]</span>: Đề thi hỏi thời gian Bác ở Mỹ -> <b>Chọn 1912 - 1913</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">1914 - 1917</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Thời gian Người sống và lao động tại nước Anh</span> (Luân Đôn)</td>
+              <td><span class="src-id">[SRC HCM]</span>: Đề thi hỏi thời gian ở Anh -> <b>Chọn 1914 - 1917</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">1919 (18/6)</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Gửi bản "Yêu sách của nhân dân An Nam" (8 điểm)</span> tới Hội nghị Véc-xây (Versailles) ký tên Nguyễn Ái Quốc</td>
+              <td><span class="src-id">[SRC HCM]</span>: Lần đầu tiên xuất hiện danh xưng <b>Nguyễn Ái Quốc</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">7/1920</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Đọc "Sơ thảo lần thứ nhất những luận cương về vấn đề dân tộc và thuộc địa" của V.I. Lênin</span> trên báo L'Humanité</td>
+              <td><span class="src-id">[SRC ID 509]</span>: Tìm thấy con đường giải phóng: <b>Cách mạng vô sản</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">12/1920</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Bỏ phiếu tán thành Quốc tế III & Tham gia sáng lập Đảng CS Pháp</span> tại Đại hội Tua (Tours)</td>
+              <td><span class="src-id">[SRC ID 584]</span>: Bước ngoặt quyết định: <b>Từ người yêu nước trở thành người cộng sản</b>.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1925</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Thành lập Hội VN Cách mạng Thanh niên & Xuất bản "Bản án chế độ thực dân Pháp"</span> tại Paris</td>
-              <td><span class="src-id">[SRC ID 23, 588]</span>: Chuẩn bị về tư tưởng, chính trị và tổ chức cho sự ra đời của Đảng.</td>
+              <td><span class="td-highlight">Xuất bản "Bản án chế độ thực dân Pháp" (Paris) & Thành lập Hội VN Cách mạng Thanh niên (Quảng Châu)</span></td>
+              <td><span class="src-id">[SRC ID 23, 588]</span>: Chuẩn bị chính trị, tư tưởng và tổ chức thành lập Đảng. Luận điểm CM thuộc địa nổ ra trước chính quốc.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1927</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Xuất bản tác phẩm "Đường Kách mệnh"</span> (tập hợp bài giảng tại Quảng Châu)</td>
-              <td><span class="src-id">[SRC ID 23, 24]</span>: Cẩm nang lý luận huấn luyện cán bộ cách mạng.</td>
+              <td><span class="td-highlight">Xuất bản tác phẩm "Đường Kách mệnh"</span> (tập hợp bài giảng huấn luyện tại Quảng Châu)</td>
+              <td><span class="src-id">[SRC ID 24]</span>: Cẩm nang lý luận: <i>"Trước hết phải có Đảng cách mệnh..."</i></td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1930</span></td>
+              <td><span class="key-badge badge-gold">3/2/1930</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Thành lập Đảng Cộng sản Việt Nam (3/2/1930) & Thông qua Cương lĩnh chính trị đầu tiên</span></td>
-              <td><span class="src-id">[SRC ID 561, 640]</span>: Chánh cương vắn tắt, Sách lược vắn tắt của Đảng.</td>
+              <td><span class="td-highlight">Chủ trì Hội nghị thành lập Đảng Cộng sản Việt Nam</span> tại Hương Cảng; thông qua Cương lĩnh chính trị đầu tiên</td>
+              <td><span class="src-id">[SRC ID 561, 640]</span>: Chánh cương vắn tắt, Sách lược vắn tắt.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1941</span></td>
+              <td><span class="key-badge badge-gold">18/11/1930</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Bác Hồ về nước trực tiếp lãnh đạo (28/1/1941) & Thành lập Mặt trận Việt Minh (19/5/1941, Hội nghị TW 8)</span></td>
-              <td><span class="src-id">[SRC ID 481, 574]</span>: Đặt nhiệm vụ giải phóng dân tộc lên hàng đầu.</td>
+              <td><span class="td-highlight">Thành lập Hội Phản đế đồng minh</span> (hình thức tổ chức đầu tiên của Mặt trận dân tộc thống nhất)</td>
+              <td><span class="src-id">[SRC HCM]</span>: Ngày truyền thống Mặt trận Tổ quốc Việt Nam.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">1931 - 1933</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Bị chính quyền thực dân Anh bắt giam tại Hương Cảng</span> (vụ án Tống Văn Sơ)</td>
+              <td><span class="src-id">[SRC HCM]</span>: Thời kỳ vượt qua thử thách, kiên định con đường cách mạng.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">1936 - 1939</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Mặt trận Thống nhất Dân chủ Đông Dương ra đời</span> (phong trào đấu tranh đòi dân sinh, dân chủ, cơm áo, hòa bình)</td>
+              <td><span class="src-id">[SRC HCM]</span>: Vận dụng sách lược liên minh rộng rãi các tầng lớp.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">28/1/1941</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Nguyễn Ái Quốc trở về Tổ quốc</span> trực tiếp lãnh đạo phong trào cách mạng tại cột mốc 108 Pác Bó (Cao Bằng)</td>
+              <td><span class="src-id">[SRC ID 481]</span>: Đáp án <b>A. 1941 (hoặc 28/1/1941)</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">5/1941</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Hội nghị TW 8 họp tại Pác Bó thành lập Mặt trận Việt Minh</span> (Việt Nam Độc lập Đồng minh)</td>
+              <td><span class="src-id">[SRC ID 574]</span>: Đặt quyền lợi dân tộc, giải phóng dân tộc lên trên hết.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1943</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Hồ Chí Minh đưa ra định nghĩa khoa học đầu tiên về Văn hóa</span> trong nhà tù Tưởng Giới Thạch</td>
-              <td><span class="src-id">[SRC ID 46]</span>: Tác phẩm Nhật ký trong tù. Đáp án <b>C</b>.</td>
+              <td><span class="td-highlight">Hồ Chí Minh đưa ra định nghĩa khoa học đầu tiên về Văn hóa</span> trong nhà tù Tưởng Giới Thạch (Nhật ký trong tù)</td>
+              <td><span class="src-id">[SRC ID 46]</span>: Đáp án <b>C. Năm 1943</b>.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1945</span></td>
+              <td><span class="key-badge badge-gold">2/9/1945</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Cách mạng Tháng Tám thành công; Đọc Tuyên ngôn Độc lập (2/9/1945)</span></td>
-              <td><span class="src-id">[SRC ID 199, 582]</span>: Khai sinh nước Việt Nam Dân chủ Cộng hòa.</td>
+              <td><span class="td-highlight">Đọc Tuyên ngôn Độc lập</span> tại Quảng trường Ba Đình, khai sinh nước Việt Nam Dân chủ Cộng hòa</td>
+              <td><span class="src-id">[SRC ID 199, 582]</span>: Trích dẫn Tuyên ngôn Độc lập Mỹ (1776) và Pháp (1791).</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1946</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Ký Hiệp định Sơ bộ (6/3), Tạm ước (14/9), Ra Lời kêu gọi toàn quốc kháng chiến (19/12/1946), Hiến pháp 1946</span></td>
-              <td><span class="src-id">[SRC ID 14, 66]</span>: Ví chính sách với Pháp như chính sách "Câu Tiễn".</td>
+              <td><span class="td-highlight">Ký Hiệp định Sơ bộ (6/3), Tạm ước (14/9), Ban bố Hiến pháp 1946 & Lời kêu gọi toàn quốc kháng chiến (19/12/1946)</span></td>
+              <td><span class="src-id">[SRC ID 14, 66]</span>: Chính sách nhân nhượng có nguyên tắc (ví như "Câu Tiễn").</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1947</span></td>
+              <td><span class="key-badge badge-gold">10/1947</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Xuất bản tác phẩm "Đời sống mới", "Sửa đổi lối làm việc"</span></td>
-              <td><span class="src-id">[SRC ID 233]</span>: Đáp án <b>B. 1947</b>.</td>
+              <td><span class="td-highlight">Xuất bản tác phẩm "Sửa đổi lối làm việc" (bút danh X.Y.Z) và "Đời sống mới"</span></td>
+              <td><span class="src-id">[SRC ID 233]</span>: Đáp án <b>B. 1947</b>. Chỉ ra 3 chứng bệnh: Chủ quan, Hẹp hòi, Ba hoa.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1949</span></td>
@@ -1022,28 +1139,52 @@
               <td><span class="src-id">[SRC ID 259]</span>: Đáp án <b>C. Năm 1949</b>.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1951</span></td>
+              <td><span class="key-badge badge-gold">3/1951</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Đại hội II của Đảng (Đảng Lao động Việt Nam) & Thành lập Mặt trận Liên Việt</span></td>
-              <td><span class="src-id">[SRC ID 80, 104]</span>: Đáp án <b>C. 1951</b>.</td>
+              <td><span class="td-highlight">Đại hội đại biểu toàn quốc lần thứ II của Đảng & Thành lập Mặt trận Liên Việt</span></td>
+              <td><span class="src-id">[SRC ID 80, 104]</span>: Đáp án <b>C. 1951</b>. Đảng ra hoạt động công khai lấy tên Đảng Lao động VN.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1960</span></td>
+              <td><span class="key-badge badge-gold">9/1955</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Đại hội III của Đảng; Bác phát biểu: "Đảng ta là đạo đức, là văn minh"</span></td>
-              <td><span class="src-id">[SRC ID 227]</span>: Diễn văn kỷ niệm 30 năm ngày thành lập Đảng 1960.</td>
+              <td><span class="td-highlight">Thành lập Mặt trận Tổ quốc Việt Nam</span></td>
+              <td><span class="src-id">[SRC HCM]</span>: Đại hội Mặt trận Dân tộc Thống nhất họp tại Hà Nội.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1966</span></td>
+              <td><span class="key-badge badge-gold">1958</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Lời kêu gọi chống Mỹ cứu nước: "Không có gì quý hơn độc lập, tự do" (17/7/1966)</span></td>
-              <td><span class="src-id">[SRC ID 653]</span>: Đáp án <b>C. Đế quốc Mỹ</b>.</td>
+              <td><span class="td-highlight">Tác phẩm "Đạo đức cách mạng" (bút danh Trần Lực)</span></td>
+              <td><span class="src-id">[SRC HCM]</span>: Đạo đức là cái gốc của người cách mạng.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">12/1960</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Thành lập Mặt trận Dân tộc Giải phóng miền Nam VN & Đại hội III của Đảng</span></td>
+              <td><span class="src-id">[SRC ID 227]</span>: Diễn văn 1960: <i>"Đảng ta là đạo đức, là văn minh"</i>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">17/7/1966</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Lời kêu gọi chống Mỹ cứu nước: "Không có gì quý hơn độc lập, tự do"</span></td>
+              <td><span class="src-id">[SRC ID 653]</span>: Đáp án <b>C. Đế quốc Mỹ</b>. Chân lý bất hủ của thời đại.</td>
             </tr>
             <tr data-subject="hcm202" class="search-item">
               <td><span class="key-badge badge-gold">1969</span></td>
               <td><span class="subject-pill pill-hcm">HCM202</span></td>
-              <td><span class="td-highlight">Tác phẩm "Nâng cao đạo đức CM, quét sạch CN cá nhân" (3/2) & Di chúc thiêng liêng (2/9/1969)</span></td>
-              <td><span class="src-id">[SRC ID 40, 122]</span>: Bệnh mẹ (CN cá nhân); Bồi dưỡng thế hệ CM cho đời sau.</td>
+              <td><span class="td-highlight">Tác phẩm "Nâng cao đạo đức CM, quét sạch CN cá nhân" (3/2) & Bản Di chúc lịch sử (1965-1969)</span></td>
+              <td><span class="src-id">[SRC ID 40, 122]</span>: Bệnh cá nhân là "bệnh mẹ"; dặn trước hết củng cố đoàn kết trong Đảng.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">1991</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Đại hội VII của Đảng</span> khẳng định: Đảng lấy CN Mác - Lênin và Tư tưởng HCM làm nền tảng tư tưởng, kim chỉ nam cho hành động</td>
+              <td><span class="src-id">[SRC ID 90]</span>: Đáp án <b>B. 1991 (Đại hội VII)</b>.</td>
+            </tr>
+            <tr data-subject="hcm202" class="search-item">
+              <td><span class="key-badge badge-gold">2011</span></td>
+              <td><span class="subject-pill pill-hcm">HCM202</span></td>
+              <td><span class="td-highlight">Đại hội XI của Đảng</span>: Định nghĩa chuẩn xác toàn diện về Tư tưởng Hồ Chí Minh là hệ thống quan điểm toàn diện và sâu sắc</td>
+              <td><span class="src-id">[SRC ID 89]</span>: Đáp án <b>A. 2011 (Đại hội XI)</b>. Cương lĩnh bổ sung, phát triển 2011.</td>
             </tr>
           </tbody>
         </table>
@@ -1260,7 +1401,7 @@
     </section>
 
     <!-- PHẦN 4: PHÂN PHỐI ĐÁP ÁN & BẪY "TẤT CẢ PHƯƠNG ÁN" -->
-    <section class="tip-section" id="sec-distribution">
+    <section class="tip-section search-item" id="sec-distribution" data-subject="mln122">
       <div class="section-header">
         <div class="section-title-group">
           <div class="section-number">4</div>
@@ -1325,10 +1466,12 @@
         <div class="callout callout-danger">
           <div class="callout-icon"><i class="bi bi-exclamation-octagon-fill"></i></div>
           <div>
-            <div class="callout-title">CẢNH BÁO: Khác Biệt Một Trời Một Vực Giữa MLN111 Và MLN122 Đối Với "Tất Cả Phương Án Trên"!</div>
-            <div style="margin-top: 0.4rem;">
+            <div class="callout-title">CẢNH BÁO: So Sánh Khác Biệt Giữa MLN111, MLN122 Và HCM202 Đối Với "Tất Cả Phương Án Trên"!</div>
+            <div style="margin-top: 0.4rem; line-height: 1.65;">
               • <b>Trong MLN122 (KTCT):</b> Dạng <i>"Tất cả các phương án trên / Cả 3 phương án"</i> <b>ĐÚNG TỚI 70.3% (26/37 câu)</b>. Thấy "Tất cả phương án" trong MLN122 -> Khả năng cực cao là ĐÚNG, chọn ngay! (Kể cả câu có 5 lựa chọn A, B, C, D, E chọn E "Tất cả phương án trên" ở ID 366).<br><br>
-              • <b>Trong MLN111 (Triết):</b> Dạng <i>"Tất cả các đáp án đều đúng / đều sai"</i> <b>CHỈ ĐÚNG CÓ 17.2% (5/29 câu)</b>! Đây là <b>BẪY NHIỄU LỚN NHẤT</b> của môn Triết. Hầu hết đáp án đúng là một khái niệm học thuyết cụ thể (Ví dụ: "Quần chúng nhân dân", "Con người với kỹ năng tích lũy", "Độ", v.v.), TUYỆT ĐỐI không ham chọn "Tất cả đều đúng" ở MLN111!
+              • <b>Trong MLN111 (Triết):</b> Dạng <i>"Tất cả các đáp án đều đúng / đều sai"</i> <b>CHỈ ĐÚNG CÓ 17.2% (5/29 câu)</b>! Đây là <b>BẪY NHIỄU LỚN NHẤT</b> của môn Triết. Hầu hết đáp án đúng là một khái niệm học thuyết cụ thể (Ví dụ: "Quần chúng nhân dân", "Con người với kỹ năng tích lũy", "Độ", v.v.), TUYỆT ĐỐI không ham chọn "Tất cả đều đúng" ở MLN111!<br><br>
+              • <b>Trong HCM202 (Tư tưởng HCM):</b> Dạng <i>"Tất cả các phương án trên / Cả 3 phương án"</i> <b>ĐÚNG 44.7% (17/38 câu) và BẪY SAI 55.3% (21/38 câu)</b>! Đây là thế cờ <b>CÂN BẰNG NGUY HIỂM</b> (gần như 50-50). Tuyệt đối <b>KHÔNG LỤI BỪA "Tất cả" như MLN122</b>! Hơn một nửa số câu (55.3%) là bẫy gài tinh vi: 3 ý bên trên thường có 1 ý cố tình viết sai quan điểm của Bác (như tuyệt đối hóa, máy móc sao chép mô hình nước ngoài, hạ thấp vai trò của Đảng), nên đáp án đúng thực chất là 1 phương án đơn lẻ cụ thể (ví dụ: ID 11 chọn C, ID 228 chọn A, ID 245 chọn B, ID 306 chọn A, ID 335 chọn B, ID 370 chọn A, ID 405 chọn C...).<br>
+              <i class="bi bi-shield-exclamation" style="color:var(--danger); font-weight:700;"></i> <b>QUY TẮC VÀNG CHO HCM202:</b> Chỉ chọn "Tất cả" khi bạn chắc chắn 100% cả 3 ý bên trên đều đúng. Nếu thấy dù chỉ 1 từ sai hoặc không đúng quan điểm của Bác, <b>HÃY GẠCH NGAY phương án "Tất cả"</b>!
             </div>
           </div>
         </div>
@@ -1336,7 +1479,7 @@
     </section>
 
     <!-- PHẦN 5: BỘ CẶP TỪ KHÓA BẤT BIẾN (HỎI ĐÂU TRÚNG ĐÓ) -->
-    <section class="tip-section" id="sec-keywords">
+    <section class="tip-section search-item" id="sec-keywords" data-subject="mln122">
       <div class="section-header">
         <div class="section-title-group">
           <div class="section-number">5</div>
@@ -1434,7 +1577,7 @@
     </section>
 
     <!-- PHẦN 6: BÀI TẬP TÍNH TOÁN & CÔNG THỨC TRONG SRC -->
-    <section class="tip-section" id="sec-math">
+    <section class="tip-section search-item" id="sec-math" data-subject="mln122">
       <div class="section-header">
         <div class="section-title-group">
           <div class="section-number">6</div>
@@ -1509,7 +1652,7 @@
     </section>
 
     <!-- PHẦN 7: BỘ NHẬN DIỆN CÂU HỎI PHỦ ĐỊNH (CHỌN CÂU SAI) -->
-    <section class="tip-section" id="sec-negative">
+    <section class="tip-section search-item" id="sec-negative" data-subject="mln122">
       <div class="section-header">
         <div class="section-title-group">
           <div class="section-number">7</div>
@@ -1549,450 +1692,715 @@
           </div>
         </div>
       </div>
-    </section>
+    
+        <div class="callout search-item" data-subject="mln122" style="margin-top: 1.5rem; border: 1.5px solid rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.08);">
+          <div class="callout-icon"><i class="bi bi-ui-checks" style="color: #c084fc;"></i></div>
+          <div>
+            <div class="callout-title" style="color: #c084fc;">DẤU HIỆU NHẬN DIỆN CÂU HỎI CHỌN NHIỀU ĐÁP ÁN (MULTIPLE-CHOICE):</div>
+            Trong ngân hàng đề thi FE, có khoảng <b>25 câu MLN122</b>, <b>11 câu MLN111</b> và <b>2 câu HCM202</b> yêu cầu chọn từ 2 đến 4 phương án đúng.<br>
+            • <b>Dấu hiệu nhận biết:</b> Đuôi câu hỏi có ghi rõ trong ngoặc như: <i>"(chọn nhiều phương án)"</i>, <i>"(chọn 3 phương án đúng)"</i>, <i>"(chọn các đáp án đúng)"</i>.<br>
+            • <b>Chiến thuật:</b> Hệ thống đã tự động phân biệt với nhãn tím <b><i class="bi bi-ui-checks"></i> Chọn Nhiều Đáp Án</b> và ô checkbox vuông cho phép bạn tích chọn nhiều đáp án trước khi bấm <b>Xác nhận / Kiểm tra</b>!
+          </div>
+        </div>
+
+      </section>
 
 
-    <!-- ======================================================== -->
-    <!-- CHUYÊN MỤC ĐẶC BIỆT: BÍ KÍP ĐỘC QUYỀN MÔN HCM202 -->
-    <!-- ĐÚC KẾT 100% TỪ SRC TƯ TƯỞNG HỒ CHÍ MINH (653 CÂU HỎI) -->
-    <!-- ======================================================== -->
-
-    <div class="search-item tip-section" data-subject="hcm202" style="margin-top: 2rem; border-top: 3px solid var(--accent); padding-top: 2rem;">
-      <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.05)); border: 1.5px solid rgba(249, 115, 22, 0.4); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem;">
-        <span class="key-badge badge-gold" style="font-size: 0.85rem;"><i class="bi bi-star-fill"></i> CHUYÊN MỤC ĐỘC QUYỀN HCM202</span>
-        <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.5rem; color: var(--text-main);">
-          Bí Kíp Chuyên Biệt Môn Tư Tưởng Hồ Chí Minh (HCM202)
-        </h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.4rem;">
-          Đúc kết toàn diện từ <b>653 câu hỏi trong file gốc HCM202.docx</b>. Phân tách theo cấu trúc học thuật đặc thù của Tư tưởng Hồ Chí Minh: 5 thời kỳ lịch sử, bản đồ trích dẫn tác phẩm, khối đại đoàn kết, đạo đức cách mạng, bản chất nhà nước và các bẫy phủ định thường gặp trong phòng thi FE!
-        </p>
-      </div>
     </div>
 
-    <!-- MỤC 1: 5 THỜI KỲ LỊCH SỬ HÌNH THÀNH TƯ TƯỞNG HCM -->
-    <section class="tip-section search-item" id="sec-hcm-periods" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H1</div>
-          <h3 class="section-title">5 Thời Kỳ Lịch Sử Hình Thành & Phát Triển Tư Tưởng Hồ Chí Minh</h3>
-        </div>
-        <span class="section-badge">Hỏi Giai Đoạn Là Trúng</span>
-      </div>
 
-      <div class="callout callout-warning">
-        <div class="callout-icon"><i class="bi bi-compass-fill"></i></div>
-        <div>
-          <div class="callout-title">Quy Tắc Vàng Về 5 Giai Đoạn Cuộc Đời Bác Hồ:</div>
-          <div>Trong ngân hàng đề HCM202 có tới <b>41 câu hỏi</b> xoay quanh các mốc thời kỳ. Chỉ cần nhớ đúng tên gọi và đặc trưng cốt lõi của từng giai đoạn là chọn ngay phương án chính xác!</div>
-        </div>
-      </div>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Thời Kỳ</th>
-              <th>Tên Gọi Chính Xác Trong SRC</th>
-              <th>Sự Kiện & Nội Dung Bản Chất</th>
-              <th>Minh Chứng Trong Đề</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1890 - 1911</span></td>
-              <td><span class="td-highlight">Thời kỳ hình thành tư tưởng yêu nước và chí hướng cứu nước</span></td>
-              <td>Tiếp thu truyền thống gia đình (cụ Phó bảng Nguyễn Sinh Sắc), quê hương Nghệ An; học tập tại Huế; chứng kiến sự thất bại của các phong trào Cần Vương, Đông Du.</td>
-              <td><span class="src-id">[ID 51]</span>: Đáp án luôn nhấn mạnh <i>"hình thành tư tưởng yêu nước và chí hướng cứu nước mới"</i>.</td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1911 - 1920</span></td>
-              <td><span class="td-highlight">Thời kỳ tìm tòi con đường cứu nước, giải phóng dân tộc</span></td>
-              <td>5/6/1911 ra đi tìm đường cứu nước; 7/1920 đọc Sơ thảo Luận cương Lênin; 12/1920 bỏ phiếu tán thành Quốc tế III, sáng lập Đảng CS Pháp tại Đại hội Tua -> <b>Bước ngoặt từ chủ nghĩa yêu nước đến chủ nghĩa cộng sản</b>.</td>
-              <td><span class="src-id">[ID 509, 584]</span>: Đọc Luận cương Lênin đánh dấu bước chuyển lập trường dứt khoát sang con đường vô sản.</td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1920 - 1930</span></td>
-              <td><span class="td-highlight">Thời kỳ hình thành cơ bản tư tưởng về cách mạng Việt Nam</span></td>
-              <td>Thành lập Hội VN Cách mạng Thanh niên (1925); Tác phẩm "Bản án chế độ thực dân Pháp" (1925), "Đường Kách mệnh" (1927); Thành lập Đảng CS Việt Nam và Cương lĩnh chính trị đầu tiên (1930).</td>
-              <td><span class="src-id">[ID 39, 51]</span>: Hỏi giai đoạn 1921-1930 (hoặc 1920-1930) -> Chọn <b>"Hình thành cơ bản tư tưởng về con đường cách mạng Việt Nam"</b>.</td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1930 - 1941</span></td>
-              <td><span class="td-highlight">Thời kỳ vượt qua thử thách, kiên trì giữ vững con đường cách mạng</span></td>
-              <td>Quan điểm của Người bị Quốc tế Cộng sản phê phán là "dân tộc chủ nghĩa", "hữu khuynh". Người vẫn kiên định bảo vệ đường lối kết hợp giải phóng dân tộc với giải phóng giai cấp.</td>
-              <td><span class="src-id">[ID 255, 294]</span>: Giai đoạn 1930-1941 là thời kỳ <b>kiên trì giữ vững lập trường, vượt qua thử thách sóng gió</b>.</td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="key-badge badge-gold">1941 - 1969</span></td>
-              <td><span class="td-highlight">Thời kỳ tư tưởng Hồ Chí Minh tiếp tục phát triển, soi đường cho sự nghiệp cách mạng</span></td>
-              <td>28/1/1941 về nước; Hội nghị TW 8 (5/1941) lập Việt Minh; Cách mạng Tháng Tám 1945; Kháng chiến chống Pháp (1946-1954); Kháng chiến chống Mỹ và để lại Di chúc (1969).</td>
-              <td><span class="src-id">[ID 66, 122]</span>: Người là linh hồn của cuộc kháng chiến; tư tưởng hoàn thiện và đi vào thực tiễn thắng lợi.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- MỤC 2: BẢN ĐỒ TRÍCH DẪN & TÁC PHẨM KINH ĐIỂN CỦA BÁC HỒ -->
-    <section class="tip-section search-item" id="sec-hcm-quotes" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H2</div>
-          <h3 class="section-title">Bản Đồ Trích Dẫn & Tác Phẩm Kinh Điển Của Chủ Tịch Hồ Chí Minh</h3>
-        </div>
-        <span class="section-badge">Ghi Nhớ Bất Hủ</span>
-      </div>
-
-      <div class="grid-2">
-        <!-- Đường Kách Mệnh -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-red">Đường Kách Mệnh (1927)</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
+    <!-- ========================================== -->
+    <!-- KHỐI CHUYÊN BIỆT: TƯ TƯỞNG HỒ CHÍ MINH (HCM202) -->
+    <!-- ========================================== -->
+    <div class="subject-block" id="block-hcm202" data-subject="hcm202">
+      <div class="subject-block-banner" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(234, 88, 12, 0.08)); border: 2px solid rgba(249, 115, 22, 0.35); border-radius: 20px; padding: 1.8rem; margin-bottom: 2.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="subject-code" style="background: rgba(249, 115, 22, 0.25); color: #ea580c; font-weight: 800; padding: 0.35rem 0.8rem; border-radius: 8px; font-size: 0.85rem;"><i class="bi bi-star-fill"></i> HCM202</span>
+            <h2 style="font-size: 1.8rem; font-weight: 800; margin: 0.6rem 0 0.3rem; color: var(--text-main);">Bộ Bí Kíp & Mẹo Độc Quyền Tư Tưởng Hồ Chí Minh</h2>
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">Đúc kết từ 100% mã nguồn <b>653 câu hỏi trắc nghiệm</b> kỳ thi FE Đại học FPT. 11 chuyên mục mẹo riêng biệt chuẩn cấu trúc giáo trình.</p>
           </div>
-          <div class="card-rule">Trước Hết Phải Có Đảng & Bộ Phận Của CM Thế Giới</div>
-          <div class="card-explain">
-            • <i>"Cách mệnh trước hết phải có cái gì? Trước hết phải có đảng cách mệnh, để trong thì vận động và tổ chức dân chúng, ngoài thì liên lạc với dân tộc bị áp bức..."</i> -> <b>Đường Kách mệnh</b>.<br>
-            • <i>"Cách mệnh An Nam cũng là một bộ phận trong cách mệnh thế giới. Ai làm cách mệnh trong thế giới đều là đồng chí của người An Nam cả"</i> -> <b>Đường Kách mệnh</b>.<br>
-            • Lực lượng nòng cốt của cách mạng: <i>"Công nông là gốc cách mệnh, còn học trò, nhà buôn nhỏ, điền chủ nhỏ... là bầu bạn của cách mệnh"</i> -> <b>Đường Kách mệnh</b>.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 23, 24, 91, 100]</span> -> 100% Chọn đáp án <b>Đường Kách mệnh</b>.</div>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <a href="hcm202.html" class="filter-btn" style="text-decoration: none; background: rgba(249, 115, 22, 0.2); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.4);"><i class="bi bi-collection-play-fill"></i> Ôn 653 Flashcard</a>
+            <a href="exam_hcm202.html" class="filter-btn" style="text-decoration: none; background: linear-gradient(135deg, #f97316, #ea580c); color: white;"><i class="bi bi-pencil-square"></i> Vào Thi Thử FE (60 câu)</a>
           </div>
         </div>
 
-        <!-- Di Chúc & Các Lời Kêu Gọi Lịch Sử -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-gold">Di Chúc & Lời Kêu Gọi</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Trồng Người, Độc Lập Tự Do & Đảng Cầm Quyền</div>
-          <div class="card-explain">
-            • <i>"Không có gì quý hơn độc lập, tự do"</i> -> <b>Lời kêu gọi chống Mỹ cứu nước ngày 17/7/1966</b>.<br>
-            • <i>"Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết"</i> -> <b>Bản Di chúc (1965 - 1969)</b>.<br>
-            • Khái niệm <b>"Đảng cầm quyền"</b> được Hồ Chí Minh sử dụng lần đầu tiên ở đâu? -> <b>Bản Di chúc</b> (ID 576).<br>
-            • <i>"Đoàn kết là một truyền thống cực kỳ quý báu của Đảng và của dân ta... phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình"</i> -> <b>Di chúc</b>.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 122, 576, 653]</span> -> Nhận diện chuẩn xác tác phẩm và lời kêu gọi!</div>
-          </div>
-        </div>
-
-        <!-- Sửa Đổi Lối Làm Việc & Đời Sống Mới -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-blue">Sửa Đổi Lối Làm Việc (1947)</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Đạo Đức Là Gốc & Đem Tài Dân Làm Lợi Cho Dân</div>
-          <div class="card-explain">
-            • <i>"Cũng như sông thì có nguồn mới có nước, không có nguồn thì sông cạn. Cây phải có gốc, không có gốc thì cây héo. Người cách mạng phải có đạo đức, không có đạo đức thì dù tài giỏi mấy cũng không lãnh đạo được nhân dân"</i> -> <b>Sửa đổi lối làm việc (1947)</b>.<br>
-            • Biện pháp quan trọng nhất xây dựng xã hội mới: <i>"Đem của dân, tài dân, sức dân làm lợi cho dân"</i>.<br>
-            • Đánh giá cán bộ: Phải <b>toàn diện, khách quan, công tâm, thường xuyên</b>.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 2, 3, 27, 121]</span> -> Đạo đức là gốc rễ, nền tảng của người làm cách mạng.</div>
-          </div>
-        </div>
-
-        <!-- Bệnh Mẹ: Quét Sạch Chủ Nghĩa Cá Nhân -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-green">Nâng Cao Đạo Đức CM (1969)</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Chủ Nghĩa Cá Nhân Là Bệnh Mẹ Độc Hại Nhất</div>
-          <div class="card-explain">
-            • Tác phẩm viết nhân kỷ niệm 39 năm thành lập Đảng đăng báo Nhân dân (3/2/1969): <b>"Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân"</b>.<br>
-            • Bác coi <b>Chủ nghĩa cá nhân</b> là <b>"bệnh mẹ"</b>, là <b>"thứ vi trùng độc hại nhất"</b> sinh ra hàng trăm thứ bệnh nguy hiểm khác (tham ô, lãng phí, quan liêu, kéo bè kéo cánh).<br>
-            • Để xây dựng đạo đức mới: Phải <b>quét sạch chủ nghĩa cá nhân</b>, thực hành <b>chí công vô tư</b>.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 6, 40]</span> Q: Tác phẩm ví chủ nghĩa cá nhân là bệnh gì? -> <span class="example-a">A. Bệnh mẹ</span></div>
-          </div>
+        <!-- QUICK JUMP PILLS -->
+        <div class="hcm-quick-nav" style="display: flex; gap: 0.45rem; flex-wrap: wrap; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(249, 115, 22, 0.2);">
+          <a href="#sec-hcm-sources" class="hcm-nav-pill"><i class="bi bi-compass"></i> H1 Tiền đề & Tiền bối</a>
+          <a href="#sec-hcm-periods" class="hcm-nav-pill"><i class="bi bi-clock-history"></i> H2 5 Thời kỳ lịch sử</a>
+          <a href="#sec-hcm-works" class="hcm-nav-pill"><i class="bi bi-journal-bookmark-fill"></i> H3 Tác phẩm kinh điển</a>
+          <a href="#sec-hcm-quotes" class="hcm-nav-pill"><i class="bi bi-chat-quote-fill"></i> H4 Điền từ & Danh ngôn</a>
+          <a href="#sec-hcm-socialism" class="hcm-nav-pill"><i class="bi bi-flag-fill"></i> H5 ĐLDT & CNXH</a>
+          <a href="#sec-hcm-party" class="hcm-nav-pill"><i class="bi bi-diagram-3-fill"></i> H6 Xây dựng Đảng</a>
+          <a href="#sec-hcm-state" class="hcm-nav-pill"><i class="bi bi-bank"></i> H7 Nhà nước & Cán bộ</a>
+          <a href="#sec-hcm-unity" class="hcm-nav-pill"><i class="bi bi-people-fill"></i> H8 Mặt trận & Đại đoàn kết</a>
+          <a href="#sec-hcm-ethics" class="hcm-nav-pill"><i class="bi bi-heart-pulse-fill"></i> H9 Đạo đức & Bệnh mẹ</a>
+          <a href="#sec-hcm-traps" class="hcm-nav-pill"><i class="bi bi-exclamation-octagon-fill"></i> H10 Bẫy phủ định</a>
+          <a href="#sec-hcm-tactics" class="hcm-nav-pill"><i class="bi bi-pie-chart-fill"></i> H11 Xác suất & Lụi A</a>
         </div>
       </div>
-    </section>
 
-    <!-- MỤC 3: ĐẠI ĐOÀN KẾT TOÀN DÂN TỘC & BẢN ĐỒ MẶT TRẬN -->
-    <section class="tip-section search-item" id="sec-hcm-unity" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H3</div>
-          <h3 class="section-title">Khối Đại Đoàn Kết Dân Tộc & Bản Đồ Mặt Trận Qua Các Thời Kỳ</h3>
+      <!-- MẸO H1: NGUỒN GỐC & TIỀN ĐỀ TƯ TƯỞNG HCM -->
+      <section class="tip-section search-item" id="sec-hcm-sources" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H1</div>
+            <h3 class="section-title">Nguồn Gốc, Tiền Đề Tư Tưởng & So Sánh Các Bậc Tiền Bối</h3>
+          </div>
+          <span class="section-badge pill-hcm">Nền Tảng Cốt Lõi</span>
         </div>
-        <span class="section-badge">Chiến Lược Sống Còn</span>
-      </div>
 
-      <div class="grid-2">
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-gold">Đại Đoàn Kết Dân Tộc</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Chiến Lược Lâu Dài (TUYỆT ĐỐI KHÔNG Phải Sách Lược)</div>
-          <div class="card-explain">
-            • Vai trò của đại đoàn kết dân tộc: <b>Là vấn đề CHIẾN LƯỢC cơ bản, lâu dài, nhất quán</b>. Tuyệt đối không phải là sách lược, thủ đoạn hay phương pháp nhất thời.<br>
-            • Mục tiêu: Đại đoàn kết là <b>mục tiêu, nhiệm vụ hàng đầu của Đảng và của toàn dân tộc</b>.<br>
-            • Nền tảng khối đại đoàn kết: <b>Liên minh Công - Nông - Trí thức</b> dưới sự lãnh đạo của Đảng Cộng sản (trong đó Công - Nông là gốc, là nền tảng vững chắc nhất).<br>
-            • Lực lượng đại đoàn kết: <b>Toàn dân</b>, bất kỳ ai có lòng yêu nước thương nòi đều là thành viên của khối đại đoàn kết.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 8, 41]</span> Vai trò đại đoàn kết? -> <span class="example-a">A. Đại đoàn kết dân tộc là vấn đề chiến lược</span></div>
+        <div class="callout callout-warning search-item" data-subject="hcm202">
+          <div class="callout-icon"><i class="bi bi-lightbulb-fill" style="color: #f59e0b;"></i></div>
+          <div>
+            <div class="callout-title">QUY TẮC "BẤT BIẾN" VỀ NGUỒN GỐC HÌNH THÀNH:</div>
+            • <b>Chủ nghĩa yêu nước:</b> Là nguồn gốc, giá trị truyền thống dân tộc số 1, động lực trực tiếp đưa Bác ra đi tìm đường cứu nước.<br>
+            • <b>Chủ nghĩa Mác - Lênin:</b> Là cơ sở thế giới quan và phương pháp luận <u>quyết định bước phát triển về chất</u> của tư tưởng Hồ Chí Minh.<br>
+            • <b>Chủ nghĩa Tam Dân (Tôn Trung Sơn):</b> Ưu điểm lớn nhất là <u>"Phù hợp với điều kiện thực tế nước ta"</u>.
           </div>
         </div>
 
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-blue">Bản Đồ Các Mặt Trận</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Tên Gọi Mặt Trận Thống Nhất Qua Từng Giai Đoạn</div>
-          <div class="card-explain">
-            • <b>1930:</b> Hội Phản đế đồng minh (Mặt trận đầu tiên sau khi thành lập Đảng).<br>
-            • <b>1936:</b> Mặt trận Nhân dân phản đế Đông Dương -> Mặt trận Dân chủ Đông Dương (1938).<br>
-            • <b>1939:</b> Mặt trận Thống nhất Dân tộc Phản đế Đông Dương.<br>
-            • <b>1941 (19/5):</b> <b>Mặt trận Việt Minh</b> (Việt Nam Độc lập Đồng minh) ra đời tại Pác Bó.<br>
-            • <b>1946:</b> Hội Liên hiệp Quốc dân Việt Nam (Hội Liên Việt).<br>
-            • <b>1951:</b> <b>Mặt trận Liên Việt</b> (hợp nhất Việt Minh và Liên Việt tại Đại hội II của Đảng).<br>
-            • <b>1955:</b> Mặt trận Tổ quốc Việt Nam (ở miền Bắc).
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 80]</span> Mặt trận Liên Việt thành lập năm nào? -> <span class="example-a">C. 1951</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MỤC 4: ĐẠO ĐỨC CÁCH MẠNG, VĂN HÓA MỚI & BỆNH CHỦ NGHĨA CÁ NHÂN -->
-    <section class="tip-section search-item" id="sec-hcm-ethics" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H4</div>
-          <h3 class="section-title">Hệ Thống Đạo Đức Cách Mạng, Văn Hóa Mới & Bộ Ba "Giặc Nội Xâm"</h3>
-        </div>
-        <span class="section-badge">149 Câu Trọng Tâm</span>
-      </div>
-
-      <div class="grid-3">
-        <!-- 4 Chuẩn mực đạo đức -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-blue">4 Chuẩn Mực Đạo Đức</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Gốc Rễ Của Người Cách Mạng</div>
-          <div class="card-explain">
-            1. <b>Trung với nước, hiếu với dân</b> (phẩm chất đạo đức quan trọng nhất, bao trùm nhất).<br>
-            2. <b>Cần, kiệm, liêm, chính, chí công vô tư</b> (cốt lõi đạo đức cách mạng trong công việc hàng ngày).<br>
-            3. <b>Yêu thương con người, sống có tình có nghĩa</b>.<br>
-            4. <b>Tinh thần quốc tế trong sáng</b> (đoàn kết vì hòa bình và độc lập tự do).
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 92, 154]</span> -> Nhớ trọn vẹn 4 phẩm chất đạo đức mới!</div>
-          </div>
-        </div>
-
-        <!-- 3 Nguyên tắc xây dựng đạo đức -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-green">3 Nguyên Tắc Đạo Đức</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Cách Thức Rèn Luyện Nhân Cách</div>
-          <div class="card-explain">
-            1. <b>Nói đi đôi với làm, phải nêu gương về đạo đức</b> (lấy gương người tốt việc tốt giáo dục).<br>
-            2. <b>Xây đi đôi với chống</b> (xây dựng đức tính tốt, chống chủ nghĩa cá nhân).<br>
-            3. <b>Phải tu dưỡng đạo đức suốt đời</b> (gian nan rèn luyện mới thành công, như ngọc càng mài càng sáng).
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 32, 33, 34]</span> Đâu là nguyên tắc? -> <span class="example-a">A. Nói đi đôi với làm / Tu dưỡng suốt đời</span></div>
-          </div>
-        </div>
-
-        <!-- 3 Giặc nội xâm & Bệnh mẹ -->
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-red">Giặc Nội Xâm & Bệnh Mẹ</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Chủ Nghĩa Cá Nhân & Tam Đại Tệ Nạn</div>
-          <div class="card-explain">
-            • <b>Bệnh mẹ nguy hiểm nhất:</b> <i>Chủ nghĩa cá nhân</i> (thứ vi trùng rất độc, đẻ ra hàng trăm thứ bệnh).<br>
-            • <b>3 thứ giặc nội xâm nguy hiểm hơn giặc ngoại xâm:</b> <i>Tham ô, Lãng phí, Quan liêu</i>.<br>
-            • <b>Tham ô:</b> Là hành động ăn cắp của công, có hại cho dân tộc.<br>
-            • <b>Quan liêu:</b> Là nguồn gốc dung dưỡng tham ô và lãng phí.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 6, 40, 278]</span> Tham ô, lãng phí ví như giặc gì? -> <span class="example-a">B. Nội xâm</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MỤC 5: BẢN CHẤT ĐẢNG CỘNG SẢN & NHÀ NƯỚC CỦA DÂN, DO DÂN, VÌ DÂN -->
-    <section class="tip-section search-item" id="sec-hcm-party-state" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H5</div>
-          <h3 class="section-title">Bản Chất Đảng Cộng Sản & Nhà Nước Của Dân, Do Dân, Vì Dân</h3>
-        </div>
-        <span class="section-badge">Quyền Lực Nhân Dân</span>
-      </div>
-
-      <div class="grid-2">
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-red">Quy Luật Ra Đời Của Đảng</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Sự Sáng Tạo Lớn Nhất So Với Học Thuyết Mác</div>
-          <div class="card-explain">
-            • Công thức Mác - Lênin: <i>Đảng Cộng sản = Chủ nghĩa Mác + Phong trào công nhân</i>.<br>
-            • <b>Công thức sáng tạo của Hồ Chí Minh:</b><br>
-            <div style="background: rgba(249,115,22,0.15); border-left: 3px solid var(--accent); padding: 0.5rem 0.75rem; margin: 0.5rem 0; border-radius: 6px; font-weight: 700; color: var(--accent);">
-              Đảng Cộng sản Việt Nam = Chủ nghĩa Mác - Lênin + Phong trào công nhân + Phong trào yêu nước
+        <div class="grid-3">
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">NHO GIÁO</span>
+              <span class="subject-pill pill-hcm">Phương Đông</span>
             </div>
-            • Yếu tố thêm vào: <b>Phong trào yêu nước</b> (vì Việt Nam là nước thuộc địa, lòng yêu nước là mẫu số chung kết nối mọi tầng lớp dân tộc).
+            <div class="card-formula" style="font-size: 1rem; color: var(--text-main);">Tu thân • Lễ nghĩa • Hành đạo</div>
+            <p class="card-desc">Bác tiếp thu tinh thần <b>tu thân, rèn luyện đạo đức</b>, triết lý hành đạo giúp đời, coi trọng lễ nghĩa để <u>xây dựng Đảng về đạo đức</u>. Bác phê phán tư tưởng phân biệt đẳng cấp và trọng nam khinh nữ.</p>
           </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 52, 53, 54]</span> Quy luật ra đời của Đảng? -> <span class="example-a">A. Là sự phát triển sáng tạo CN Mác-Lênin</span></div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">PHẬT GIÁO</span>
+              <span class="subject-pill pill-hcm">Phương Đông</span>
+            </div>
+            <div class="card-formula" style="font-size: 1rem; color: var(--text-main);">Từ bi • Bác ái • Cứu khổ cứu nạn</div>
+            <p class="card-desc">Bác kế thừa tinh thần <b>từ bi, bác ái, cứu khổ cứu nạn, vị tha, bình đẳng</b> và nếp sống trong sạch, giản dị, hòa hợp với nhân dân lao động nghèo khổ.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">TAM DÂN (TÔN TRUNG SƠN)</span>
+              <span class="subject-pill pill-hcm">Dân tộc - Dân quyền - Dân sinh</span>
+            </div>
+            <div class="card-formula" style="font-size: 1rem; color: var(--text-main);">Độc lập • Tự do • Hạnh phúc</div>
+            <p class="card-desc">Đề thi hỏi: <i>"Ưu điểm lớn nhất của chủ nghĩa Tam dân là gì?"</i> -> <b>CHỌN NGAY: Phù hợp với điều kiện thực tế nước ta</b> (thể hiện qua tiêu ngữ Quốc gia: Độc lập - Tự do - Hạnh phúc).</p>
           </div>
         </div>
 
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-gold">Bản Chất Của Nhà Nước Ta</span>
-            <span class="subject-pill pill-hcm">HCM202</span>
-          </div>
-          <div class="card-rule">Giai Cấp Công Nhân + Tính Nhân Dân & Tính Dân Tộc</div>
-          <div class="card-explain">
-            • Bản chất Nhà nước ta: Mang bản chất <b>giai cấp công nhân</b>, thống nhất biện chứng với <b>tính nhân dân và tính dân tộc sâu sắc</b>.<br>
-            • Phân biệt: <b>"Dân là chủ"</b> chỉ vị thế, địa vị của nhân dân; <b>"Dân làm chủ"</b> chỉ quyền hạn, trách nhiệm và bổn phận làm chủ đất nước.<br>
-            • Nhà nước vì dân: Là nhà nước phục vụ nhân dân, lấy lợi ích của nhân dân làm mục tiêu cao nhất; <i>"không phải ban phát ân huệ từ trên xuống"</i>.<br>
-            • Kiểm soát quyền lực: Nhân dân có quyền kiểm soát, giám sát và bãi miễn cán bộ khi không còn xứng đáng.
-          </div>
-          <div class="card-examples">
-            <div class="example-item"><span class="src-id">[ID 20, 48, 300]</span> Nhân dân làm chủ dẫn đến hệ quả gì? -> <span class="example-a">B. Kiểm soát Nhà nước</span></div>
-          </div>
+        <div class="table-container search-item" data-subject="hcm202" style="margin-top: 1.5rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Nhân Vật Tiền Bối</th>
+                <th>Con Đường Cứu Nước</th>
+                <th>Nhận Xét Của Hồ Chí Minh (Từ Khóa Ăn Điểm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Phan Bội Châu</td>
+                <td>Dựa vào Nhật Bản (Phong trào Đông Du)</td>
+                <td><span class="td-target">"Đuổi hổ cửa trước, rước beo cửa sau"</span> (Thấy cụm từ này chọn Phan Bội Châu)</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Phan Chu Trinh</td>
+                <td>Dựa vào thực dân Pháp (Cải cách Duy Tân)</td>
+                <td><span class="td-target">"Chẳng khác gì xin giặc rủ lòng thương"</span> (Thấy cụm từ này chọn Phan Chu Trinh)</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Hoàng Hoa Thám</td>
+                <td>Khởi nghĩa nông dân Yên Thế</td>
+                <td><span class="td-target">"Còn mang nặng cốt cách phong kiến"</span> (Thực tế nhưng chưa có đường lối đúng)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- MỤC 6: BẢNG GIẢI MÃ CÁC BẪY PHỦ ĐỊNH & CÂU HỎI "CHỌN PHƯƠNG ÁN SAI" -->
-    <section class="tip-section search-item" id="sec-hcm-traps" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H6</div>
-          <h3 class="section-title">Bảng Giải Mã Các Bẫy Phủ Định ("Chọn Phương Án SAI / Không Đúng")</h3>
-        </div>
-        <span class="section-badge">Phòng Tránh Điểm Liệt</span>
-      </div>
-
-      <div class="callout callout-danger">
-        <div class="callout-icon"><i class="bi bi-shield-fill-x"></i></div>
-        <div>
-          <div class="callout-title">25 Câu Bẫy Điển Hình Hay Bị Mất Điểm Oan Uổng:</div>
-          <div>Trong phòng thi FE, câu hỏi phủ định (<i>"chọn câu sai", "không đúng", "không phải là luận điểm của Hồ Chí Minh"</i>) chiếm tỷ lệ rất cao. Dưới đây là các bẫy đã được bóc tách 100% từ đề thi:</div>
-        </div>
-      </div>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Dạng Câu Hỏi Trong Đề</th>
-              <th>Phương Án SAI Cần Chọn Ngay (Đáp Án Đúng)</th>
-              <th>Lý Do Bản Chất (Học Thuyết Bác Hồ)</th>
-              <th>Mã Đề SRC</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Chọn phương án sai về Đại đoàn kết dân tộc?</span></td>
-              <td><span class="td-target">"Đại đoàn kết dân tộc là vấn đề sách lược / thủ đoạn chính trị"</span></td>
-              <td>Đại đoàn kết là vấn đề <b>CHIẾN LƯỢC</b> lâu dài, sống còn; tuyệt đối không phải là sách lược tạm thời hay thủ đoạn.</td>
-              <td><span class="src-id">[ID 41]</span></td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Chọn câu sai về Giai cấp địa chủ ở Việt Nam?</span></td>
-              <td><span class="td-target">"Là giai cấp hoàn toàn phản động"</span></td>
-              <td>Hồ Chí Minh chỉ rõ địa chủ VN <b>không hoàn toàn phản động</b>, một bộ phận trung, tiểu địa chủ có lòng yêu nước và có thể lôi kéo, trung lập.</td>
-              <td><span class="src-id">[ID 47, 48]</span></td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Chọn phương án sai về Nhà nước vì dân?</span></td>
-              <td><span class="td-target">"Do dân làm chủ, tổ chức nên" (hoặc ban phát từ trên xuống)</span></td>
-              <td>"Do dân tổ chức nên" là nội dung của nhà nước <i>do dân</i>, không phải là định nghĩa của nhà nước <i>vì dân</i>.</td>
-              <td><span class="src-id">[ID 20]</span></td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Câu nào KHÔNG PHẢI là của Hồ Chí Minh?</span></td>
-              <td><span class="td-target">"Khoan thư sức dân làm kế sâu rễ bền gốc"</span></td>
-              <td>Đây là câu nói nổi tiếng của <b>Hưng Đạo Đại Vương Trần Quốc Tuấn</b>, không phải của Bác Hồ!</td>
-              <td><span class="src-id">[ID 225]</span></td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Phương án sai về Khái niệm Tư tưởng HCM (Đại hội IX)?</span></td>
-              <td><span class="td-target">"Kết cấu tư tưởng Hồ Chí Minh"</span></td>
-              <td>Định nghĩa Đại hội IX nêu bản chất, nguồn gốc, nội dung, ý nghĩa; không có thành tố "kết cấu tư tưởng".</td>
-              <td><span class="src-id">[ID 130]</span></td>
-            </tr>
-            <tr data-subject="hcm202" class="search-item">
-              <td><span class="td-highlight">Chọn phương án sai về Quá độ lên CNXH?</span></td>
-              <td><span class="td-target">"Xóa bỏ toàn bộ những thành tựu của xã hội cũ"</span></td>
-              <td>Quá độ là sự kế thừa có chọn lọc, cải tạo xã hội cũ và xây dựng xã hội mới, không phải xóa bỏ sạch trơn.</td>
-              <td><span class="src-id">[ID 60]</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- MỤC 7: THỐNG KÊ XÁC SUẤT ĐÁP ÁN & CHIẾN THUẬT LỤI THI HCM202 -->
-    <section class="tip-section search-item" id="sec-hcm-tactics" data-subject="hcm202">
-      <div class="section-header">
-        <div class="section-title-group">
-          <div class="section-number">H7</div>
-          <h3 class="section-title">Thống Kê Xác Suất & Chiến Thuật Lụi Đề Thi FE Môn HCM202</h3>
-        </div>
-        <span class="section-badge">Toán Học Ứng Dụng</span>
-      </div>
-
-      <div class="grid-2">
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-gold">Bản Đồ Phân Phối Đáp Án HCM202</span>
-            <span class="subject-pill pill-hcm">653 Câu</span>
+      <!-- MẸO H2: 5 THỜI KỲ LỊCH SỬ & MỐC NĂM BẢN LỀ -->
+      <section class="tip-section search-item" id="sec-hcm-periods" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H2</div>
+            <h3 class="section-title">5 Thời Kỳ Lịch Sử Hình Thành & Bản Đồ Mốc Năm Bản Lề</h3>
           </div>
-          <div class="card-rule">Ưu Tiên Tuyệt Đối Lụi "A" (Tỷ Lệ 44.56%)</div>
-          <div class="card-explain">
-            Dữ liệu phân tích chính xác trên toàn bộ 653 câu mã nguồn:<br><br>
-            • <b style="color:var(--accent); font-size:1.1rem;">Đáp án A: 291 câu (44.56%)</b> <i class="bi bi-fire" style="color:#f97316"></i><br>
-            • <b>Đáp án C: 155 câu (23.74%)</b><br>
-            • <b>Đáp án B: 131 câu (20.06%)</b><br>
-            • <b>Đáp án D: 76 câu (11.64%)</b><br><br>
-            <i class="bi bi-arrow-right-circle-fill" style="color:var(--accent);"></i> <b>QUY TẮC LỤI KHI BÍ:</b> Đáp án A xuất hiện nhiều gấp 4 lần đáp án D! Nếu trong đề thi gặp câu chưa kịp học hoặc không nhớ kiến thức, <b>hãy kiên định chọn đáp án A</b>. Xác suất đúng xấp xỉ 45% (ăn gần 4.5 điểm chỉ bằng việc lụi A)!
-          </div>
+          <span class="section-badge pill-hcm">Ghi Nhớ Bắt Buộc</span>
         </div>
 
-        <div class="tip-card search-item" data-subject="hcm202">
-          <div class="card-top-row">
-            <span class="key-badge badge-red">Cảnh Báo Bẫy "Tất Cả Phương Án"</span>
-            <span class="subject-pill pill-hcm">Cẩn Trọng</span>
+        <div class="table-container search-item" data-subject="hcm202">
+          <table>
+            <thead>
+              <tr>
+                <th>Giai Đoạn</th>
+                <th>Tên Thời Kỳ Chính Thức</th>
+                <th>Sự Kiện & Mốc Lịch Sử Quyết Định (Thấy Trong Đề Là Chọn)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight"><span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">1890 - 1911</span></td>
+                <td><b>Thời kỳ hình thành tư tưởng yêu nước và chí hướng cứu nước</b></td>
+                <td>Tiếp thu truyền thống quê hương Kim Liên, Nam Đàn, học Quốc học Huế, dạy học tại trường Dục Thanh (Phan Thiết).</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight"><span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">1911 - 1920</span></td>
+                <td><b>Thời kỳ tìm thấy con đường cứu nước, giải phóng dân tộc</b></td>
+                <td>
+                  • <b>5/6/1911:</b> Ra đi tìm đường cứu nước từ bến cảng Nhà Rồng (tàu Amiral Latouche-Tréville).<br>
+                  • <b>1919:</b> Gửi <i>Yêu sách của nhân dân An Nam</i> tới Hội nghị Véc-xây.<br>
+                  • <b>7/1920:</b> Đọc <i>Sơ thảo Luận cương Lênin</i> trên báo Nhân đạo -> Tìm thấy con đường giải phóng.<br>
+                  • <b>12/1920:</b> Bỏ phiếu tán thành Quốc tế III, tham gia sáng lập Đảng CS Pháp -> <b>Bước ngoặt chuyển từ chủ nghĩa yêu nước sang chủ nghĩa cộng sản</b>.
+                </td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight"><span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">1920 - 1930</span></td>
+                <td><b>Thời kỳ hình thành cơ bản tư tưởng về cách mạng Việt Nam</b></td>
+                <td>
+                  • Hoạt động tại Pháp, Liên Xô, Trung Quốc (Quảng Châu).<br>
+                  • Xuất bản tác phẩm <i>Bản án chế độ thực dân Pháp</i> (1925), <i>Đường Kách mệnh</i> (1927).<br>
+                  • <b>Đầu 1930:</b> Soạn thảo <i>Chánh cương vắn tắt, Sách lược vắn tắt</i> -> Cương lĩnh chính trị đầu tiên.
+                </td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight"><span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">1930 - 1941</span></td>
+                <td><b>Thời kỳ vượt qua thử thách, kiên trì giữ vững đường lối cách mạng</b></td>
+                <td>
+                  • Bị Quốc tế Cộng sản phê phán "khuynh hướng dân tộc hẹp hòi" (Luận cương 10/1930 của Trần Phú).<br>
+                  • Bị thực dân Anh bắt giam tại Hương Cảng (1931 - 1933).<br>
+                  • <b>28/1/1941:</b> Về nước trực tiếp lãnh đạo cách mạng tại cột mốc 108 Pác Bó (Cao Bằng).
+                </td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight"><span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">1941 - 1969</span></td>
+                <td><b>Thời kỳ tư tưởng tiếp tục phát triển, soi đường thắng lợi cho CM</b></td>
+                <td>
+                  • Hội nghị TW 8 (5/1941) hoàn chỉnh chuyển hướng chỉ đạo chiến lược.<br>
+                  • <b>2/9/1945:</b> Đọc <i>Tuyên ngôn Độc lập</i> khai sinh nước Việt Nam Dân chủ Cộng hòa.<br>
+                  • <b>19/12/1946:</b> Ra <i>Lời kêu gọi toàn quốc kháng chiến</i>.<br>
+                  • <b>17/7/1966:</b> Tuyên bố bất hủ: <i>"Không có gì quý hơn độc lập, tự do"</i>.<br>
+                  • <b>1969:</b> Để lại bản <i>Di chúc</i> thiêng liêng.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MẸO H3: BẢN ĐỒ TÁC PHẨM KINH ĐIỂN & BỐI CẢNH -->
+      <section class="tip-section search-item" id="sec-hcm-works" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H3</div>
+            <h3 class="section-title">Bản Đồ Tác Phẩm Kinh Điển & Bối Cảnh Lịch Sử</h3>
           </div>
-          <div class="card-rule">Chỉ Đúng 44.7% (17/38 Câu) - Không Nhắm Mắt Chọn Bừa!</div>
-          <div class="card-explain">
-            Khác biệt rất lớn giữa HCM202 và MLN122:<br><br>
-            • Trong <b>MLN122</b>: Cứ thấy "Tất cả các phương án trên" là tỷ lệ đúng lên tới <b>70.3%</b> (chọn bừa vẫn thắng).<br><br>
-            • Trong <b>HCM202</b>: Có 38 câu chứa phương án "Tất cả các phương án", nhưng <b>chỉ có 17 câu là đáp án đúng (44.7%)</b>. Trong hơn một nửa số câu còn lại (21 câu), phương án đúng là một nội dung lý luận rất cụ thể (ví dụ: chỉ chọn <i>"Quan điểm của Mác"</i> hoặc <i>"Con người xã hội chủ nghĩa"</i>).<br><br>
-            <i class="bi bi-exclamation-triangle-fill" style="color:var(--danger);"></i> <b>LỜI KHUYÊN:</b> Nếu thấy 1 trong 3 phương án còn lại có dấu hiệu sai hoặc lạc đề, TUYỆT ĐỐI KHÔNG chọn "Tất cả các phương án"!
+          <span class="section-badge pill-hcm">Hỏi Đâu Trúng Đó</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">ĐƯỜNG KÁCH MỆNH (1927)</span>
+              <span class="subject-pill pill-hcm">Quảng Châu</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">"Trước hết phải có Đảng cách mệnh..."</div>
+            <p class="card-desc">• Chuẩn bị về chính trị, tư tưởng cho việc thành lập Đảng.<br>• Xác định: <i>"Cách mệnh An Nam cũng là một bộ phận trong cách mệnh thế giới"</i>.<br>• Chỉ rõ công - nông là gốc của cách mạng, tiểu tư sản, trí thức là bầu bạn.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">SỬA ĐỔI LỐI LÀM VIỆC (10/1947)</span>
+              <span class="subject-pill pill-hcm">Bút danh X.Y.Z</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">Tác phẩm xây dựng Đảng & Chỉnh đốn cán bộ</div>
+            <p class="card-desc">• Chỉ ra 3 chứng bệnh nguy hiểm: <b>Bệnh chủ quan, Bệnh hẹp hòi, Bệnh ba hoa</b>.<br>• Nêu luận điểm vàng: <i>"Cán bộ là cái gốc của mọi công việc", "Muôn việc thành công hay thất bại đều do cán bộ tốt hay kém"</i>.<br>• Thang thuốc tốt nhất chữa khuyết điểm: <b>Tự phê bình và phê bình</b>.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">NÂNG CAO ĐẠO ĐỨC CM (1969)</span>
+              <span class="subject-pill pill-hcm">Báo Nhân Dân (3/2/1969)</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">"Quét sạch chủ nghĩa cá nhân"</div>
+            <p class="card-desc">• Viết nhân kỷ niệm 39 năm ngày thành lập Đảng.<br>• Định danh Chủ nghĩa cá nhân là <b>"BỆNH MẸ"</b>, là một thứ vi trùng rất độc sinh ra hàng trăm thứ bệnh con nguy hiểm.<br>• Đòi hỏi người cán bộ phải chí công vô tư, đặt lợi ích của Đảng và nhân dân lên trên hết.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">DI CHÚC (1965 - 1969)</span>
+              <span class="subject-pill pill-hcm">Lời Căn Dặn Cuối Cùng</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">"Trước hết nói về Đảng..."</div>
+            <p class="card-desc">• Đề thi hỏi: <i>"Trong Di chúc, điều đầu tiên Hồ Chí Minh căn dặn là về vấn đề gì?"</i> -> <b>CHỌN NGAY: Về Đảng</b>.<br>• Căn dặn giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.<br>• Dặn dò: <i>"Đầu tiên là công việc đối với con người"</i>, bồi dưỡng thế hệ cách mạng cho đời sau.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
+      <!-- MẸO H4: ĐIỀN TỪ VÀO CHỖ TRỐNG & BẮT KEY DANH NGÔN -->
+      <section class="tip-section search-item" id="sec-hcm-quotes" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H4</div>
+            <h3 class="section-title">Tuyệt Chiêu Điền Khuyết & Bắt Key Trích Dẫn Danh Ngôn</h3>
+          </div>
+          <span class="section-badge pill-hcm">Trúng Tủ 100% Điền Từ</span>
+        </div>
+
+        <div class="table-container search-item" data-subject="hcm202">
+          <table>
+            <thead>
+              <tr>
+                <th>Câu Hỏi Trích Dẫn / Dạng Điền Từ "..." Trong Đề</th>
+                <th>Từ Khóa Cần Điền (Đáp Án Đúng 100%)</th>
+                <th>Ngữ Cảnh & Ý Nghĩa Lời Bác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Thực lực là cái (...), ngoại giao là cái tiếng. Chiêng có to tiếng mới lớn"</td>
+                <td><span class="td-target">Chiêng</span> (hoặc Chuông)</td>
+                <td>Đề thi HCM202 câu 32: Điền từ "Chiêng" thể hiện ngoại giao phải dựa trên thực lực nội tại.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Ở nước ta chính quyền là của nhân dân... Nhân dân là (...)"</td>
+                <td><span class="td-target">Ông chủ</span></td>
+                <td>Nhân dân là ông chủ, cán bộ là người được ủy quyền, là công bộc / đày tớ.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Dân là chủ thì Chính phủ phải là (...)"</td>
+                <td><span class="td-target">Đầy tớ</span></td>
+                <td>Đề thi câu 563: Bác dạy Chính phủ phải là người đầy tớ trung thành của nhân dân.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Để đoàn kết, cần xoá bỏ hết mọi thành kiến, cần phải (....) và giúp đỡ nhau"</td>
+                <td><span class="td-target">Thật thà hợp tác</span></td>
+                <td>Đề thi câu 57: Nguyên tắc đại đoàn kết trong Mặt trận.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Người cách mạng phải có (....) làm nền tảng, mới hoàn thành được nhiệm vụ"</td>
+                <td><span class="td-target">Đạo đức cách mạng</span></td>
+                <td>Đề thi câu 77: Đạo đức là cái gốc, cái nền tảng như gốc của cây, nguồn của sông.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Phương Đông đều giàu tình cảm, một (...) còn có giá trị hơn một trăm bài diễn văn"</td>
+                <td><span class="td-target">Tấm gương sống</span></td>
+                <td>Đề thi câu 139: Nguyên tắc đạo đức "Nêu gương", "Nói đi đôi với làm".</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Phải phát huy hết ..., phải lột cho hết tinh thần dân tộc"</td>
+                <td><span class="td-target">Cốt cách dân tộc</span></td>
+                <td>Đề thi câu 138: Giữ gìn bản sắc và tính dân tộc trong văn hóa.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Cái mà tôi cần nhất trên đời là đồng bào tôi được tự do, '...'"</td>
+                <td><span class="td-target">Tổ quốc tôi được độc lập</span></td>
+                <td>Đề thi câu 636: Lời tâm huyết trả lời các nhà báo nước ngoài.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">"Quần chúng chỉ quý mến những người có (....)" (chứ không phải cứ viết chữ cộng sản lên trán)</td>
+                <td><span class="td-target">Tư cách, đạo đức</span></td>
+                <td>Đề thi câu 632: Uy tín của người đảng viên xây dựng từ hành vi thực tế.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MẸO H5: ĐỘC LẬP DÂN TỘC & CHỦ NGHĨA XÃ HỘI -->
+      <section class="tip-section search-item" id="sec-hcm-socialism" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H5</div>
+            <h3 class="section-title">Độc Lập Dân Tộc Gắn Liền Với Chủ Nghĩa Xã Hội</h3>
+          </div>
+          <span class="section-badge pill-hcm">Quy Luật Phát Triển</span>
+        </div>
+
+        <div class="callout callout-success search-item" data-subject="hcm202">
+          <div class="callout-icon"><i class="bi bi-shield-check" style="color: #10b981;"></i></div>
+          <div>
+            <div class="callout-title">LUẬN ĐIỂM SỐNG CÒN CỦA HỒ CHÍ MINH:</div>
+            <i>"Nếu nước độc lập mà dân không hưởng hạnh phúc tự do, thì độc lập cũng chẳng có nghĩa lý gì!"</i><br>
+            -> Độc lập dân tộc là tiền đề để tiến lên Chủ nghĩa xã hội; và Chủ nghĩa xã hội là điều kiện vững chắc bảo đảm giữ vững nền độc lập thực sự cho dân tộc.
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">ĐẶC TRƯNG CNXH</span>
+              <span class="subject-pill pill-hcm">Dân làm chủ</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">Chế độ do dân làm chủ</div>
+            <p class="card-desc">• Chính trị: Nhân dân làm chủ quyền lực nhà nước.<br>• Kinh tế: Phát triển lực lượng sản xuất gắn liền quan hệ sản xuất tiến bộ, công hữu tư liệu sản xuất chủ yếu.<br>• Mục tiêu: Không ngừng nâng cao đời sống vật chất và tinh thần của nhân dân.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">ĐỘNG LỰC & TRỞ LỰC</span>
+              <span class="subject-pill pill-hcm">Con Người Là Gốc</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">Động lực quan trọng nhất: CON NGƯỜI</div>
+            <p class="card-desc">• Con người được giác ngộ, có đạo đức và tổ chức là động lực quyết định.<br>• <b>Trở lực nguy hiểm nhất:</b> Chủ nghĩa cá nhân, tham ô, lãng phí, quan liêu, tư tưởng bảo thủ, chia rẽ.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">THỜI KỲ QUÁ ĐỘ</span>
+              <span class="subject-pill pill-hcm">Quá Độ Gián Tiếp</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">"Dần dần, thận trọng, từng bước"</div>
+            <p class="card-desc">• Đặc điểm lớn nhất ở Việt Nam: Từ một nước nông nghiệp lạc hậu tiến thẳng lên CNXH <u>bỏ qua chế độ tư bản chủ nghĩa</u>.<br>• Phương châm: Không chủ quan nóng vội, đốt cháy giai đoạn, xuất phát từ thực tiễn đất nước.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MẸO H6: XÂY DỰNG ĐẢNG CỘNG SẢN VIỆT NAM -->
+      <section class="tip-section search-item" id="sec-hcm-party" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H6</div>
+            <h3 class="section-title">Bản Chất Đảng Cộng Sản & 5 Nguyên Tắc Sinh Hoạt Đảng</h3>
+          </div>
+          <span class="section-badge pill-hcm">Sáng Tạo Lớn Của Bác</span>
+        </div>
+
+        <div class="callout callout-warning search-item" data-subject="hcm202">
+          <div class="callout-icon"><i class="bi bi-diagram-3-fill" style="color: #f59e0b;"></i></div>
+          <div>
+            <div class="callout-title">QUY LUẬT RA ĐỜI ĐẶC THÙ CỦA ĐẢNG CSVN (SÁNG TẠO CỦA HỒ CHÍ MINH):</div>
+            • <b>Học thuyết Lênin ở châu Âu:</b> Chủ nghĩa Mác - Lênin + Phong trào công nhân = Đảng Cộng sản.<br>
+            • <b>Hồ Chí Minh ở Việt Nam:</b> <u>Chủ nghĩa Mác - Lênin + Phong trào công nhân + PHONG TRÀO YÊU NƯỚC</u> = Đảng Cộng sản Việt Nam!<br>
+            <i>(Đề thi hỏi luận điểm sáng tạo này bổ sung điều gì: Chọn "Bổ sung vào kho tàng lý luận của chủ nghĩa Mác - Lênin").</i>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">BẢN CHẤT CỦA ĐẢNG</span>
+              <span class="subject-pill pill-hcm">Giai Cấp Công Nhân</span>
+            </div>
+            <div class="card-formula" style="font-size: 0.95rem; color: var(--text-main);">Đảng mang bản chất Giai cấp công nhân</div>
+            <p class="card-desc">Đảng mang bản chất giai cấp công nhân nhưng đại biểu trung thành cho lợi ích của giai cấp công nhân, nhân dân lao động và của cả dân tộc. Yếu tố quy định bản chất: <b>Nền tảng tư tưởng là chủ nghĩa Mác - Lênin</b>, mục tiêu độc lập dân tộc gắn liền CNXH.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">5 NGUYÊN TẮC SINH HOẠT ĐẢNG</span>
+              <span class="subject-pill pill-hcm">Cốt Lõi Tổ Chức</span>
+            </div>
+            <div class="card-desc" style="font-size: 0.9rem; line-height: 1.6;">
+              1. <b>Tập trung dân chủ:</b> Nguyên tắc tổ chức <u>cơ bản nhất</u>.<br>
+              2. <b>Tập thể lãnh đạo, cá nhân phụ trách:</b> Nguyên tắc lãnh đạo.<br>
+              3. <b>Tự phê bình và phê bình:</b> <u>Quy luật phát triển</u> của Đảng, vũ khí sắc bén nhất.<br>
+              4. <b>Kỷ luật nghiêm minh và tự giác:</b> Sức mạnh của Đảng.<br>
+              5. <b>Đoàn kết thống nhất trong Đảng:</b> Giữ gìn như giữ con ngươi của mắt mình.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MẸO H7: NHÀ NƯỚC CỦA DÂN, DO DÂN, VÌ DÂN -->
+      <section class="tip-section search-item" id="sec-hcm-state" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H7</div>
+            <h3 class="section-title">Nhà Nước Của Dân, Do Dân, Vì Dân & Bộ Ba Căn Bệnh Bộ Máy</h3>
+          </div>
+          <span class="section-badge pill-hcm">Cặp Khái Niệm Hay Ra Nhất</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="tip-card search-item" data-subject="hcm202" style="border-left: 4px solid #ea580c;">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.2); color: #ea580c;">"DÂN LÀ CHỦ"</span>
+              <span class="subject-pill pill-hcm">Vị Thế</span>
+            </div>
+            <div class="card-formula" style="font-size: 1.1rem; color: #ea580c;">Đề cập đến VỊ THẾ của nhân dân</div>
+            <p class="card-desc">Dân là chủ thể tối cao nắm giữ toàn bộ quyền lực trong xã hội và nhà nước. Mọi cơ quan quyền lực đều do nhân dân ủy thác.</p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202" style="border-left: 4px solid #10b981;">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">"DÂN LÀM CHỦ"</span>
+              <span class="subject-pill pill-hcm">Năng Lực & Trách Nhiệm</span>
+            </div>
+            <div class="card-formula" style="font-size: 1.1rem; color: #10b981;">Đề cập đến NĂNG LỰC VÀ TRÁCH NHIỆM</div>
+            <p class="card-desc">Nhân dân thực thi quyền hạn và nghĩa vụ làm chủ xã hội: tham gia bầu cử, quản lý nhà nước, giám sát và tuân thủ pháp luật.</p>
+          </div>
+        </div>
+
+        <div class="table-container search-item" data-subject="hcm202" style="margin-top: 1.5rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Căn Bệnh Trong Bộ Máy</th>
+                <th>Bản Chất Tác Hại Theo Bác</th>
+                <th>Lời Dặn Của Hồ Chí Minh Với Cán Bộ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Tham ô</td>
+                <td>Là hành vi <b>ăn cắp của công</b>, có tội với Tổ quốc và nhân dân.</td>
+                <td>Được ví như tội phản quốc, phải nghiêm trị không kiêng nể.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Lãng phí</td>
+                <td>Tiêu xài tiền của, thời gian, công sức bừa bãi. Tác hại lớn không kém tham ô.</td>
+                <td>Lãng phí tuy không lấy của công bỏ túi nhưng làm hao mòn sức nước.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Quan liêu</td>
+                <td><b>BỆNH GỐC RỄ:</b> Xa rời quần chúng, không nắm thực tế.</td>
+                <td>Là mảnh đất màu mỡ <u>đẻ ra tham ô và lãng phí</u>. Muốn chống tham ô trước hết phải chống quan liêu.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MẸO H8: ĐẠI ĐOÀN KẾT DÂN TỘC & BẢN ĐỒ MẶT TRẬN -->
+      <section class="tip-section search-item" id="sec-hcm-unity" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H8</div>
+            <h3 class="section-title">Đại Đoàn Kết Dân Tộc & Bản Đồ Mặt Trận Qua Các Thời Kỳ</h3>
+          </div>
+          <span class="section-badge pill-hcm">Chiến Lược Sống Còn</span>
+        </div>
+
+        <div class="callout callout-warning search-item" data-subject="hcm202">
+          <div class="callout-icon"><i class="bi bi-people-fill" style="color: #f59e0b;"></i></div>
+          <div>
+            <div class="callout-title">NGUYÊN TẮC VÀNG VỀ MẶT TRẬN DÂN TỘC THỐNG NHẤT:</div>
+            • Đại đoàn kết dân tộc là vấn đề <b>CHIẾN LƯỢC lâu dài</b> (chứ KHÔNG PHẢI sách lược nhất thời).<br>
+            • Nền tảng của khối đại đoàn kết: <b>Khối liên minh Công - Nông - Trí thức</b> đặt dưới sự lãnh đạo của Đảng.<br>
+            • Vai trò của Đảng Cộng sản: <b>VỪA LÀ THÀNH VIÊN, VỪA LÀ LỰC LƯỢNG LÃNH ĐẠO</b> của Mặt trận dân tộc thống nhất.<br>
+            • Quyền lãnh đạo Mặt trận của Đảng: <b>Phải được nhân dân thừa nhận</b> (chứ không phải do Đảng tự phong).
+          </div>
+        </div>
+
+        <div class="table-container search-item" data-subject="hcm202">
+          <table>
+            <thead>
+              <tr>
+                <th>Mốc Thời Gian</th>
+                <th>Tên Mặt Trận Dân Tộc Thống Nhất</th>
+                <th>Đặc Điểm & Bối Cảnh Lịch Sử (Từ Khóa Đề Thi)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">18/11/1930</td>
+                <td><b>Hội Phản đế đồng minh</b></td>
+                <td>Hình thức tổ chức đầu tiên của Mặt trận sau khi thành lập Đảng. Ngày 18/11 là ngày truyền thống Mặt trận.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">1936 - 1939</td>
+                <td><b>Mặt trận Thống nhất Dân chủ Đông Dương</b></td>
+                <td>Thời kỳ phong trào đấu tranh dân chủ đòi dân sinh, dân chủ, cơm áo, hòa bình (thời kỳ Mặt trận Bình dân Pháp).</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">5/1941</td>
+                <td><b>Mặt trận Việt Minh</b> (Việt Nam Độc lập Đồng minh)</td>
+                <td>Thành lập tại Hội nghị TW 8 (Pác Bó). Tập hợp toàn dân đánh đuổi Pháp - Nhật, làm nên thắng lợi Cách mạng Tháng Tám 1945.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">3/1951</td>
+                <td><b>Mặt trận Liên Việt</b></td>
+                <td>Hợp nhất giữa Hội Liên hiệp Quốc dân Việt Nam và Mặt trận Việt Minh trong kháng chiến chống Pháp.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">9/1955</td>
+                <td><b>Mặt trận Tổ quốc Việt Nam</b></td>
+                <td>Tổ chức đại đoàn kết toàn dân tộc cho cả hai miền sau Hiệp định Giơ-ne-vơ 1954, tồn tại và phát triển đến ngày nay.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">12/1960</td>
+                <td><b>Mặt trận Dân tộc Giải phóng miền Nam Việt Nam</b></td>
+                <td>Đoàn kết toàn thể đồng bào miền Nam đánh đuổi đế quốc Mỹ và chính quyền tay sai Sài Gòn.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MẸO H9: ĐẠO ĐỨC CÁCH MẠNG, VĂN HÓA & BỘ BA BỆNH NGUY HIỂM -->
+      <section class="tip-section search-item" id="sec-hcm-ethics" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H9</div>
+            <h3 class="section-title">Hệ Thống Đạo Đức Cách Mạng, Văn Hóa Mới & Bệnh Mẹ</h3>
+          </div>
+          <span class="section-badge pill-hcm">4 Chuẩn Mực • 3 Nguyên Tắc</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">4 CHUẨN MỰC ĐẠO ĐỨC</span>
+              <span class="subject-pill pill-hcm">Hồ Chí Minh</span>
+            </div>
+            <div class="card-desc" style="font-size: 0.9rem; line-height: 1.6;">
+              1. <b>Trung với nước, hiếu với dân:</b> Chuẩn mực đạo đức <u>quan trọng nhất, bao trùm nhất</u>.<br>
+              2. <b>Cần, kiệm, liêm, chính, chí công vô tư:</b> Chuẩn mực nền tảng, thước đo sự văn minh tiến bộ của một quốc gia.<br>
+              3. <b>Thương yêu con người, sống có tình có nghĩa:</b> Tình cảm nhân ái bao la, rộng lớn.<br>
+              4. <b>Tinh thần quốc tế trong sáng:</b> Tinh thần vô sản chân chính, bốn phương vô sản đều là anh em.
+            </div>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.15); color: #ea580c;">3 NGUYÊN TẮC XÂY DỰNG ĐẠO ĐỨC</span>
+              <span class="subject-pill pill-hcm">Phương Pháp Luận</span>
+            </div>
+            <div class="card-desc" style="font-size: 0.9rem; line-height: 1.6;">
+              1. <b>Nói đi đôi với làm, phải nêu gương về đạo đức:</b> Lời nói phải đi liền hành động thực tế.<br>
+              2. <b>Xây đi đôi với chống:</b> Xây dựng các giá trị đạo đức mới gắn liền với chống chủ nghĩa cá nhân.<br>
+              3. <b>Tu dưỡng đạo đức suốt đời:</b> Đạo đức cách mạng không phải từ trên trời sa xuống, mà do rèn luyện bền bỉ hàng ngày như ngọc càng mài càng sáng, vàng càng luyện càng trong.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-danger search-item" data-subject="hcm202" style="margin-top: 1.5rem;">
+          <div class="callout-icon"><i class="bi bi-bug-fill" style="color: #ef4444;"></i></div>
+          <div>
+            <div class="callout-title">"BỆNH MẸ" VÀ 3 CHỨNG BỆNH NGUY HIỂM TRONG "SỬA ĐỔI LỐI LÀM VIỆC":</div>
+            • <b>"Bệnh mẹ":</b> Là <b>CHỦ NGHĨA CÁ NHÂN</b> — Bác ví là một thứ vi trùng rất độc hại, là cội nguồn đẻ ra hàng trăm thứ bệnh con nguy hiểm khác.<br>
+            • <b>Bệnh chủ quan:</b> Kém lý luận hoặc lý luận suông, không bám sát thực tiễn.<br>
+            • <b>Bệnh hẹp hòi:</b> Cục bộ, bản vị, không biết trọng dụng người tài, cô độc.<br>
+            • <b>Bệnh ba hoa:</b> Dài dòng, sáo rỗng, cầu kỳ, nói nhiều làm ít.
+          </div>
+        </div>
+      </section>
+
+      <!-- MẸO H10: BẢNG GIẢI MÃ 29 BẪY PHỦ ĐỊNH TRONG SRC HCM202 -->
+      <section class="tip-section search-item" id="sec-hcm-traps" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H10</div>
+            <h3 class="section-title">Bảng Giải Mã Các Câu Hỏi Bẫy Phủ Định (Chọn Câu SAI / Không Phải)</h3>
+          </div>
+          <span class="section-badge pill-hcm">Tránh Mất Điểm Oan</span>
+        </div>
+
+        <div class="callout callout-warning search-item" data-subject="hcm202">
+          <div class="callout-icon"><i class="bi bi-exclamation-octagon-fill" style="color: #f59e0b;"></i></div>
+          <div>
+            <div class="callout-title">MẸO LÀM DẠNG BÀI BẪY PHỦ ĐỊNH TRONG HCM202:</div>
+            Đọc kỹ đề nếu thấy các từ: <b>"KHÔNG PHẢI", "SAI", "CHƯA CHÍNH XÁC", "KHÔNG ĐÚNG"</b>. Phương án có các dấu hiệu sau đây thường là đáp án cần chọn (vì nó sai):<br>
+            1. Hạ thấp vai trò của Đảng hoặc tách rời sự lãnh đạo của Đảng (ví dụ: gán quyền cho Quốc hội lãnh đạo Nhà nước là SAI).<br>
+            2. Rập khuôn, giáo điều, máy móc theo mô hình nước ngoài.<br>
+            3. Câu danh ngôn của danh nhân khác bị gán ghép cho Bác (như Các Mác, Trần Hưng Đạo).
+          </div>
+        </div>
+
+        <div class="table-container search-item" data-subject="hcm202">
+          <table>
+            <thead>
+              <tr>
+                <th>Câu Hỏi Bẫy Trong Đề Thi HCM202</th>
+                <th>Phương Án SAI Cần Chọn (Đáp Án Đúng Của Đề)</th>
+                <th>Giải Thích Vì Sao Phương Án Đó Bị Coi Là Sai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Nhà nước vì dân, công chức là công bộc chứ KHÔNG PHẢI làm:</td>
+                <td><span class="td-target">Quan cách mạng</span> (hoặc: "Đè đầu dân")</td>
+                <td>Bác kiên quyết chống tư tưởng làm "quan cách mạng" hách dịch, nhũng nhiễu nhân dân.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Nội dung nào KHÔNG ĐÚNG với bản chất giai cấp công nhân của Nhà nước?</td>
+                <td><span class="td-target">Nhà nước dưới sự lãnh đạo của Quốc hội</span></td>
+                <td>Nhà nước đặt dưới sự lãnh đạo của ĐẢNG CỘNG SẢN, không phải Quốc hội!</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Câu nói nào sau đây KHÔNG PHẢI là của Hồ Chí Minh?</td>
+                <td><span class="td-target">"Khoan thư sức dân làm kế sâu rễ bền gốc"</span></td>
+                <td>Đây là danh ngôn bất hủ của Quốc công Tiết chế Trần Hưng Đạo thời nhà Trần!</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Luận điểm nào về dựa vào sức mình KHÔNG PHẢI của Hồ Chí Minh?</td>
+                <td><span class="td-target">"Sự nghiệp giải phóng của GCCN phải do bản thân GCCN tự làm lấy"</span></td>
+                <td>Đây là luận điểm kinh điển của Các Mác trong Tuyên ngôn của Đảng Cộng sản!</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Đâu KHÔNG PHẢI là nguyên tắc xây dựng CNXH trong thời kỳ quá độ?</td>
+                <td><span class="td-target">Mọi tư tưởng hành động phải tuân thủ tuyệt đối theo chủ nghĩa Mác - Lênin</span></td>
+                <td>Bác luôn nhấn mạnh vận dụng sáng tạo, xuất phát từ thực tiễn VN, tuyệt đối chống giáo điều.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Để xác định bước đi của CNXH, nội dung nào KHÔNG ĐÚNG?</td>
+                <td><span class="td-target">Theo bước đi của các nước XHCN, vừa làm vừa tìm kiếm mô hình phù hợp</span></td>
+                <td>Bác chủ trương không sao chép nguyên xi mô hình của Liên Xô hay Trung Quốc.</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Nội dung nào KHÔNG ĐÚNG về phương pháp tự phê bình và phê bình?</td>
+                <td><span class="td-target">Phải khôn khéo biến hóa cho phù hợp</span></td>
+                <td>Tự phê bình phải ráo riết, chân thành, trung thực, không được "khôn khéo biến hóa".</td>
+              </tr>
+              <tr class="search-item" data-subject="hcm202">
+                <td class="td-highlight">Theo Hồ Chí Minh, đạo đức cách mạng KHÔNG PHẢI là điều gì?</td>
+                <td><span class="td-target">Từ trên trời sa xuống</span></td>
+                <td>Đạo đức là kết quả của quá trình tu dưỡng, rèn luyện bền bỉ suốt đời.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MẸO H11: THỐNG KÊ XÁC SUẤT ĐÁP ÁN & CHIẾN THUẬT LỤI RIÊNG HCM202 -->
+      <section class="tip-section search-item" id="sec-hcm-tactics" data-subject="hcm202">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-number" style="background: linear-gradient(135deg, #f97316, #ea580c);">H11</div>
+            <h3 class="section-title">Thống Kê Xác Suất Đáp Án & Chiến Thuật Lụi Đề Thi HCM202</h3>
+          </div>
+          <span class="section-badge pill-hcm">Dữ Liệu Thực Tế 653 Câu</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="tip-card search-item" data-subject="hcm202" style="border: 2px solid rgba(249, 115, 22, 0.4);">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(249, 115, 22, 0.2); color: #ea580c;">LỤI ĐÁP ÁN A</span>
+              <span class="subject-pill pill-hcm">Chiếm 44.56%</span>
+            </div>
+            <div class="card-formula" style="font-size: 1.5rem; color: #ea580c;">ƯU TIÊN KHOANH A (291 / 653 CÂU)</div>
+            <p class="card-desc">
+              Khác với đề thi ngẫu nhiên đều, trong ngân hàng câu hỏi gốc HCM202, đáp án A chiếm tỷ trọng áp đảo lên tới <b>44.56%</b>!<br><br>
+              • <b>Đáp án A:</b> 291 câu (<b>44.56%</b>) &mdash; <i>Chiến thuật lụi số 1 khi phân vân!</i><br>
+              • <b>Đáp án C:</b> 155 câu (23.74%)<br>
+              • <b>Đáp án B:</b> 131 câu (20.06%)<br>
+              • <b>Đáp án D:</b> 76 câu (11.64%)
+            </p>
+          </div>
+
+          <div class="tip-card search-item" data-subject="hcm202" style="border: 2px solid rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);">
+            <div class="card-top-row">
+              <span class="key-badge" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">CẢNH BÁO CỰC MẠNH</span>
+              <span class="subject-pill pill-hcm">Bẫy "Tất Cả"</span>
+            </div>
+            <div class="card-formula" style="font-size: 1.15rem; color: #ef4444;">KHÔNG LỤI BỪA "TẤT CẢ CÁC PHƯƠNG ÁN"</div>
+            <p class="card-desc">
+              Trong môn KTCT (MLN122), "Tất cả các phương án" đúng tới 70.3%.<br>
+              <b>TUY NHIÊN Ở HCM202:</b> Cụm từ này chỉ đúng <b>17 / 38 câu (44.7%)</b>!<br>
+              Hơn một nửa số câu (55.3%) còn lại là <b>BẪY CỐ TÌNH GÀI</b>, đáp án đúng lại là một phương án đơn lẻ cụ thể.<br><br>
+              <i class="bi bi-shield-exclamation" style="color: #ef4444;"></i> <b>Quy tắc vàng:</b> Chỉ chọn "Tất cả các phương án" khi bạn chắc chắn cả 3 ý trước đều đúng. Nếu thấy có 1 ý sai, gạch ngay đáp án "Tất cả"!
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- NO RESULTS MESSAGE -->
+    <div id="no-search-results" style="display: none;"></div>
   </main>
 
   <!-- FOOTER -->
@@ -2001,19 +2409,185 @@
   </footer>
 
   <script>
-    // Search functionality
-    function handleSearch() {
-      const query = document.getElementById('searchInput').value.toLowerCase().trim();
-      const items = document.querySelectorAll('.search-item');
+    // Remove Vietnamese accents / diacritics for ultra-flexible search
+    function removeVietnameseTones(str) {
+      if (!str) return '';
+      str = str.toLowerCase();
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      str = str.replace(/[đĐ]/g, 'd');
+      return str;
+    }
 
-      items.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        if (!query || text.includes(query)) {
-          item.style.display = '';
+    // Helper to check subject match
+    function checkSubjectMatch(el, targetSubject) {
+      if (targetSubject === 'all') return true;
+      const elSubject = el.getAttribute('data-subject');
+      if (elSubject) {
+        return elSubject === targetSubject;
+      }
+      // Check parent subject block
+      const parentBlock = el.closest('.subject-block');
+      if (parentBlock) {
+        const blockSubject = parentBlock.getAttribute('data-subject');
+        if (blockSubject === 'hcm202') return targetSubject === 'hcm202';
+        if (blockSubject === 'mln') return (targetSubject === 'mln111' || targetSubject === 'mln122');
+      }
+      return true;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      handleSearch();
+    }
+
+    // ESC to clear search
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const input = document.getElementById('searchInput');
+        if (input && input.value) {
+          clearSearch();
+        }
+      }
+    });
+
+    // SEARCH FUNCTIONALITY WITH COMPLETE CONTAINER HIDING ("ẨN CẢ DIV NẾU KHÔNG CÓ NỘI DUNG")
+    function handleSearch() {
+      const rawQuery = document.getElementById('searchInput').value.trim();
+      const query = rawQuery.toLowerCase();
+      const normQuery = removeVietnameseTones(query);
+      const currentSubject = document.querySelector('.filter-btn.active')?.getAttribute('data-subject') || 'all';
+      const noResultsDiv = document.getElementById('no-search-results');
+      const quickNav = document.querySelector('.hcm-quick-nav');
+
+      // If search query is empty, reset display cleanly by active subject filter
+      if (!query) {
+        if (noResultsDiv) noResultsDiv.style.display = 'none';
+        if (quickNav) quickNav.style.display = '';
+        filterSubject(currentSubject);
+        return;
+      }
+
+      // Hide quick nav pills while searching to keep result view uncluttered
+      if (quickNav) quickNav.style.display = 'none';
+
+      let totalVisibleMatches = 0;
+
+      // 1. Filter individual tip cards (.tip-card)
+      const tipCards = document.querySelectorAll('.tip-card');
+      tipCards.forEach(card => {
+        const rawText = card.innerText.toLowerCase();
+        const normText = removeVietnameseTones(rawText);
+        const matchesSubject = checkSubjectMatch(card, currentSubject);
+        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+
+        if (matchesSubject && matchesQuery) {
+          card.style.display = '';
+          totalVisibleMatches++;
         } else {
-          item.style.display = 'none';
+          card.style.display = 'none';
         }
       });
+
+      // 2. Filter table rows (tbody tr)
+      const tableRows = document.querySelectorAll('tbody tr');
+      tableRows.forEach(row => {
+        const rawText = row.innerText.toLowerCase();
+        const normText = removeVietnameseTones(rawText);
+        const matchesSubject = checkSubjectMatch(row, currentSubject);
+        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+
+        if (matchesSubject && matchesQuery) {
+          row.style.display = '';
+          totalVisibleMatches++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // 3. Filter standalone callouts (.callout)
+      const callouts = document.querySelectorAll('.callout');
+      callouts.forEach(co => {
+        const rawText = co.innerText.toLowerCase();
+        const normText = removeVietnameseTones(rawText);
+        const matchesSubject = checkSubjectMatch(co, currentSubject);
+        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+
+        if (matchesSubject && matchesQuery) {
+          co.style.display = '';
+          totalVisibleMatches++;
+        } else {
+          co.style.display = 'none';
+        }
+      });
+
+      // 4. Hide empty TABLE CONTAINERS (div.table-container)
+      const tableContainers = document.querySelectorAll('.table-container');
+      tableContainers.forEach(tc => {
+        const visibleRows = tc.querySelectorAll('tbody tr:not([style*="display: none"])');
+        if (visibleRows.length > 0) {
+          tc.style.display = '';
+        } else {
+          tc.style.display = 'none'; // Ẩn luôn cả table container div nếu không có dòng nào khớp!
+        }
+      });
+
+      // 5. Hide empty GRID CONTAINERS (div.grid-2, div.grid-3)
+      const grids = document.querySelectorAll('.grid-2, .grid-3');
+      grids.forEach(g => {
+        const visibleCards = g.querySelectorAll('.tip-card:not([style*="display: none"])');
+        if (visibleCards.length > 0) {
+          g.style.display = '';
+        } else {
+          g.style.display = 'none'; // Ẩn luôn cả grid div nếu không có thẻ nào khớp!
+        }
+      });
+
+      // 6. Hide entire TIP SECTIONS (section.tip-section)
+      const sections = document.querySelectorAll('.tip-section');
+      sections.forEach(sec => {
+        const hasVisibleCards = sec.querySelectorAll('.tip-card:not([style*="display: none"])').length > 0;
+        const hasVisibleRows = sec.querySelectorAll('tbody tr:not([style*="display: none"])').length > 0;
+        const hasVisibleCallouts = sec.querySelectorAll('.callout:not([style*="display: none"])').length > 0;
+
+        if (hasVisibleCards || hasVisibleRows || hasVisibleCallouts) {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none'; // Ẩn luôn cả section div và tiêu đề nếu không có bất kỳ nội dung nào khớp!
+        }
+      });
+
+      // 7. Hide entire SUBJECT BLOCKS (div.subject-block)
+      const blocks = document.querySelectorAll('.subject-block');
+      blocks.forEach(blk => {
+        const visibleSections = blk.querySelectorAll('.tip-section:not([style*="display: none"])');
+        if (visibleSections.length > 0) {
+          blk.style.display = '';
+        } else {
+          blk.style.display = 'none'; // Ẩn luôn cả block môn học và banner nếu không có section nào khớp!
+        }
+      });
+
+      // 8. Handle Empty Search Results State
+      if (noResultsDiv) {
+        if (totalVisibleMatches === 0) {
+          noResultsDiv.style.display = 'block';
+          noResultsDiv.innerHTML = `
+            <div style="text-align: center; padding: 3.5rem 1rem; background: var(--bg-card); border: 1.5px dashed var(--border-color); border-radius: 18px; margin: 2rem 0;">
+              <i class="bi bi-search" style="font-size: 2.6rem; color: var(--text-dim); display: block; margin-bottom: 0.85rem;"></i>
+              <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">Không tìm thấy mẹo nào khớp với từ khóa "${escapeHtml(rawQuery)}"</h3>
+              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Hãy thử tìm từ khóa khác (ví dụ: mốc năm, tác giả, bệnh mẹ, chiêng, thặng dư)...</p>
+              <button class="btn btn-primary" onclick="clearSearch()" style="padding: 0.6rem 1.4rem; font-weight: 700;"><i class="bi bi-arrow-clockwise"></i> Xóa tìm kiếm & Hiện lại tất cả</button>
+            </div>
+          `;
+        } else {
+          noResultsDiv.style.display = 'none';
+        }
+      }
     }
 
     // Filter by subject
@@ -2022,43 +2596,98 @@
       buttons.forEach(btn => btn.classList.remove('active'));
       if (btnEl) {
         btnEl.classList.add('active');
+      } else {
+        const found = document.querySelector(`.filter-btn[data-subject="${subject}"]`);
+        if (found) found.classList.add('active');
       }
 
-      const items = document.querySelectorAll('.search-item');
-      items.forEach(item => {
-        const itemSubject = item.getAttribute('data-subject');
-        if (subject === 'all' || itemSubject === subject || !itemSubject) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+      const blockMln = document.getElementById('block-mln');
+      const blockHcm = document.getElementById('block-hcm202');
+      const noResultsDiv = document.getElementById('no-search-results');
+      const quickNav = document.querySelector('.hcm-quick-nav');
+      if (noResultsDiv) noResultsDiv.style.display = 'none';
+      if (quickNav) quickNav.style.display = '';
 
-      // Also filter tip sections intelligently
-      const sections = document.querySelectorAll('.tip-section');
-      sections.forEach(sec => {
-        const secSubject = sec.getAttribute('data-subject');
-        if (secSubject) {
-          if (subject === 'all' || secSubject === subject) {
-            sec.style.display = '';
-          } else {
-            sec.style.display = 'none';
-          }
-        } else {
-          if (subject === 'hcm202') {
-            const hasHcm = sec.querySelectorAll('[data-subject="hcm202"]').length > 0;
-            sec.style.display = hasHcm ? '' : 'none';
-          } else if (subject === 'mln111') {
-            const has111 = sec.querySelectorAll('[data-subject="mln111"]').length > 0;
-            sec.style.display = has111 ? '' : 'none';
-          } else if (subject === 'mln122') {
-            const has122 = sec.querySelectorAll('[data-subject="mln122"]').length > 0;
-            sec.style.display = has122 ? '' : 'none';
-          } else {
-            sec.style.display = '';
-          }
+      if (subject === 'hcm202') {
+        if (blockMln) blockMln.style.display = 'none';
+        if (blockHcm) {
+          blockHcm.style.display = 'block';
+          // Show all HCM sections, grids, tables, items
+          const allHcm = blockHcm.querySelectorAll('.tip-section, .table-container, .grid-2, .grid-3, .tip-card, tr, .callout');
+          allHcm.forEach(el => el.style.display = '');
         }
-      });
+      } else if (subject === 'mln111' || subject === 'mln122') {
+        if (blockHcm) blockHcm.style.display = 'none';
+        if (blockMln) {
+          blockMln.style.display = 'block';
+
+          // Filter within MLN items
+          const cards = blockMln.querySelectorAll('.tip-card');
+          cards.forEach(card => {
+            const cardSub = card.getAttribute('data-subject');
+            card.style.display = (!cardSub || cardSub === subject) ? '' : 'none';
+          });
+
+          const rows = blockMln.querySelectorAll('tbody tr');
+          rows.forEach(r => {
+            const rSub = r.getAttribute('data-subject');
+            r.style.display = (!rSub || rSub === subject) ? '' : 'none';
+          });
+
+          const callouts = blockMln.querySelectorAll('.callout');
+          callouts.forEach(co => {
+            const coSub = co.getAttribute('data-subject');
+            co.style.display = (!coSub || coSub === subject) ? '' : 'none';
+          });
+
+          // Update grids and tables
+          const grids = blockMln.querySelectorAll('.grid-2, .grid-3');
+          grids.forEach(g => {
+            const vCards = g.querySelectorAll('.tip-card:not([style*="display: none"])');
+            g.style.display = vCards.length > 0 ? '' : 'none';
+          });
+
+          const tableContainers = blockMln.querySelectorAll('.table-container');
+          tableContainers.forEach(tc => {
+            const vRows = tc.querySelectorAll('tbody tr:not([style*="display: none"])');
+            tc.style.display = vRows.length > 0 ? '' : 'none';
+          });
+
+          // Update MLN sections
+          const mlnSections = blockMln.querySelectorAll('.tip-section');
+          mlnSections.forEach(sec => {
+            const secSub = sec.getAttribute('data-subject');
+            if (secSub) {
+              sec.style.display = (secSub === subject) ? '' : 'none';
+            } else {
+              const hasCards = sec.querySelectorAll('.tip-card:not([style*="display: none"])').length > 0;
+              const hasRows = sec.querySelectorAll('tbody tr:not([style*="display: none"])').length > 0;
+              sec.style.display = (hasCards || hasRows) ? '' : 'none';
+            }
+          });
+        }
+      } else {
+        // 'all'
+        if (blockMln) blockMln.style.display = 'block';
+        if (blockHcm) blockHcm.style.display = 'block';
+        const allElements = document.querySelectorAll('.tip-section, .table-container, .grid-2, .grid-3, .tip-card, tr, .callout');
+        allElements.forEach(el => el.style.display = '');
+      }
+
+      // Update URL query parameter
+      const url = new URL(window.location);
+      if (subject === 'all') {
+        url.searchParams.delete('subject');
+      } else {
+        url.searchParams.set('subject', subject);
+      }
+      window.history.replaceState({}, '', url);
+
+      // Re-apply search query if input is not empty
+      const query = document.getElementById('searchInput')?.value?.trim();
+      if (query) {
+        handleSearch();
+      }
     }
 
     // Dark / Light Theme Toggle
@@ -2077,9 +2706,17 @@
       }
     }
 
-    // Init Theme
+    // Init Theme & Subject from URL on Page Load
     const savedTheme = localStorage.getItem('app_theme') || 'dark';
     updateThemeIcon(savedTheme);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const subParam = urlParams.get('subject');
+      if (subParam && ['mln111', 'mln122', 'hcm202'].includes(subParam)) {
+        filterSubject(subParam);
+      }
+    });
   </script>
 </body>
 </html>
