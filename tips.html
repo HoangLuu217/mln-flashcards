@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script>
     (function() {
       const savedTheme = localStorage.getItem('app_theme');
@@ -654,10 +655,10 @@
       </div>
     </a>
     <div class="header-nav">
-      <a href="index.html" class="nav-link">🏠 Trang Chủ</a>
-      <a href="exam_mln111.html" class="nav-link">📝 Thi MLN111</a>
-      <a href="exam_mln122.html" class="nav-link">📝 Thi MLN122</a>
-      <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện">🌙</button>
+      <a href="index.html" class="nav-link"><i class="bi bi-house-door-fill"></i> Trang Chủ</a>
+      <a href="exam_mln111.html" class="nav-link"><i class="bi bi-pencil-square"></i> Thi MLN111</a>
+      <a href="exam_mln122.html" class="nav-link"><i class="bi bi-pencil-square"></i> Thi MLN122</a>
+      <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện"><i class="bi bi-moon-stars-fill"></i></button>
     </div>
   </header>
 
@@ -665,17 +666,17 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">🎯 Đúc Kết Từ Toàn Bộ 1.097 Câu Hỏi Trong SRC</span>
+      <span class="hero-tag"><i class="bi bi-bullseye"></i> Đúc Kết Từ Toàn Bộ 1.097 Câu Hỏi Trong SRC</span>
       <h2 class="hero-title">Bí Kíp & Mẹo Vàng Chọn Trắc Nghiệm MLN111 & MLN122</h2>
       <p class="hero-desc">
         Hệ thống mẹo được phân tích khoa học dựa trên 100% dữ liệu thực tế từ <b>571 câu MLN111</b> và <b>526 câu MLN122</b>. 
         Tổng hợp tất cả mốc năm duy nhất thấy là chọn, các con số vàng, tên tác giả bất biến, bẫy phủ định và tỉ lệ lụi đáp án tối ưu.
       </p>
       <div class="stats-pills">
-        <div class="stat-pill">📚 Tổng câu phân tích: <b>1.097 Câu</b></div>
-        <div class="stat-pill">✨ Mẹo mốc Năm & Thế kỷ: <b>100% Trúng</b></div>
-        <div class="stat-pill">🎯 Tỷ lệ lụi A trong MLN122: <b>47.1%</b></div>
-        <div class="stat-pill">⚠️ Bẫy "Tất cả phương án": <b>Xem ngay</b></div>
+        <div class="stat-pill"><i class="bi bi-book-half"></i> Tổng câu phân tích: <b>1.097 Câu</b></div>
+        <div class="stat-pill"><i class="bi bi-stars"></i> Mẹo mốc Năm & Thế kỷ: <b>100% Trúng</b></div>
+        <div class="stat-pill"><i class="bi bi-bullseye"></i> Tỷ lệ lụi A trong MLN122: <b>47.1%</b></div>
+        <div class="stat-pill"><i class="bi bi-exclamation-triangle-fill"></i> Bẫy "Tất cả phương án": <b>Xem ngay</b></div>
       </div>
     </section>
 
@@ -683,7 +684,7 @@
     <div class="sticky-toolbar">
       <div class="toolbar-inner">
         <div class="search-box">
-          <span class="search-icon">🔍</span>
+          <span class="search-icon"><i class="bi bi-search"></i></span>
           <input type="text" id="searchInput" class="search-input" placeholder="Tìm mẹo theo từ khóa, năm (1615, 1848, 1986), tác giả (Lênin, Ăngghen), công thức..." oninput="handleSearch()">
         </div>
         <div class="filter-tabs">
@@ -705,7 +706,7 @@
       </div>
 
       <div class="callout callout-warning">
-        <div class="callout-icon">💡</div>
+        <div class="callout-icon"><i class="bi bi-lightbulb-fill"></i></div>
         <div>
           <div class="callout-title">Quy Luật Bất Biến Về Năm Trong Toàn Bộ Mã Nguồn:</div>
           <div>Trong cả 2 ngân hàng đề MLN111 và MLN122, các mốc năm không bao giờ bị hỏi lẫn lộn. Mỗi sự kiện gắn liền với <b>duy nhất 1 năm</b>, hễ xuất hiện trong đáp án là đáp án chính xác!</div>
@@ -1055,11 +1056,11 @@
           <div class="card-rule">Đáp án A chiếm tới 47.1% (gần 1 nửa ngân hàng câu hỏi!)</div>
           <div class="card-explain">
             Trong 526 câu MLN122:<br>
-            • <b>Đáp án A: 248 câu (47.1%)</b> 🔥<br>
+            • <b>Đáp án A: 248 câu (47.1%)</b> <i class="bi bi-fire" style="color:#f97316"></i><br>
             • Đáp án B: 103 câu (19.6%)<br>
             • Đáp án C: 90 câu (17.1%)<br>
             • Đáp án D: 57 câu (10.8%)<br>
-            👉 <b>MẸO LỤI MLN122:</b> Nếu vào phòng thi gặp câu hoàn toàn không biết đáp án, <b>hãy lụi đáp án A</b>. Xác suất đúng xấp xỉ 50%!
+            <i class="bi bi-arrow-right-circle-fill" style="color:var(--accent); margin-right:0.25rem;"></i> <b>MẸO LỤI MLN122:</b> Nếu vào phòng thi gặp câu hoàn toàn không biết đáp án, <b>hãy lụi đáp án A</b>. Xác suất đúng xấp xỉ 50%!
           </div>
         </div>
 
@@ -1075,7 +1076,7 @@
             • Đáp án B: 132 câu (23.1%)<br>
             • Đáp án C: 132 câu (23.1%)<br>
             • Đáp án D: 104 câu (18.2%)<br>
-            👉 Đáp án A có tỉ lệ cao gấp rưỡi so với D. Khi phân vân giữa 2 phương án có chứa A, ưu tiên nghiêng về A.
+            <i class="bi bi-arrow-right-circle-fill" style="color:var(--accent); margin-right:0.25rem;"></i> Đáp án A có tỉ lệ cao gấp rưỡi so với D. Khi phân vân giữa 2 phương án có chứa A, ưu tiên nghiêng về A.
           </div>
         </div>
       </div>
@@ -1083,7 +1084,7 @@
       <!-- Bẫy Tất cả phương án -->
       <div style="margin-top: 1.5rem;">
         <div class="callout callout-danger">
-          <div class="callout-icon">🚨</div>
+          <div class="callout-icon"><i class="bi bi-exclamation-octagon-fill"></i></div>
           <div>
             <div class="callout-title">CẢNH BÁO: Khác Biệt Một Trời Một Vực Giữa MLN111 Và MLN122 Đối Với "Tất Cả Phương Án Trên"!</div>
             <div style="margin-top: 0.4rem;">
@@ -1174,7 +1175,7 @@
       </div>
 
       <div class="callout callout-success">
-        <div class="callout-icon">🎯</div>
+        <div class="callout-icon"><i class="bi bi-bullseye"></i></div>
         <div>
           <div class="callout-title">Trong toàn bộ ngân hàng thi MLN122 chỉ có đúng 7 bài toán và công thức tính. Nhớ sẵn đáp án:</div>
         </div>
@@ -1256,10 +1257,10 @@
           </div>
           <div class="card-rule">Đề Hỏi "Nhận Định Nào Sai?" -> Tìm Ngay Các Câu Này:</div>
           <div class="card-explain">
-            ❌ <b>"Triết học Mác cho rằng triết học là khoa học của mọi khoa học"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Triết học Mác đoạn tuyệt với quan điểm này của triết học cũ) <span class="src-id">[ID 142]</span>.<br><br>
-            ❌ <b>"Thế giới tinh thần và thế giới vật chất tồn tại độc lập nhau"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (CNDV khẳng định thế giới thống nhất ở tính vật chất) <span class="src-id">[ID 94]</span>.<br><br>
-            ❌ <b>"Các mâu thuẫn trong chính trị, tư tưởng quyết định mâu thuẫn trong lĩnh vực kinh tế"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Kinh tế/CSHT quyết định chính trị/KTTT, không bao giờ ngược lại) <span class="src-id">[ID 145]</span>.<br><br>
-            ❌ <b>"Chủ nghĩa Mác dựa vào Khả năng chứ không phải dựa vào Hiện thực"</b> -> <i>SAI</i> (Mác dựa vào Hiện thực chứ không phải Khả năng) <span class="src-id">[ID 194]</span>.
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Triết học Mác cho rằng triết học là khoa học của mọi khoa học"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Triết học Mác đoạn tuyệt với quan điểm này của triết học cũ) <span class="src-id">[ID 142]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Thế giới tinh thần và thế giới vật chất tồn tại độc lập nhau"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (CNDV khẳng định thế giới thống nhất ở tính vật chất) <span class="src-id">[ID 94]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Các mâu thuẫn trong chính trị, tư tưởng quyết định mâu thuẫn trong lĩnh vực kinh tế"</b> -> <i>ĐÂY LÀ NHẬN ĐỊNH SAI</i> (Kinh tế/CSHT quyết định chính trị/KTTT, không bao giờ ngược lại) <span class="src-id">[ID 145]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Chủ nghĩa Mác dựa vào Khả năng chứ không phải dựa vào Hiện thực"</b> -> <i>SAI</i> (Mác dựa vào Hiện thực chứ không phải Khả năng) <span class="src-id">[ID 194]</span>.
           </div>
         </div>
 
@@ -1270,12 +1271,12 @@
           </div>
           <div class="card-rule">Đề Hỏi "Đâu KHÔNG Phải / Nhận Định Nào Sai?" -> Chọn:</div>
           <div class="card-explain">
-            ❌ <b>"Quyền sở hữu tư liệu sản xuất thuộc về nhà nước"</b> -> <i>KHÔNG PHẢI đặc trưng của CNTB</i> (CNTB dựa trên sở hữu tư nhân) <span class="src-id">[ID 4]</span>.<br><br>
-            ❌ <b>"Bóc lột sản phẩm thặng dư chỉ có ở chủ nghĩa tư bản"</b> -> <i>ĐÂY LÀ LUẬN ĐIỂM SAI</i> (Chế độ nô lệ và phong kiến cũng bóc lột sản phẩm thặng dư) <span class="src-id">[ID 66]</span>.<br><br>
-            ❌ <b>"Công nghiệp hóa, hiện đại hóa gắn liền với phát triển công nghiệp nặng"</b> -> <i>KHÔNG PHẢI đặc trưng CNH ở VN hiện nay</i> (Ưu tiên CN nặng là mô hình cũ thời bao cấp) <span class="src-id">[ID 69, 210]</span>.<br><br>
-            ❌ <b>"Thời gian làm việc trong một ngày của công nhân được giữ nguyên"</b> -> <i>SAI đối với GTTD tuyệt đối</i> (Tuyệt đối là kéo dài ngày làm việc) <span class="src-id">[ID 84]</span>.<br><br>
-            ❌ <b>"Kinh tế thị trường chỉ có thể phát triển mạnh ở xã hội phong kiến"</b> -> <i>SAI</i> (Phong kiến là kinh tế tự nhiên, tự cung tự cấp) <span class="src-id">[ID 151]</span>.<br><br>
-            ❌ <b>"Chức năng giáo dục"</b> -> <i>KHÔNG PHẢI chức năng chính của KTCT Mác - Lênin</i> (KTCT chỉ có: Nhận thức, Thực tiễn, Tư tưởng, Phương pháp luận) <span class="src-id">[ID 126]</span>.
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Quyền sở hữu tư liệu sản xuất thuộc về nhà nước"</b> -> <i>KHÔNG PHẢI đặc trưng của CNTB</i> (CNTB dựa trên sở hữu tư nhân) <span class="src-id">[ID 4]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Bóc lột sản phẩm thặng dư chỉ có ở chủ nghĩa tư bản"</b> -> <i>ĐÂY LÀ LUẬN ĐIỂM SAI</i> (Chế độ nô lệ và phong kiến cũng bóc lột sản phẩm thặng dư) <span class="src-id">[ID 66]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Công nghiệp hóa, hiện đại hóa gắn liền với phát triển công nghiệp nặng"</b> -> <i>KHÔNG PHẢI đặc trưng CNH ở VN hiện nay</i> (Ưu tiên CN nặng là mô hình cũ thời bao cấp) <span class="src-id">[ID 69, 210]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Thời gian làm việc trong một ngày của công nhân được giữ nguyên"</b> -> <i>SAI đối với GTTD tuyệt đối</i> (Tuyệt đối là kéo dài ngày làm việc) <span class="src-id">[ID 84]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Kinh tế thị trường chỉ có thể phát triển mạnh ở xã hội phong kiến"</b> -> <i>SAI</i> (Phong kiến là kinh tế tự nhiên, tự cung tự cấp) <span class="src-id">[ID 151]</span>.<br><br>
+            <i class="bi bi-x-circle-fill text-danger" style="color:#ef4444; margin-right:0.25rem;"></i> <b>"Chức năng giáo dục"</b> -> <i>KHÔNG PHẢI chức năng chính của KTCT Mác - Lênin</i> (KTCT chỉ có: Nhận thức, Thực tiễn, Tư tưởng, Phương pháp luận) <span class="src-id">[ID 126]</span>.
           </div>
         </div>
       </div>
@@ -1335,7 +1336,7 @@
     function updateThemeIcon(theme) {
       const toggleBtn = document.getElementById('theme-toggle');
       if (toggleBtn) {
-        toggleBtn.innerText = theme === 'light' ? '☀️' : '🌙';
+        toggleBtn.innerHTML = theme === 'light' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
       }
     }
 

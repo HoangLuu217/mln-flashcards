@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script>
     (function() {
       const savedTheme = localStorage.getItem('app_theme');
@@ -553,11 +554,14 @@
     }
 
     .q-num-box.flagged::after {
-      content: '🚩';
+      content: "\f3e2";
+      font-family: "bootstrap-icons" !important;
       position: absolute;
-      top: -4px;
-      right: -4px;
-      font-size: 0.6rem;
+      top: -3px;
+      right: -2px;
+      font-size: 0.62rem;
+      color: #ef4444;
+      line-height: 1;
     }
 
     /* Review mode in grid */
@@ -708,18 +712,18 @@
     </div>
 
     <div class="timer-badge" id="timer-badge">
-      <span>⏱</span>
+      <span><i class="bi bi-clock-history"></i></span>
       <span id="timer-display">60:00</span>
     </div>
 
     <div class="header-right">
       <a href="tips.html" target="_blank" class="btn" style="text-decoration: none; border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700;" title="Mở trang Bí kíp & Mẹo chọn trắc nghiệm">
-        <span>💡</span> Mẹo Làm Bài
+        <span><i class="bi bi-lightbulb-fill"></i></span> Mẹo Làm Bài
       </a>
       <button class="btn btn-submit" onclick="confirmSubmitExam()">
-        <span>📋</span> Nộp bài thi
+        <span><i class="bi bi-send-check-fill"></i></span> Nộp bài thi
       </button>
-      <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌙</button>
+      <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối"><i class="bi bi-moon-stars-fill"></i></button>
     </div>
   </header>
 
@@ -732,7 +736,7 @@
           Câu <span id="current-q-num">1</span> <span>/ <span id="total-q-num">60</span></span>
         </div>
         <button class="btn-flag" id="flag-btn" onclick="toggleFlag()">
-          <span>🚩</span> Cắm cờ xem lại
+          <span><i class="bi bi-flag-fill"></i></span> Cắm cờ xem lại
         </button>
       </div>
 
@@ -744,15 +748,15 @@
 
       <div class="question-footer">
         <button class="btn" id="prev-btn" onclick="prevQuestion()">
-          &larr; Câu trước
+          <i class="bi bi-arrow-left"></i> Câu trước
         </button>
         <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">
-          Câu tiếp &rarr;
+          Câu tiếp <i class="bi bi-arrow-right"></i>
         </button>
       </div>
 
       <div class="shortcuts-hint">
-        <span>💡 Phím tắt:</span>
+        <span><i class="bi bi-keyboard"></i> Phím tắt:</span>
         <span class="kbd">A</span> <span class="kbd">B</span> <span class="kbd">C</span> <span class="kbd">D</span> <span>chọn đáp án</span> &bull;
         <span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> <span>chuyển câu</span> &bull;
         <span class="kbd">F</span> <span>cắm cờ</span>
@@ -775,7 +779,7 @@
 
       <div class="sidebar-footer">
         <button class="btn btn-submit btn-full" onclick="confirmSubmitExam()">
-          📋 Nộp bài thi ngay
+          <i class="bi bi-send-check-fill"></i> Nộp bài thi ngay
         </button>
       </div>
     </aside>
@@ -784,14 +788,14 @@
   <!-- Submit Confirmation Modal -->
   <div class="modal-overlay" id="confirm-modal">
     <div class="modal">
-      <h3 class="modal-title">Xác Nhận Nộp Bài Thi</h3>
+      <h3 class="modal-title"><i class="bi bi-question-circle-fill" style="color:var(--accent)"></i> Xác Nhận Nộp Bài Thi</h3>
       <p class="modal-desc" id="confirm-desc">
         Bạn đã làm được <b>0</b> / 60 câu.<br>
         Vẫn còn một số câu chưa trả lời. Bạn có chắc chắn muốn nộp bài thi ngay bây giờ?
       </p>
       <div class="modal-actions">
-        <button class="btn" onclick="closeModal('confirm-modal')">Tiếp tục làm bài</button>
-        <button class="btn btn-submit" onclick="submitExamNow()">Đồng ý nộp bài</button>
+        <button class="btn" onclick="closeModal('confirm-modal')"><i class="bi bi-arrow-left"></i> Tiếp tục làm bài</button>
+        <button class="btn btn-submit" onclick="submitExamNow()"><i class="bi bi-send-check-fill"></i> Đồng ý nộp bài</button>
       </div>
     </div>
   </div>
@@ -799,7 +803,7 @@
   <!-- Result Modal -->
   <div class="modal-overlay" id="result-modal">
     <div class="modal" style="max-width: 520px;">
-      <h3 class="modal-title">🎉 Kết Quả Bài Thi FE</h3>
+      <h3 class="modal-title"><i class="bi bi-trophy-fill" style="color:var(--gold)"></i> Kết Quả Bài Thi FE</h3>
       <p style="color: var(--text-muted); font-size: 0.9rem;">Môn học: <b>MLN122</b> &bull; Thời gian: <span id="time-spent-text">0 phút</span></p>
 
       <div class="score-circle">
@@ -815,9 +819,9 @@
       </div>
 
       <div class="modal-actions" style="flex-wrap: wrap;">
-        <button class="btn btn-primary" onclick="restartExam()">🎲 Thi Đề Khác</button>
-        <button class="btn" onclick="enterReviewMode()">🔍 Xem Lại Bài Thi</button>
-        <a href="index.html" class="btn">🏠 Về Trang Chủ</a>
+        <button class="btn btn-primary" onclick="restartExam()"><i class="bi bi-dice-5-fill"></i> Thi Đề Khác</button>
+        <button class="btn" onclick="enterReviewMode()"><i class="bi bi-search"></i> Xem Lại Bài Thi</button>
+        <a href="index.html" class="btn"><i class="bi bi-house-door-fill"></i> Về Trang Chủ</a>
       </div>
     </div>
   </div>
@@ -1058,9 +1062,9 @@
       const unAnswered = examCards.length - answered;
       let desc = `Bạn đã làm được <b>${answered}</b> / ${examCards.length} câu.`;
       if (unAnswered > 0) {
-        desc += `<br><span style="color:var(--danger)">⚠️ Vẫn còn <b>${unAnswered} câu chưa trả lời</b>!</span>`;
+        desc += `<br><span style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Vẫn còn <b>${unAnswered} câu chưa trả lời</b>!</span>`;
       } else {
-        desc += `<br><span style="color:var(--success)">✅ Bạn đã hoàn thành tất cả các câu hỏi!</span>`;
+        desc += `<br><span style="color:var(--success)"><i class="bi bi-check-circle-fill"></i> Bạn đã hoàn thành tất cả các câu hỏi!</span>`;
       }
       desc += `<br>Bạn có chắc chắn muốn nộp bài thi ngay bây giờ?`;
 
@@ -1140,7 +1144,7 @@
     function updateThemeIcon(theme) {
       const toggleBtn = document.getElementById('theme-toggle');
       if (toggleBtn) {
-        toggleBtn.innerText = theme === 'dark' ? '☀️' : '🌙';
+        toggleBtn.innerHTML = theme === 'dark' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
       }
     }
 

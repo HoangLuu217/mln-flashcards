@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script>
     (function() {
       const savedTheme = localStorage.getItem('app_theme');
@@ -782,28 +783,28 @@
       </div>
     </a>
     <div class="header-actions">
-      <a href="tips.html" target="_blank" class="btn" style="border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700; text-decoration: none;" title="Bí kíp & Mẹo chọn trắc nghiệm">💡 Mẹo Thi</a>
-      <a href="exam_mln111.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 50 câu / 50 phút">📝 Thi Thử FE (50 câu)</a>
-      <button class="btn btn-exam" onclick="startQuiz60()" title="Tạo đề thi thử 60 câu ngẫu nhiên">🎯 Thi 60 câu</button>
-      <button class="btn btn-primary" onclick="openQuizletModal()">📋 Quizlet</button>
-      <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối">🌙</button>
+      <a href="tips.html" target="_blank" class="btn" style="border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700; text-decoration: none;" title="Bí kíp & Mẹo chọn trắc nghiệm"><i class="bi bi-lightbulb-fill"></i> Mẹo Thi</a>
+      <a href="exam_mln111.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 50 câu / 50 phút"><i class="bi bi-pencil-square"></i> Thi Thử FE (50 câu)</a>
+      <button class="btn btn-exam" onclick="startQuiz60()" title="Tạo đề thi thử 60 câu ngẫu nhiên"><i class="bi bi-bullseye"></i> Thi 60 câu</button>
+      <button class="btn btn-primary" onclick="openQuizletModal()"><i class="bi bi-clipboard-data-fill"></i> Quizlet</button>
+      <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối"><i class="bi bi-moon-stars-fill"></i></button>
     </div>
   </header>
 
   <div class="container">
     <div class="top-controls">
       <div class="search-box">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon"><i class="bi bi-search"></i></span>
         <input type="text" id="search-input" placeholder="Tìm câu hỏi theo từ khóa..." oninput="filterCards()">
       </div>
       <div class="filter-group">
         <select class="filter-select" id="filter-select" onchange="filterCards()">
           <option value="all">Tất cả câu hỏi (571)</option>
-          <option value="exam60">🎯 Đề thi 60 câu ngẫu nhiên</option>
-          <option value="wrong">Câu trả lời sai ❌ (<span id="wrong-count-text">0</span>)</option>
-          <option value="starred">Đã gắn sao ⭐ (<span id="starred-count-text">0</span>)</option>
+          <option value="exam60">Đề thi 60 câu ngẫu nhiên</option>
+          <option value="wrong">Câu trả lời sai (<span id="wrong-count-text">0</span>)</option>
+          <option value="starred">Đã gắn sao (<span id="starred-count-text">0</span>)</option>
         </select>
-        <button class="btn" onclick="toggleShuffle()" id="shuffle-btn">🔀 Trộn thẻ</button>
+        <button class="btn" onclick="toggleShuffle()" id="shuffle-btn"><i class="bi bi-shuffle"></i> Trộn thẻ</button>
       </div>
     </div>
 
@@ -818,10 +819,10 @@
       </div>
       <div style="display: flex; gap: 0.5rem; align-items: center;">
         <button class="btn btn-primary" onclick="startQuiz60()" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">
-          🎲 Đổi đề khác
+          <i class="bi bi-dice-5-fill"></i> Đổi đề khác
         </button>
         <button class="btn" onclick="exitQuiz60()" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">
-          ✕ Thoát đề thi
+          <i class="bi bi-x-lg"></i> Thoát đề thi
         </button>
       </div>
     </div>
@@ -829,11 +830,11 @@
     <!-- Wrong Questions Banner -->
     <div class="wrong-banner" id="wrong-banner">
       <div>
-        ⚠️ Bạn đang ôn tập <b><span id="wrong-banner-count">0</span></b> câu hỏi đã từng trả lời sai.
+        <i class="bi bi-exclamation-triangle-fill" style="color:var(--danger); margin-right: 0.3rem;"></i> Bạn đang ôn tập <b><span id="wrong-banner-count">0</span></b> câu hỏi đã từng trả lời sai.
         Khi chọn đúng, câu hỏi sẽ tự động được gỡ khỏi danh sách sai!
       </div>
       <button class="btn btn-danger" onclick="clearAllWrongAnswers()" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">
-        🗑️ Xóa tất cả câu sai
+        <i class="bi bi-trash3-fill"></i> Xóa tất cả câu sai
       </button>
     </div>
 
@@ -842,7 +843,7 @@
         <div class="progress-bar" id="progress-bar"></div>
       </div>
       <div class="progress-text">
-        <span>Thẻ <span id="current-idx-display">1</span> / <span id="total-idx-display">571</span> <span class="save-indicator" id="save-indicator">💾 Đã lưu tiến trình</span></span>
+        <span>Thẻ <span id="current-idx-display">1</span> / <span id="total-idx-display">571</span> <span class="save-indicator" id="save-indicator"><i class="bi bi-check-circle-fill"></i> Đã lưu tiến trình</span></span>
         <div>
           <span>Đến câu: </span>
           <input type="number" id="jump-input" class="jump-input" min="1" max="571" value="1" onchange="jumpToCard()">
@@ -857,12 +858,12 @@
           <div class="card-header">
             <div class="card-tag-group">
               <span class="card-tag" id="card-tag-main">Câu #1</span>
-              <span class="card-tag card-tag-wrong" id="card-tag-wrong">❌ Đã trả lời sai</span>
+              <span class="card-tag card-tag-wrong" id="card-tag-wrong"><i class="bi bi-x-circle-fill"></i> Đã trả lời sai</span>
             </div>
             <div class="card-tip">
               <span>Bấm thẻ hoặc</span> <span class="kbd">Space</span> <span>để lật</span>
             </div>
-            <button class="btn btn-star" id="star-btn" onclick="toggleStar(event)">⭐</button>
+            <button class="btn btn-star" id="star-btn" onclick="toggleStar(event)"><i class="bi bi-star"></i></button>
           </div>
           <div class="card-question" id="card-question">Nội dung câu hỏi...</div>
           <div class="options-list" id="card-options"></div>
@@ -882,7 +883,7 @@
           </div>
           <div class="answer-full-text" id="card-answer-text">Nội dung đáp án đúng...</div>
           <div class="notes-box" id="card-notes-box" style="display: none;">
-            <div class="notes-title">💡 Ghi chú & Kiểu hỏi khác:</div>
+            <div class="notes-title"><i class="bi bi-lightbulb-fill"></i> Ghi chú & Kiểu hỏi khác:</div>
             <div id="card-notes-text"></div>
           </div>
         </div>
@@ -890,11 +891,11 @@
     </div>
 
     <div class="nav-controls">
-      <button class="btn" onclick="prevCard()"><span class="kbd">←</span> Trước</button>
+      <button class="btn" onclick="prevCard()"><i class="bi bi-arrow-left"></i> Trước</button>
       <div class="nav-group-center">
-        <button class="btn btn-primary flip-btn" onclick="flipCard()">🔄 Lật Thẻ (<span class="kbd">Space</span>)</button>
+        <button class="btn btn-primary flip-btn" onclick="flipCard()"><i class="bi bi-arrow-repeat"></i> Lật Thẻ (<span class="kbd">Space</span>)</button>
       </div>
-      <button class="btn" onclick="nextCard()">Sau <span class="kbd">→</span></button>
+      <button class="btn" onclick="nextCard()">Sau <i class="bi bi-arrow-right"></i></button>
     </div>
   </div>
 
@@ -902,7 +903,7 @@
   <div class="modal-overlay" id="quizlet-modal" onclick="closeModalOnBackdrop(event)">
     <div class="modal">
       <div class="modal-header">
-        <h3>📋 Nhập Vào Quizlet Nhanh Chóng</h3>
+        <h3><i class="bi bi-clipboard-data-fill"></i> Nhập Vào Quizlet Nhanh Chóng</h3>
         <button class="modal-close" onclick="closeQuizletModal()">&times;</button>
       </div>
       <div class="modal-body">
@@ -922,8 +923,8 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button class="btn" onclick="copyQuizletData('single')">Sao chép dạng 1 dòng</button>
-        <button class="btn btn-primary" onclick="copyQuizletData('multi')">Sao chép dữ liệu chuẩn (Khuyên dùng)</button>
+        <button class="btn" onclick="copyQuizletData('single')"><i class="bi bi-clipboard"></i> Sao chép dạng 1 dòng</button>
+        <button class="btn btn-primary" onclick="copyQuizletData('multi')"><i class="bi bi-clipboard-check-fill"></i> Sao chép dữ liệu chuẩn (Khuyên dùng)</button>
       </div>
     </div>
   </div>
@@ -932,7 +933,7 @@
   <div class="modal-overlay" id="exam-complete-modal" onclick="closeModalOnBackdrop(event)">
     <div class="modal" style="max-width: 480px; text-align: center;">
       <div class="modal-header">
-        <h3 style="margin: 0 auto;">🎉 Hoàn Thành Đề Thi 60 Câu!</h3>
+        <h3 style="margin: 0 auto;"><i class="bi bi-trophy-fill" style="color:var(--gold)"></i> Hoàn Thành Đề Thi 60 Câu!</h3>
       </div>
       <div class="modal-body">
         <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Kết quả làm bài thi thử của bạn:</p>
@@ -941,11 +942,11 @@
           <div style="font-weight: 700; color: var(--text-main);">Đúng <span id="final-correct-val">60</span>/60 câu (<span id="final-pct-val">100%</span>)</div>
         </div>
         <p style="font-size: 0.9rem; margin-top: 1rem;">
-          Các câu trả lời sai (nếu có) đã được tự động lưu vào mục <b>"Câu trả lời sai ❌"</b> để bạn ôn lại!
+          Các câu trả lời sai (nếu có) đã được tự động lưu vào mục <b>"Câu trả lời sai"</b> để bạn ôn lại!
         </p>
       </div>
       <div class="modal-footer" style="justify-content: center; gap: 0.75rem;">
-        <button class="btn btn-primary" onclick="startQuiz60()">🎲 Thi Đề Mới</button>
+        <button class="btn btn-primary" onclick="startQuiz60()"><i class="bi bi-dice-5-fill"></i> Thi Đề Mới</button>
         <button class="btn" onclick="closeExamModal()">Xem Lại Bài Làm</button>
       </div>
     </div>
@@ -978,7 +979,7 @@
     function updateThemeIcon(theme) {
       const toggleBtn = document.getElementById('theme-toggle');
       if (toggleBtn) {
-        toggleBtn.innerText = theme === 'light' ? '☀️' : '🌙';
+        toggleBtn.innerHTML = theme === 'light' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
       }
     }
 
@@ -1127,17 +1128,17 @@
         const filterType = document.getElementById('filter-select').value;
         let emptyMsg = "Không tìm thấy câu hỏi phù hợp.";
         if (filterType === 'wrong') {
-          emptyMsg = "🎉 Tuyệt vời! Bạn chưa có câu trả lời sai nào.";
+          emptyMsg = "Tuyệt vời! Bạn chưa có câu trả lời sai nào.";
         } else if (filterType === 'starred') {
-          emptyMsg = "⭐ Bạn chưa gắn sao câu hỏi nào. Bấm ⭐ trên thẻ để lưu lại các câu cần chú ý.";
+          emptyMsg = "Bạn chưa gắn sao câu hỏi nào. Bấm nút sao trên thẻ để lưu lại các câu cần chú ý.";
         }
 
         cardQuestion.innerHTML = `
           <div class="empty-state">
-            <div class="empty-icon">${filterType === 'wrong' ? '🎉' : '🔍'}</div>
+            <div class="empty-icon">${filterType === 'wrong' ? '<i class="bi bi-trophy-fill" style="color:var(--gold); font-size:2.8rem;"></i>' : '<i class="bi bi-search" style="font-size:2.8rem;"></i>'}</div>
             <div style="font-size:1.15rem; font-weight:700; margin-bottom:0.5rem;">${emptyMsg}</div>
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem;">Bấm nút bên dưới để quay lại ôn tập toàn bộ câu hỏi.</p>
-            <button class="btn btn-primary" onclick="resetToAllQuestions()">👉 Xem tất cả ${ALL_CARDS.length} câu hỏi</button>
+            <button class="btn btn-primary" onclick="resetToAllQuestions()"><i class="bi bi-arrow-clockwise"></i> Xem tất cả ${ALL_CARDS.length} câu hỏi</button>
           </div>
         `;
         optContainer.innerHTML = "";
@@ -1173,7 +1174,7 @@
       // Wrong tag
       if (wrongDict[card.id]) {
         wrongTag.classList.add('show');
-        wrongTag.innerText = `❌ Đã làm sai (chọn: ${wrongDict[card.id]})`;
+        wrongTag.innerHTML = `<i class="bi bi-x-circle-fill"></i> Đã làm sai (chọn: ${wrongDict[card.id]})`;
       } else {
         wrongTag.classList.remove('show');
       }
@@ -1182,8 +1183,10 @@
       const starBtn = document.getElementById('star-btn');
       if (starredSet.has(card.id)) {
         starBtn.classList.add('active');
+        starBtn.innerHTML = '<i class="bi bi-star-fill"></i>';
       } else {
         starBtn.classList.remove('active');
+        starBtn.innerHTML = '<i class="bi bi-star"></i>';
       }
 
       // Render options
@@ -1269,7 +1272,7 @@
       const wrongTag = document.getElementById('card-tag-wrong');
       if (wrongDict[card.id]) {
         wrongTag.classList.add('show');
-        wrongTag.innerText = `❌ Đã làm sai (chọn: ${letter})`;
+        wrongTag.innerHTML = `<i class="bi bi-x-circle-fill"></i> Đã làm sai (chọn: ${letter})`;
       } else {
         wrongTag.classList.remove('show');
       }
