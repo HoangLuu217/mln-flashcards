@@ -2447,7 +2447,7 @@
             ` : ''}
             ${relatedChips}
             <div style="margin-top: 0.75rem;">
-              <a href="tips.html#${tip.sectionId}" target="_blank" class="btn-open-tips-handbook">
+              <a href="tips.html?subject=hcm202#${tip.sectionId}" target="_blank" class="btn-open-tips-handbook">
                 <i class="bi bi-box-arrow-up-right"></i> Xem mục "${tip.sectionTitle}" trong Sổ Tay Mẹo &rarr;
               </a>
             </div>
@@ -2458,7 +2458,7 @@
       const firstTip = tipsForCard[0];
       const handbookLink = document.getElementById('card-tip-handbook-link');
       if (handbookLink && firstTip) {
-        handbookLink.href = `tips.html#${firstTip.sectionId}`;
+        handbookLink.href = `tips.html?subject=hcm202#${firstTip.sectionId}`;
         handbookLink.innerHTML = `<i class="bi bi-book-half"></i> Sổ Tay: ${firstTip.sectionTitle}`;
       }
 
