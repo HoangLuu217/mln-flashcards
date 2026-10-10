@@ -808,31 +808,208 @@
 
     @media (max-width: 640px) {
       header {
-        padding: 0.75rem 1rem;
+        padding: 0.55rem 0.75rem;
+        gap: 0.5rem;
+      }
+      .fpt-logo-box {
+        width: 32px;
+        height: 32px;
+        padding: 2px;
       }
       .logo-title h1 {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.2;
       }
-      .card-face {
-        padding: 1.25rem;
+      .logo-title p {
+        display: none !important;
       }
-      .card-question {
-        font-size: 1rem;
+      .header-actions {
+        gap: 0.35rem;
       }
-      .option-item {
-        font-size: 0.85rem;
-        padding: 0.7rem 0.85rem;
+      .header-actions .btn {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.78rem;
+        border-radius: 8px;
       }
-      .flip-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
+      .container {
+        padding: 0.75rem 0.6rem 2rem;
       }
       .top-controls {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .search-box input {
+        padding: 0.5rem 0.85rem 0.5rem 2rem;
+        font-size: 0.82rem;
       }
       .filter-group {
+        display: flex;
+        gap: 0.4rem;
+        width: 100%;
+      }
+      .filter-select {
+        flex: 1;
+        min-width: 0;
+        font-size: 0.82rem;
+        padding: 0.5rem 0.6rem;
+        border-radius: 8px;
+        text-overflow: ellipsis;
+      }
+      #shuffle-btn {
+        flex-shrink: 0;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
+      .status-banner, .wrong-banner, .exam-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.82rem;
+        text-align: left;
+      }
+      .status-banner .btn, .wrong-banner .btn, .exam-banner .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .progress-section {
+        margin-bottom: 0.75rem;
+      }
+      .progress-text {
+        font-size: 0.78rem;
+        gap: 0.35rem 0.6rem;
+      }
+      .jump-input {
+        width: 50px;
+        padding: 0.15rem 0.3rem;
+        font-size: 0.78rem;
+      }
+      .card-scene {
+        min-height: 350px;
+        margin-bottom: 1rem;
+      }
+      .card-face {
+        padding: 1.1rem 0.9rem;
+        border-radius: 14px;
+      }
+      .card-header {
+        margin-bottom: 0.85rem;
+        padding-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.4rem;
         justify-content: space-between;
+      }
+      .card-tip {
+        display: none !important;
+      }
+      .card-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.45rem;
+      }
+      .btn-learned-toggle {
+        font-size: 0.74rem;
+        padding: 0.25rem 0.5rem;
+      }
+      .btn-star {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+      }
+      .card-question {
+        font-size: 0.98rem;
+        line-height: 1.45;
+        margin-bottom: 1rem;
+      }
+      .options-list {
+        gap: 0.6rem;
+        margin-bottom: 0.75rem;
+      }
+      .option-item {
+        font-size: 0.88rem;
+        padding: 0.75rem 0.85rem;
+        gap: 0.55rem;
+        border-radius: 10px;
+        line-height: 1.4;
+      }
+      .answer-badge {
+        font-size: 1.15rem;
+        padding: 0.4rem 0.9rem;
+      }
+      .answer-full-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .nav-controls {
+        display: flex;
+        gap: 0.4rem;
+        width: 100%;
+      }
+      .nav-controls .btn {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        border-radius: 10px;
+      }
+      .nav-group-center {
+        flex: 1;
+        display: flex;
+      }
+      .flip-btn {
+        flex: 1;
+        width: 100%;
+        justify-content: center;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.88rem;
+      }
+      .kbd-hint {
+        display: none !important;
+      }
+      .modal {
+        width: 94%;
+        max-width: 95vw;
+        margin: 1rem auto;
+        border-radius: 14px;
+        max-height: 90vh;
+      }
+      .modal-header {
+        padding: 1rem 1.15rem;
+      }
+      .modal-header h3 {
+        font-size: 1rem;
+      }
+      .modal-body {
+        padding: 1rem 1.15rem;
+        font-size: 0.85rem;
+      }
+      .modal-footer {
+        padding: 0.85rem 1.15rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .modal-footer .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .header-actions .nav-text {
+        display: none !important;
+      }
+      .header-actions .btn {
+        padding: 0.4rem 0.5rem;
+      }
+      .card-face {
+        padding: 0.95rem 0.75rem;
+      }
+      .card-question {
+        font-size: 0.93rem;
+      }
+      .option-item {
+        font-size: 0.84rem;
+        padding: 0.65rem 0.75rem;
       }
     }
   </style>
@@ -850,10 +1027,10 @@
       </div>
     </a>
     <div class="header-actions">
-      <a href="tips.html" target="_blank" class="btn" style="border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700; text-decoration: none;" title="Bí kíp & Mẹo chọn trắc nghiệm"><i class="bi bi-lightbulb-fill"></i> Mẹo Thi</a>
-      <a href="exam_mln111.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 50 câu / 50 phút"><i class="bi bi-pencil-square"></i> Thi Thử FE (50 câu)</a>
+      <a href="tips.html" target="_blank" class="btn" style="border-color: rgba(249, 115, 22, 0.4); background-color: rgba(249, 115, 22, 0.12); color: #f97316; font-weight: 700; text-decoration: none;" title="Bí kíp & Mẹo chọn trắc nghiệm"><i class="bi bi-lightbulb-fill"></i> <span class="nav-text">Mẹo Thi</span></a>
+      <a href="exam_mln111.html" class="btn" style="background: linear-gradient(135deg, #f97316, #ea580c); color: white; border: none; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" title="Phòng thi thử FE chuẩn 50 câu / 50 phút"><i class="bi bi-pencil-square"></i> <span class="nav-text">Thi Thử</span></a>
       <button class="btn btn-exam" onclick="startQuiz60()" title="Tạo đề thi thử 60 câu ngẫu nhiên"><i class="bi bi-bullseye"></i> Thi 60 câu</button>
-      <button class="btn btn-primary" onclick="openQuizletModal()"><i class="bi bi-clipboard-data-fill"></i> Quizlet</button>
+      <button class="btn btn-primary" onclick="openQuizletModal()"><i class="bi bi-clipboard-data-fill"></i> <span class="nav-text">Quizlet</span></button>
       <button class="btn" id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối"><i class="bi bi-moon-stars-fill"></i></button>
     </div>
   </header>
@@ -989,7 +1166,7 @@
     <div class="nav-controls">
       <button class="btn" onclick="prevCard()"><i class="bi bi-arrow-left"></i> Trước</button>
       <div class="nav-group-center">
-        <button class="btn btn-primary flip-btn" onclick="flipCard()"><i class="bi bi-arrow-repeat"></i> Lật Thẻ (<span class="kbd">Space</span>)</button>
+        <button class="btn btn-primary flip-btn" onclick="flipCard()"><i class="bi bi-arrow-repeat"></i> Lật Thẻ <span class="kbd-hint">(<span class="kbd">Space</span>)</span></button>
       </div>
       <button class="btn" onclick="nextCard()">Sau <i class="bi bi-arrow-right"></i></button>
     </div>

@@ -624,19 +624,85 @@
     /* RESPONSIVE */
     @media (max-width: 768px) {
       header {
-        padding: 0.85rem 1rem;
+        padding: 0.65rem 0.85rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .fpt-logo-box {
+        width: 32px;
+        height: 32px;
+        padding: 2px;
+      }
+      .logo-title h1 {
+        font-size: 0.95rem;
+      }
+      .logo-title p {
+        display: none !important;
+      }
+      .header-nav {
+        gap: 0.35rem;
+        flex-wrap: wrap;
+      }
+      .nav-link {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.78rem;
       }
       .container {
-        padding: 1.25rem 0.75rem 3rem;
+        padding: 1rem 0.65rem 3rem;
+      }
+      .hero-banner {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
       }
       .hero-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        line-height: 1.3;
+      }
+      .hero-desc {
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+      .stats-pills {
+        gap: 0.5rem;
+      }
+      .stat-pill {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.78rem;
+      }
+      .sticky-toolbar {
+        top: 56px;
+        padding: 0.5rem;
+        gap: 0.4rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-btn {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.78rem;
+        white-space: nowrap;
       }
       .grid-2, .grid-3 {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
-      .sticky-toolbar {
-        top: 64px;
+      .tip-card {
+        padding: 1.15rem 1rem;
+        border-radius: 14px;
+      }
+      .table-box {
+        border-radius: 14px;
+        overflow-x: auto;
+      }
+      .tips-table {
+        min-width: 480px;
+        font-size: 0.82rem;
+      }
+      .callout {
+        padding: 1rem;
+        border-radius: 12px;
+        font-size: 0.88rem;
       }
     }
   </style>
