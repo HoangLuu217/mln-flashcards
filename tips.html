@@ -761,6 +761,52 @@
       letter-spacing: 0.02em;
     }
 
+  
+    /* SEARCH ENHANCEMENTS */
+    .search-clear-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .search-clear-btn:hover {
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .search-feedback-bar {
+      width: 100%;
+      background: rgba(249, 115, 22, 0.08);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+    }
+    .search-feedback-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+    .search-feedback-text b {
+      color: var(--accent);
+    }
+
   </style>
 </head>
 <body>
@@ -809,6 +855,7 @@
         <div class="search-box">
           <span class="search-icon"><i class="bi bi-search"></i></span>
           <input type="text" id="searchInput" class="search-input" placeholder="Tìm mẹo theo từ khóa, năm (1615, 1848, 1986), tác giả (Lênin, Ăngghen), công thức..." oninput="handleSearch()">
+          <button type="button" id="searchClearBtn" class="search-clear-btn" onclick="clearSearch()" title="Xóa tìm kiếm (ESC)" style="display:none;"><i class="bi bi-x-circle-fill"></i></button>
         </div>
         <div class="filter-tabs">
           <button class="filter-btn active" data-subject="all" onclick="filterSubject('all', this)">Tất Cả</button>
@@ -816,6 +863,7 @@
           <button class="filter-btn" data-subject="mln122" onclick="filterSubject('mln122', this)">MLN122 (KTCT)</button>
           <button class="filter-btn" data-subject="hcm202" onclick="filterSubject('hcm202', this)">HCM202 (Tư Tưởng HCM)</button>
         </div>
+        <div id="search-feedback-bar" class="search-feedback-bar" style="display:none;"></div>
       </div>
     </div>
 
@@ -1462,7 +1510,7 @@
 </div>
 
       <!-- Bẫy Tất cả phương án -->
-      <div style="margin-top: 1.5rem;">
+      <div class="callout-wrapper" style="margin-top: 1.5rem;">
         <div class="callout callout-danger">
           <div class="callout-icon"><i class="bi bi-exclamation-octagon-fill"></i></div>
           <div>
@@ -2455,73 +2503,102 @@
       }
     });
 
-    // SEARCH FUNCTIONALITY WITH COMPLETE CONTAINER HIDING ("ẨN CẢ DIV NẾU KHÔNG CÓ NỘI DUNG")
+        // SEARCH FUNCTIONALITY WITH COMPLETE CONTAINER HIDING ("CHỈ HIỆN DIV PHÙ HỢP - ẨN HẾT DIV KHÔNG CÓ NỘI DUNG")
     function handleSearch() {
       const rawQuery = document.getElementById('searchInput').value.trim();
-      const query = rawQuery.toLowerCase();
-      const normQuery = removeVietnameseTones(query);
       const currentSubject = document.querySelector('.filter-btn.active')?.getAttribute('data-subject') || 'all';
       const noResultsDiv = document.getElementById('no-search-results');
+      const feedbackBar = document.getElementById('search-feedback-bar');
+      const clearBtn = document.getElementById('searchClearBtn');
       const quickNav = document.querySelector('.hcm-quick-nav');
+      const heroBanner = document.querySelector('.hero-banner');
+      const subjectBanners = document.querySelectorAll('.subject-block-banner');
+
+      // Update clear button inside search box
+      if (clearBtn) {
+        clearBtn.style.display = rawQuery ? 'flex' : 'none';
+      }
 
       // If search query is empty, reset display cleanly by active subject filter
-      if (!query) {
+      if (!rawQuery) {
         if (noResultsDiv) noResultsDiv.style.display = 'none';
+        if (feedbackBar) feedbackBar.style.display = 'none';
         if (quickNav) quickNav.style.display = '';
+        if (heroBanner) heroBanner.style.display = '';
+        subjectBanners.forEach(b => b.style.display = '');
         filterSubject(currentSubject);
         return;
       }
 
-      // Hide quick nav pills while searching to keep result view uncluttered
+      // When searching: HIDE HERO BANNER, HCM QUICK NAV, AND SUBJECT BANNERS
+      // so ONLY matching tip divs appear immediately right below search!
+      if (heroBanner) heroBanner.style.display = 'none';
       if (quickNav) quickNav.style.display = 'none';
+      subjectBanners.forEach(b => b.style.display = 'none');
+
+      // Prepare multi-word query tokens (supports both accented & unaccented Vietnamese)
+      const queryTokens = rawQuery.toLowerCase().split(/\s+/).filter(Boolean);
+      const normTokens = queryTokens.map(tok => removeVietnameseTones(tok));
+
+      function itemMatchesQuery(text) {
+        if (!text) return false;
+        const lower = text.toLowerCase();
+        const norm = removeVietnameseTones(lower);
+        for (let i = 0; i < queryTokens.length; i++) {
+          const q = queryTokens[i];
+          const nq = normTokens[i];
+          if (!lower.includes(q) && !norm.includes(nq)) {
+            return false;
+          }
+        }
+        return true;
+      }
 
       let totalVisibleMatches = 0;
 
       // 1. Filter individual tip cards (.tip-card)
       const tipCards = document.querySelectorAll('.tip-card');
       tipCards.forEach(card => {
-        const rawText = card.innerText.toLowerCase();
-        const normText = removeVietnameseTones(rawText);
         const matchesSubject = checkSubjectMatch(card, currentSubject);
-        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+        const matchesQuery = itemMatchesQuery(card.innerText);
 
         if (matchesSubject && matchesQuery) {
           card.style.display = '';
           totalVisibleMatches++;
         } else {
-          card.style.display = 'none';
+          card.style.display = 'none'; // Ẩn luôn thẻ card nếu không khớp
         }
       });
 
       // 2. Filter table rows (tbody tr)
       const tableRows = document.querySelectorAll('tbody tr');
       tableRows.forEach(row => {
-        const rawText = row.innerText.toLowerCase();
-        const normText = removeVietnameseTones(rawText);
         const matchesSubject = checkSubjectMatch(row, currentSubject);
-        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+        const matchesQuery = itemMatchesQuery(row.innerText);
 
         if (matchesSubject && matchesQuery) {
           row.style.display = '';
           totalVisibleMatches++;
         } else {
-          row.style.display = 'none';
+          row.style.display = 'none'; // Ẩn luôn dòng nếu không khớp
         }
       });
 
       // 3. Filter standalone callouts (.callout)
+      // Instructional callout in Section 1 is hidden unless specifically searching year rules
       const callouts = document.querySelectorAll('.callout');
       callouts.forEach(co => {
-        const rawText = co.innerText.toLowerCase();
-        const normText = removeVietnameseTones(rawText);
         const matchesSubject = checkSubjectMatch(co, currentSubject);
-        const matchesQuery = rawText.includes(query) || normText.includes(normQuery);
+        const matchesQuery = itemMatchesQuery(co.innerText);
 
-        if (matchesSubject && matchesQuery) {
-          co.style.display = '';
-          totalVisibleMatches++;
-        } else {
-          co.style.display = 'none';
+        const isShown = (matchesSubject && matchesQuery);
+        co.style.display = isShown ? '' : 'none';
+        if (isShown) totalVisibleMatches++;
+
+        // Hide parent wrapper div if present
+        const wrapper = co.closest('.callout-wrapper') || (co.parentElement && co.parentElement.style.marginTop ? co.parentElement : null);
+        if (wrapper && wrapper !== co) {
+          wrapper.style.display = isShown ? '' : 'none';
         }
       });
 
@@ -2548,6 +2625,7 @@
       });
 
       // 6. Hide entire TIP SECTIONS (section.tip-section)
+      // Section is displayed ONLY IF it contains at least 1 visible tip card or visible table row or visible callout!
       const sections = document.querySelectorAll('.tip-section');
       sections.forEach(sec => {
         const hasVisibleCards = sec.querySelectorAll('.tip-card:not([style*="display: none"])').length > 0;
@@ -2557,7 +2635,7 @@
         if (hasVisibleCards || hasVisibleRows || hasVisibleCallouts) {
           sec.style.display = '';
         } else {
-          sec.style.display = 'none'; // Ẩn luôn cả section div và tiêu đề nếu không có bất kỳ nội dung nào khớp!
+          sec.style.display = 'none'; // Ẩn luôn cả section div và tiêu đề section nếu không có bất kỳ mẹo nào khớp!
         }
       });
 
@@ -2566,22 +2644,47 @@
       blocks.forEach(blk => {
         const visibleSections = blk.querySelectorAll('.tip-section:not([style*="display: none"])');
         if (visibleSections.length > 0) {
-          blk.style.display = '';
+          blk.style.display = 'block';
         } else {
-          blk.style.display = 'none'; // Ẩn luôn cả block môn học và banner nếu không có section nào khớp!
+          blk.style.display = 'none'; // Ẩn luôn cả block môn học nếu không có section nào khớp!
         }
       });
 
-      // 8. Handle Empty Search Results State
+      // 8. Update Feedback Bar
+      if (feedbackBar) {
+        if (totalVisibleMatches > 0) {
+          feedbackBar.style.display = 'flex';
+          const subText = (currentSubject !== 'all') ? ` trong môn <b>${currentSubject.toUpperCase()}</b>` : '';
+          feedbackBar.innerHTML = `
+            <div class="search-feedback-text">
+              <i class="bi bi-check-circle-fill" style="color:var(--accent);"></i>
+              Tìm thấy <b>${totalVisibleMatches}</b> mẹo phù hợp với từ khóa "<b>${escapeHtml(rawQuery)}</b>"${subText}
+            </div>
+            <button class="btn" style="padding:0.3rem 0.75rem; font-size:0.8rem;" onclick="clearSearch()">
+              <i class="bi bi-x-lg"></i> Xóa tìm kiếm (ESC)
+            </button>
+          `;
+        } else {
+          feedbackBar.style.display = 'none';
+        }
+      }
+
+      // 9. Handle Empty Search Results State
       if (noResultsDiv) {
         if (totalVisibleMatches === 0) {
           noResultsDiv.style.display = 'block';
+          const subHint = (currentSubject !== 'all') 
+            ? `<div style="margin-top:0.75rem;"><button class="btn btn-secondary" onclick="filterSubject('all')"><i class="bi bi-globe"></i> Thử tìm lại trong Tất Cả Các Môn</button></div>`
+            : '';
           noResultsDiv.innerHTML = `
             <div style="text-align: center; padding: 3.5rem 1rem; background: var(--bg-card); border: 1.5px dashed var(--border-color); border-radius: 18px; margin: 2rem 0;">
               <i class="bi bi-search" style="font-size: 2.6rem; color: var(--text-dim); display: block; margin-bottom: 0.85rem;"></i>
               <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">Không tìm thấy mẹo nào khớp với từ khóa "${escapeHtml(rawQuery)}"</h3>
-              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Hãy thử tìm từ khóa khác (ví dụ: mốc năm, tác giả, bệnh mẹ, chiêng, thặng dư)...</p>
-              <button class="btn btn-primary" onclick="clearSearch()" style="padding: 0.6rem 1.4rem; font-weight: 700;"><i class="bi bi-arrow-clockwise"></i> Xóa tìm kiếm & Hiện lại tất cả</button>
+              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Toàn bộ các div không có nội dung phù hợp đã được ẩn. Hãy thử tìm từ khóa khác (ví dụ: mốc năm, tác giả, bệnh mẹ, chiêng, thặng dư)...</p>
+              <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="clearSearch()" style="padding: 0.6rem 1.4rem; font-weight: 700;"><i class="bi bi-arrow-clockwise"></i> Xóa tìm kiếm & Hiện lại tất cả</button>
+                ${subHint}
+              </div>
             </div>
           `;
         } else {
